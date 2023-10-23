@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Japanese Word Frequency Lookup</title>
+		<script>
+            let cc100_json = undefined;
+            let jpdb_json = undefined;
+            function get_freq(){
+                if (cc100_json == undefined || jpdb_json == undefined) {
+                    cc100_json = JSON.parse(get_cc100_json());
+                    jpdb_json = JSON.parse(get_jpdb_json());
+                }
+                let word_input = document.getElementById("word_input").value;
+                let cc100 = cc100_json[word_input];
+                if (cc100 == undefined) {
+                    cc100 = "Word not found"
+                }
+                let jpdb = jpdb_json[word_input];
+                if (jpdb == undefined) {
+                    jpdb = "Word not found"
+                }
+                document.getElementById("freq_output").value = "CC100: " + cc100 + "\n" + "JPDB: " + jpdb;
+            }
+        </script>
+        <script id="CC100" type="text/javascript" src="CC100.js"></script>
+
+        <script id="JPDB" type="text/javascript" src="JPDB.js"></script>
+	</head>
+	<body>
+        <div>
+            <h2>Japanese Word Frequency Lookup</h2>
+            <fieldset>
+                <legend>Word</legend>
+                <textarea id="word_input" name="word_input" rows="3" style="width:100%;color:#000;font-family:monospace;"></textarea>
+            </fieldset>
+            <input onclick="get_freq()" type="button" style="position:relative;left:25%;width:50%;font-size:160%" value="Search">
+            <fieldset>
+                <legend>Frequency</legend>
+                <textarea id="freq_output" name="freq_output" rows="3" style="width:100%;color:#000;font-family:monospace" readonly="readonly"></textarea>
+            </fieldset>
+        </div>
+        <br>
+        <p>
+            <strong>JPDB Frequency List</strong>
+            <br>
+            A frequency list made from <a href="https://jpdb.io/">JPDB</a>, which is a site that has analyzed many light novels, visual novels, anime and j-drama. It contains about 183k words.
+            <br>
+            Frequencies for hiragana versions of kanji dictionary entries will be marked by ㋕. For example, if you search 成る, you will see frequencies for both なる and 成る.
+        </p>
+        <p>
+            <strong>CC100 Frequency List</strong>
+            <br>
+            Frequency list of <a href="https://data.statmt.org/cc-100/">CC100</a> corpus data from Japanese internet. Formal words will appear more common in this frequency list. It contains about 160k words.
+            <br>
+        </p>
+        <p>
+            <strong>What is a common word?</strong>
+            <br>
+            Very common: 1-10,000
+            <br>
+            Commmon: 10,001-20,000
+            <br>
+            Fairly common: 20,001-30,000
+            <br>
+            Kind of uncommon: 30,001-40,000
+            <br>
+            Uncommon: 40,001-50,000
+            <br>
+            Rare: 50,001-80,000
+            <br>
+            Natives-probably-don't-know-it-level: 80,000+
+        </p>
+        <p>
+            <strong>Offline Use</strong>
+            <br>
+            This page can be downloaded for offline use by in most browsers by pressing "ctrl + s". The individual assets for this page are available at the <a href="https://github.com/Kuuuube/Kuuuube.github.io/tree/main/japanese_word_frequency">github repo</a>.
+        </p>
+        <p>
+            <strong>Yomichan Dictionaries</strong>
+            <br>
+            These frequency lists are both available as yomichan dictionaries: <a href="Freq_JPDB.zip">JPDB</a>, <a href="Freq_CC100.zip">CC100</a>.
+        </p>
+	</body>
+</html>
