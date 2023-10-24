@@ -1,9 +1,9 @@
 <!doctype html>
-<html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<html lang="en">
+	<head lang="en">
+		<meta http-equiv="content-type" content="text/html" charset="UTF-8" name="viewport" content="width=device-width">
 		<title>Japanese Word Frequency Lookup</title>
-		<script>
+		<script defer>
             let cc100_json = undefined;
             let jpdb_json = undefined;
             let aozora_bunko_json = undefined;
@@ -31,6 +31,7 @@
                     aozora_bunko_kanji_json = JSON.parse(get_aozora_bunko_kanji_json());
                 }
             }
+
             function get_freq() {
                 if (cc100_json == undefined || jpdb_json == undefined || aozora_bunko_json == undefined || bbcwj_json == undefined || innocent_ranked_json == undefined) {
                     parse_jsons();
@@ -106,24 +107,24 @@
                 document.getElementById("kanji_freq_output").value += "\nAozora Bunko Kanji: " + aozora_bunko_kanji;
             }
         </script>
-        <script type="text/javascript" src="CC100.js"></script>
-        <script type="text/javascript" src="JPDB.js"></script>
-        <script type="text/javascript" src="novels.js"></script>
-        <script type="text/javascript" src="Aozora_Bunko.js"></script>
-        <script type="text/javascript" src="BCCWJ.js"></script>
-        <script type="text/javascript" src="innocent_ranked.js"></script>
+        <script type="text/javascript" src="CC100.js" defer></script>
+        <script type="text/javascript" src="JPDB.js" defer></script>
+        <script type="text/javascript" src="novels.js" defer></script>
+        <script type="text/javascript" src="Aozora_Bunko.js" defer></script>
+        <script type="text/javascript" src="BCCWJ.js" defer></script>
+        <script type="text/javascript" src="innocent_ranked.js" defer></script>
 
-        <script type="text/javascript" src="JPDB_kanji.js"></script>
-        <script type="text/javascript" src="innocent_ranked_kanji.js"></script>
-        <script type="text/javascript" src="wikipedia_kanji.js"></script>
-        <script type="text/javascript" src="Aozora_Bunko_Kanji.js"></script>
+        <script type="text/javascript" src="JPDB_kanji.js" defer></script>
+        <script type="text/javascript" src="innocent_ranked_kanji.js" defer></script>
+        <script type="text/javascript" src="wikipedia_kanji.js" defer></script>
+        <script type="text/javascript" src="Aozora_Bunko_Kanji.js" defer></script>
 	</head>
 	<body onload="parse_jsons();">
         <div>
             <h2>Japanese Word Frequency Lookup</h2>
             <fieldset>
                 <legend>Word</legend>
-                <textarea id="word_input" name="word_input" rows="3" style="width:100%;color:#000;font-family:monospace;font-size:225%"></textarea>
+                <textarea lang="ja" id="word_input" name="word_input" rows="3" style="width:100%;color:#000;font-family:monospace;font-size:225%"></textarea>
             </fieldset>
             <input onclick="get_freq()" type="button" style="position:relative;left:25%;width:50%;font-size:225%" value="Search">
             <fieldset>
