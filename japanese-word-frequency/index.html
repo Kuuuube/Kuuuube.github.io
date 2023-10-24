@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -8,21 +9,25 @@
             let aozora_bunko_json = undefined;
             let bbcwj_json = undefined;
             let innocent_ranked_json = undefined;
+            let novels_json = undefined;
 
             let jpdb_kanji_json = undefined;
             let innocent_ranked_kanji_json = undefined;
+            let wikipedia_kanji_json = undefined;
             let aozora_bunko_kanji_json = undefined;
 
             function parse_jsons() {
                 if (cc100_json == undefined || jpdb_json == undefined) {
                     cc100_json = JSON.parse(get_cc100_json());
                     jpdb_json = JSON.parse(get_jpdb_json());
+                    novels_json = JSON.parse(get_novels_json());
                     bbcwj_json = JSON.parse(get_bbcwj_json());
                     aozora_bunko_json = JSON.parse(get_aozora_bunko_json());
                     innocent_ranked_json = JSON.parse(get_innocent_ranked_json());
                     
                     jpdb_kanji_json = JSON.parse(get_jpdb_kanji_json());
                     innocent_ranked_kanji_json = JSON.parse(get_innocent_ranked_kanji_json());
+                    wikipedia_kanji_json = JSON.parse(get_wikipedia_kanji_json());
                     aozora_bunko_kanji_json = JSON.parse(get_aozora_bunko_kanji_json());
                 }
             }
@@ -47,6 +52,12 @@
                     jpdb = "Word not found";
                 }
                 document.getElementById("word_freq_output").value += "\nJPDB: " + jpdb;
+
+                let novels = novels_json[word_input];
+                if (novels == undefined) {
+                    novels = "Word not found";
+                }
+                document.getElementById("word_freq_output").value += "\nNovels: " + novels;
 
                 let bbcwj = bbcwj_json[word_input];
                 if (bbcwj == undefined) {
@@ -82,6 +93,12 @@
                 }
                 document.getElementById("kanji_freq_output").value += "\nInnocent Ranked Kanji: " + innocent_ranked_kanji;
 
+                let wikipedia_kanji = wikipedia_kanji_json[word_input];
+                if (wikipedia_kanji == undefined) {
+                    wikipedia_kanji = "Kanji not found";
+                }
+                document.getElementById("kanji_freq_output").value += "\nWikipedia Kanji: " + wikipedia_kanji;
+
                 let aozora_bunko_kanji = aozora_bunko_kanji_json[word_input];
                 if (aozora_bunko_kanji == undefined) {
                     aozora_bunko_kanji = "Kanji not found";
@@ -91,12 +108,14 @@
         </script>
         <script type="text/javascript" src="CC100.js"></script>
         <script type="text/javascript" src="JPDB.js"></script>
+        <script type="text/javascript" src="novels.js"></script>
         <script type="text/javascript" src="Aozora_Bunko.js"></script>
         <script type="text/javascript" src="BCCWJ.js"></script>
         <script type="text/javascript" src="innocent_ranked.js"></script>
 
         <script type="text/javascript" src="JPDB_kanji.js"></script>
         <script type="text/javascript" src="innocent_ranked_kanji.js"></script>
+        <script type="text/javascript" src="wikipedia_kanji.js"></script>
         <script type="text/javascript" src="Aozora_Bunko_Kanji.js"></script>
 	</head>
 	<body onload="parse_jsons();">
@@ -109,11 +128,11 @@
             <input onclick="get_freq()" type="button" style="position:relative;left:25%;width:50%;font-size:225%" value="Search">
             <fieldset>
                 <legend>Word Frequency</legend>
-                <textarea id="word_freq_output" name="word_freq_output" rows="6" style="width:100%;color:#000;font-family:monospace;font-size:225%" readonly="readonly"></textarea>
+                <textarea id="word_freq_output" name="word_freq_output" rows="7" style="width:100%;color:#000;font-family:monospace;font-size:225%" readonly="readonly"></textarea>
             </fieldset>
             <fieldset>
                 <legend>Kanji Frequency</legend>
-                <textarea id="kanji_freq_output" name="kanji_freq_output" rows="4" style="width:100%;color:#000;font-family:monospace;font-size:225%" readonly="readonly"></textarea>
+                <textarea id="kanji_freq_output" name="kanji_freq_output" rows="5" style="width:100%;color:#000;font-family:monospace;font-size:225%" readonly="readonly"></textarea>
             </fieldset>
         </div>
         <br>
@@ -129,6 +148,11 @@
             A frequency dictionary made from <a href="https://jpdb.io/">JPDB</a>, which is a site that has analyzed many light novels, visual novels, anime and j-drama. It contains about 183k words.
             <br>
             Frequencies for hiragana versions of kanji dictionary entries will be marked by ㋕. For example, if you search 成る, you will see frequencies for both なる and 成る.
+        </p>
+        <p>
+            <strong>Novels</strong>
+            <br>
+            A frequency list made from over 10,000 novels. It contains about 270k words.
         </p>
         <p>
             <strong>BCCWJ</strong>
@@ -158,6 +182,12 @@
             <strong>Innocent Ranked Kanji</strong>
             <br>
             Kanji frequency based on data from 5000+ novels. It contains about 6k kanji.
+            <br>
+        </p>
+        <p>
+            <strong>Wikipedia Kanji</strong>
+            <br>
+            Kanji frequency based on wikipedia pages. It contains about 20k kanji.
             <br>
         </p>
         <p>
@@ -191,7 +221,7 @@
         <p>
             <strong>Yomichan Dictionaries</strong>
             <br>
-            These frequency lists are available as yomichan dictionaries: <a href="Freq_JPDB.zip">JPDB</a>, <a href="Freq_CC100.zip">CC100</a>, <a href="Freq_BCCWJ-LUW.zip">BCCWJ</a>, <a href="Freq_Innocent_Ranked.zip">Innocent Ranked</a>, <a href="Freq_Aozora_Bunko.zip">Aozora Bunko</a>, <a href="Freq_JPDB_Kanji.zip">JPDB Kanji</a>, <a href="Freq_Innocent_Ranked_Kanji.zip">Innocent Ranked Kanji</a>, <a href="Freq_Aozora_Bunko_Kanji.zip">Aozora Bunko Kanji</a>.
+            These frequency lists are available as yomichan dictionaries: <a href="Freq_JPDB.zip">JPDB</a>, <a href="Freq_CC100.zip">CC100</a>, <a href="Freq_Novels.zip">Novels</a>, <a href="Freq_BCCWJ-LUW.zip">BCCWJ</a>, <a href="Freq_Innocent_Ranked.zip">Innocent Ranked</a>, <a href="Freq_Aozora_Bunko.zip">Aozora Bunko</a>, <a href="Freq_JPDB_Kanji.zip">JPDB Kanji</a>, <a href="Freq_Innocent_Ranked_Kanji.zip">Innocent Ranked Kanji</a>, <a href="Freq_Wikipedia_Kanji.zip">Wikipedia Kanji</a>, <a href="Freq_Aozora_Bunko_Kanji.zip">Aozora Bunko Kanji</a>.
         </p>
 	</body>
 </html>
