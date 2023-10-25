@@ -1,3 +1,1 @@
-function get_frequency_json() {
-return ''
-}
+const get_frequency_json = ''
