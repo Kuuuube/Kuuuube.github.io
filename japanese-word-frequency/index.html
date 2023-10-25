@@ -30,10 +30,14 @@
                     wikipedia_kanji_json = JSON.parse(get_wikipedia_kanji_json);
                     aozora_bunko_kanji_json = JSON.parse(get_aozora_bunko_kanji_json);
                 }
+
+                try {
+                    document.getElementById("loading").remove();
+                } catch (_) {}
             }
 
             function get_freq() {
-                if (cc100_json == undefined || jpdb_json == undefined || aozora_bunko_json == undefined || bbcwj_json == undefined || innocent_ranked_json == undefined) {
+                if (cc100_json == undefined || jpdb_json == undefined || novels_json == undefined || bbcwj_json == undefined || aozora_bunko_json == undefined || innocent_ranked_json == undefined || jpdb_kanji_json == undefined || innocent_ranked_kanji_json == undefined || wikipedia_kanji_json == undefined || aozora_bunko_kanji_json == undefined) {
                     parse_jsons();
                 }
                 let word_input = document.getElementById("word_input").value;
@@ -120,8 +124,11 @@
         <script type="text/javascript" src="Aozora_Bunko_Kanji.js" defer></script>
 	</head>
 	<body onload="parse_jsons();">
+        <div id="loading">
+            <h1 style="text-align:center;font-size:300%">Loading...</h1>
+        </div>
         <div>
-            <h2>Japanese Word Frequency Lookup</h2>
+            <h2 style="text-align:center;">Japanese Word Frequency Lookup</h2>
             <fieldset>
                 <legend>Word</legend>
                 <textarea id="word_input" name="word_input" rows="3" style="width:100%;color:#000;font-size:225%"></textarea>
