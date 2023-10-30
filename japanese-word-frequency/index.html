@@ -110,6 +110,26 @@
                 }
                 document.getElementById("kanji_freq_output").value += "\nAozora Bunko Kanji: " + aozora_bunko_kanji;
             }
+
+            function convert_to_hiragana() {
+                let kana_dict = JSON.parse(document.getElementById("kana_dict").textContent);
+                let word_input = document.getElementById("word_input").value;
+
+                for (key in kana_dict) {
+                    word_input = word_input.replaceAll(kana_dict[key], key);
+                }
+                document.getElementById("word_input").value = word_input;
+            }
+            
+            function convert_to_katakana() {
+                let kana_dict = JSON.parse(document.getElementById("kana_dict").textContent);
+                let word_input = document.getElementById("word_input").value;
+
+                for (key in kana_dict) {
+                    word_input = word_input.replaceAll(key, kana_dict[key]);
+                }
+                document.getElementById("word_input").value = word_input;
+            }
         </script>
         <script type="text/javascript" src="CC100.js" defer></script>
         <script type="text/javascript" src="JPDB.js" defer></script>
@@ -122,6 +142,27 @@
         <script type="text/javascript" src="innocent_ranked_kanji.js" defer></script>
         <script type="text/javascript" src="wikipedia_kanji.js" defer></script>
         <script type="text/javascript" src="Aozora_Bunko_Kanji.js" defer></script>
+
+        <script id="kana_dict" type="application/json" defer>
+            {"あ":"ア","い":"イ","う":"ウ","え":"エ","お":"オ",
+            "ぁ":"ァ","ぃ":"ィ","ぅ":"ゥ","ぇ":"ェ","ぉ":"ォ",
+            "か":"カ","き":"キ","く":"ク","け":"ケ","こ":"コ",
+            "さ":"サ","し":"シ","す":"ス","せ":"セ","そ":"ソ",
+            "た":"タ","ち":"チ","つ":"ツ","て":"テ","と":"ト",
+            "な":"ナ","に":"ニ","ぬ":"ヌ","ね":"ネ","の":"ノ",
+            "は":"ハ","ひ":"ヒ","ふ":"フ","へ":"ヘ","ほ":"ホ",
+            "ま":"マ","み":"ミ","む":"ム","め":"メ","も":"モ",
+            "や":"ヤ","ゆ":"ユ","よ":"ヨ",
+            "ら":"ラ","り":"リ","る":"ル","れ":"レ","ろ":"ロ",
+            "わ":"ワ","ゐ":"ヰ","ゑ":"ヱ","を":"ヲ",
+            "ん":"ン","っ":"ッ","ゔ ":"ヴ",
+            "が":"ガ","ぎ":"ギ","ぐ":"グ","げ":"ゲ","ご":"ゴ",
+            "ざ":"ザ","じ":"ジ","ず":"ズ","ぜ":"ゼ","ぞ":"ゾ",
+            "だ":"ダ","ぢ":"ヂ","づ":"ヅ","で":"デ","ど":"ド",
+            "ば":"バ","び":"ビ","ぶ":"ブ","べ":"ベ","ぼ":"ボ",
+            "ぱ":"パ","ぴ":"ピ","ぷ":"プ","ぺ":"ペ","ぽ":"ポ",
+            "ゃ":"ャ","ゅ":"ュ","ょ":"ョ"}
+        </script>
 	</head>
 	<body onload="parse_jsons();">
         <noscript>
@@ -138,7 +179,11 @@
                 <legend>Word</legend>
                 <textarea id="word_input" name="word_input" rows="3" style="width:100%;color:#000;font-size:225%;resize:none;"></textarea>
             </fieldset>
-            <input onclick="get_freq()" type="button" style="position:relative;left:25%;width:50%;font-size:225%;" value="Search">
+            <div style="display:flex;justify-content:space-between;">
+                <input onclick="convert_to_katakana()" type="button" style="width:12.5%;font-size:225%;" value="カタカナ">
+                <input onclick="get_freq()" type="button" style="width:50%;font-size:225%;" value="Search">
+                <input onclick="convert_to_hiragana()" type="button" style="width:12.5%;font-size:225%;" value="ひらがな">
+            </div>
             <fieldset>
                 <legend>Word Frequency</legend>
                 <textarea id="word_freq_output" name="word_freq_output" rows="7" style="width:100%;color:#000;font-size:225%;resize:none;" readonly="readonly"></textarea>
@@ -230,6 +275,18 @@
             <strong>Why do some words/kanji have multiple frequencies within the same frequency lists?</strong>
             <br>
             This usually happens as a result of some parsing oddities in the frequency list source. Almost always, you will want to be looking at the highest frequency for each list.
+        </p>
+        <p>
+            <strong>What do the カタカナ and ひらがな buttons do?</strong>
+            <br>
+            They convert between hiragana and katakana.
+        </p>
+        <p>
+            <strong>Why isn't romaji or kanji conversion available?</strong>
+            <br>
+            Converting kanji is much more difficult to deal with due to some kanji having multiple kana representations and some kana having multiple kanji representations.
+            <br>
+            Converting romaji is not as difficult as kanji but isn't as straightforward as converting hiragana and katakana. It may be added in the future.
         </p>
         <p>
             <strong>Offline Use</strong>
