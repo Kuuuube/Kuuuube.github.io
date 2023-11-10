@@ -4,33 +4,7 @@
 		<meta http-equiv="content-type" content="text/html" charset="UTF-8" name="viewport" content="width=device-width">
 		<title>Japanese Word Frequency Lookup</title>
 		<script defer>
-            let cc100_json = undefined;
-            let jpdb_json = undefined;
-            let aozora_bunko_json = undefined;
-            let bbcwj_json = undefined;
-            let innocent_ranked_json = undefined;
-            let novels_json = undefined;
-
-            let jpdb_kanji_json = undefined;
-            let innocent_ranked_kanji_json = undefined;
-            let wikipedia_kanji_json = undefined;
-            let aozora_bunko_kanji_json = undefined;
-
-            function parse_jsons() {
-                if (cc100_json == undefined || jpdb_json == undefined) {
-                    cc100_json = JSON.parse(get_cc100_json);
-                    jpdb_json = JSON.parse(get_jpdb_json);
-                    novels_json = JSON.parse(get_novels_json);
-                    bbcwj_json = JSON.parse(get_bbcwj_json);
-                    aozora_bunko_json = JSON.parse(get_aozora_bunko_json);
-                    innocent_ranked_json = JSON.parse(get_innocent_ranked_json);
-                    
-                    jpdb_kanji_json = JSON.parse(get_jpdb_kanji_json);
-                    innocent_ranked_kanji_json = JSON.parse(get_innocent_ranked_kanji_json);
-                    wikipedia_kanji_json = JSON.parse(get_wikipedia_kanji_json);
-                    aozora_bunko_kanji_json = JSON.parse(get_aozora_bunko_kanji_json);
-                }
-
+            function finished_loading() {
                 try {
                     document.getElementById("loading").remove();
                 } catch (_) {}
@@ -164,7 +138,7 @@
             "ゃ":"ャ","ゅ":"ュ","ょ":"ョ"}
         </script>
 	</head>
-	<body onload="parse_jsons();">
+	<body onload="finished_loading();">
         <noscript>
             <h1 style="text-align:center;font-size:300%;">Javascript must be enabled.</h1>
             <h2 style="text-align:center">Frequency list loading and querying cannot be performed otherwise.</h2>
