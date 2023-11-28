@@ -177,7 +177,7 @@
 }
 
 :root{
-    --font-primary:Whitney,"Helvetica Neue",Helvetica,Arial,sans-serif,"BabelStone Han";
+    --font-primary:Whitney,"Helvetica Neue",Helvetica,Arial,sans-serif,"Hiragino Kaku Gothic Pro", Osaka, "Yu Gothic", Meiryo, "Source Han Sans J", "Source Han Sans JP", "Noto Sans CJK JP", "Droid Sans Japanese", "MS PGothic", "MS Gothic", "MS PMincho", "MS Mincho", mincho, "BabelStone Han", "UniHentaiKana", "IPAmj明朝", "花園明朝A", HanaMinA, HanaMinB,"和田研中丸ゴシック2004絵文字", "WadaLabChuMaruGo2004Emoji", "和田研細丸ゴシック2004絵文字", "WadaLabMaruGo2004Emoji";
     --font-display:"ABC Ginto Normal","Helvetica Neue",Helvetica,Arial,sans-serif;
     --font-headline:"ABC Ginto Nord","Helvetica Neue",Helvetica,Arial,sans-serif;
     --font-code:Consolas,"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",Monaco,"Courier New",Courier,monospace;
