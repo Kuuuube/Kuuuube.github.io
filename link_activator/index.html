@@ -1,0 +1,20 @@
+<meta content="text/html;width=device-width" charset="UTF-8" name="viewport">
+<title>Link Activator</title>
+<h2>
+    Link Activator
+</h2>
+<div>
+    Type your link below in text and a selectable link will be generated.
+</div>
+<br>
+<div>
+    <input type="url" id="input_box" placeholder="https://example.com" style="width:100%;font-size:10vmin">
+    <a id="output_link" href="" style="width:100%;font-size:10vmin"></a>
+</div>
+<script>
+    function update_link() {
+        document.getElementById("output_link").href = document.getElementById("input_box").value;
+        document.getElementById("output_link").innerHTML = document.getElementById("input_box").value;
+    }
+    document.getElementById("input_box").addEventListener("input", update_link);
+</script>
