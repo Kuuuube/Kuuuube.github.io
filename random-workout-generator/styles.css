@@ -1,0 +1,218 @@
+body {
+  font-size: 20px;
+  padding: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+input {
+  margin-top: 20px;
+  font-size: 20px;
+  display: inline;
+  width: 60px;
+}
+
+#intro {
+  margin-top: 50px;
+}
+
+#soundcloud {
+  opacity: 0.75;
+  margin-top: 30px;
+}
+#soundcloud:hover {
+  opacity: 1;
+}
+
+#circleTimer {
+  text-align: center;
+  color: #ff7829;
+  display: none;
+  position: relative;
+  top: 30px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.circle {
+  background-color: white;
+}
+
+.exercisename {
+  background-color: white;
+}
+
+h1 {
+  color: #a83be0;
+  -webkit-text-stroke: 1px white;
+  font-family: sans-serif;
+  font-style: italic;
+  margin-top: 0;
+}
+
+a {
+  text-decoration: underline;
+  color: #007db5;
+  text-decoration-color: #007db5;
+}
+
+a:hover {
+  color: #ff7829;
+  text-decoration-color: #ff7829;
+}
+
+a:visited {
+  -webkit-text-stroke: 1px white;
+}
+
+#remaining {
+  -webkit-text-stroke: 0px;
+  background-color: white;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  font-weight: bold;
+}
+
+button {
+  font-size: 20px;
+  color: #007db5;
+  height: 30px;
+  cursor: pointer;
+  display: inline;
+  margin: 7px;
+  background-color: white;
+}
+
+button:hover { opacity: 0.5; }
+
+.restart {
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  display: none;
+  color: #007db5;
+}
+
+
+.center {
+  text-align: center;
+}
+
+.setters {
+  position: absolute;
+  left: 85px;
+  top: 75px;
+}
+
+.minutes-set {
+  float: left;
+  margin-right: 28px;
+}
+
+.seconds-set { float: right; }
+
+.controlls {
+  font-family: sans-serif;
+  font-weight: bolder;
+  position: absolute;
+  left: 75px;
+  top: 160px;
+  text-align: center;
+}
+
+.display-remain-time {
+  font-family: serif;
+  font-weight: 700;
+  font-size: 65px;
+  color: #75cc7b;
+  -webkit-text-stroke: 1px white;
+}
+
+#pause {
+  outline: none;
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+
+.play::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 22px solid #75cc7b;
+}
+
+.pause::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  width: 15px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 1px;
+  border: 5px solid #75cc7b;
+  border-top: none;
+  border-bottom: none;
+}
+
+#pause:hover { opacity: 0.8; }
+
+.e-c-base {
+  fill: none;
+  stroke: #B6B6B6;
+  stroke-width: 4px
+}
+
+.e-c-progress {
+  fill: none;
+  stroke: #75cc7b;
+  stroke-width: 4px;
+  transition: stroke-dashoffset 0.7s;
+}
+
+.e-c-pointer {
+  fill: #FFF;
+  stroke: #75cc7b;
+  stroke-width: 2px;
+}
+
+#e-pointer { transition: transform 0.7s; }
+
+iframe {
+  display: none;
+  margin-top: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  position: fixed;
+  background-color: white;
+  padding: 3px;
+  right: 7px;
+  bottom: 7px;
+  text-align: center;
+  font-size: 15px;
+}
+
+#recipe {
+  display: none;
+  background-color: #ffffff75;
+  font-weight: bold;
+  margin: auto;
+  padding: 15px;
+  width: 95%;
+}
+
+#recipe-title {
+  text-align: center;
+}
