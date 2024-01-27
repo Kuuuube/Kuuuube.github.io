@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <script>
+            function makeid() {
+                let id = "";
+                for (let i = 0; i < 7; i++) {
+                    id += "abcdefghijklmnopqrstuvwxyz".charAt(Math.floor(Math.random() * 26));
+                }
+                return id;
+            }
+            window.location.href = "http://genericwordgame.com/" + makeid()
+        </script>
+        <title>Page Redirection</title>
+    </head>
+    <body>
+        Attempting to redirect to an almost truly random <a href="http://genericwordgame.com">http://genericwordgame.com</a> page. You must have Javascript enabled for this page to function.
+    </body>
+</html>
