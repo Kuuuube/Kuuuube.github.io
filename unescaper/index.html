@@ -38,8 +38,8 @@
     }
 
     function unescape_unicode() {
-        document.getElementById("unescaper_text_box").value = decodeURIComponent(JSON.parse('"' + document.getElementById("unescaper_text_box").value + '"'));
         add_history();
+        document.getElementById("unescaper_text_box").value = JSON.parse('"' + document.getElementById("unescaper_text_box").value + '"');
     }
 </script>
 
