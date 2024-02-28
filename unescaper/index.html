@@ -1,0 +1,39 @@
+<title>Unescaper</title>
+<style>
+    code {
+        background-color: rgba(187, 187, 187, 0.4);
+        border-radius: 6px;
+        padding: 0em 0.2em;
+    }
+</style>
+<script>
+    function unescape_html_entities() {
+        document.getElementById("unescaper_text_box").value = document.getElementById("unescaper_text_box").value.replaceAll(/&[^\s]{1,7}?;/g, function(matched) {
+            return new DOMParser().parseFromString(matched, "text/html").documentElement.textContent;
+        });
+    }
+
+    function unescape_uri_components() {
+        document.getElementById("unescaper_text_box").value = decodeURIComponent(document.getElementById("unescaper_text_box").value);
+    }
+</script>
+
+<h2>Unescaper</h2>
+<textarea id="unescaper_text_box" style="width: 100%; height: 30%; color: #000; font-family: monospace;"></textarea>
+<div style="display:flex;justify-content:space-between;">
+    <button onclick="unescape_html_entities()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape HTML Entities</button>
+    <button onclick="unescape_uri_components()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape URI Components</button>
+</div>
+<p>
+    <strong>HTML Entities Examples</strong>
+    <br>
+    Escaped HTML Entities: <code>&amp;lt;div&amp;gt;Example Text&amp;lt;&amp;sol;div&amp;gt;</code><br>
+    Unescaped HTML Entities: <code>&lt;div&gt;Example Text&lt;&sol;div&gt;</code>
+    <br>
+</p>
+<p>
+    <strong>URI Components Examples</strong>
+    <br>
+    Escaped URI Components: <code>https%3A%2F%2Fkuuuube.github.io%2Funescaper%2Findex.html</code><br>
+    Unescaped URI Components: <code>https://kuuuube.github.io/unescaper/index.html</code>
+</p>
