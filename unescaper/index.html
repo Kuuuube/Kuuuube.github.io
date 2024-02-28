@@ -7,18 +7,39 @@
     }
 </style>
 <script>
+    let previous_strings = [];
+    function undo() {
+        if (previous_strings.length) {
+            let last_string = previous_strings.pop();
+            if (last_string === document.getElementById("unescaper_text_box").value) {
+                last_string = previous_strings.pop();
+            }
+            document.getElementById("unescaper_text_box").value = last_string;
+        }
+    }
+
+    function add_history() {
+        let text_box = document.getElementById("unescaper_text_box").value;
+        if (!previous_strings.length || previous_strings[previous_strings.length - 1] != text_box) {
+            previous_strings.push(text_box);
+        }
+    }
+
     function unescape_html_entities() {
+        add_history();
         document.getElementById("unescaper_text_box").value = document.getElementById("unescaper_text_box").value.replaceAll(/&[^\s]{1,7}?;/g, function(matched) {
             return new DOMParser().parseFromString(matched, "text/html").documentElement.textContent;
         });
     }
 
     function unescape_uri_components() {
+        add_history();
         document.getElementById("unescaper_text_box").value = decodeURIComponent(document.getElementById("unescaper_text_box").value);
     }
 
     function unescape_unicode() {
         document.getElementById("unescaper_text_box").value = decodeURIComponent(JSON.parse('"' + document.getElementById("unescaper_text_box").value + '"'));
+        add_history();
     }
 </script>
 
@@ -28,10 +49,15 @@
 <textarea id="unescaper_text_box" style="width: 100%; height: 30%; color: #000; font-family: monospace;"></textarea>
 <div style="display:flex;justify-content:space-between;">
     <button onclick="unescape_html_entities()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape HTML Entities</button>
+</div>
+<div style="display:flex;justify-content:space-between;">
     <button onclick="unescape_uri_components()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape URI Components</button>
 </div>
 <div style="display:flex;justify-content:space-between;">
     <button onclick="unescape_unicode()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape Unicode</button>
+</div>
+<div style="display:flex;justify-content:space-between;">
+    <button onclick="undo()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Undo</button>
 </div>
 <p>
     <strong>HTML Entities Examples</strong>

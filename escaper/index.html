@@ -7,7 +7,26 @@
     }
 </style>
 <script>
+    let previous_strings = [];
+    function undo() {
+        if (previous_strings.length) {
+            let last_string = previous_strings.pop();
+            if (last_string === document.getElementById("escaper_text_box").value) {
+                last_string = previous_strings.pop();
+            }
+            document.getElementById("escaper_text_box").value = last_string;
+        }
+    }
+
+    function add_history() {
+        let text_box = document.getElementById("escaper_text_box").value;
+        if (!previous_strings.length || previous_strings[previous_strings.length - 1] != text_box) {
+            previous_strings.push(text_box);
+        }
+    }
+
     function escape_html_entities(escaping_type) {
+        add_history();
         switch (escaping_type) {
             case "weak":
                 document.getElementById("escaper_text_box").value = new Option(document.getElementById("escaper_text_box").value).innerHTML;
@@ -42,10 +61,12 @@
     }
 
     function escape_uri_components() {
+        add_history();
         document.getElementById("escaper_text_box").value = encodeURIComponent(document.getElementById("escaper_text_box").value);
     }
 
     function escape_unicode(escaping_type) {
+        add_history();
         switch (escaping_type) {
             case 'basic': //escape all non ascii and non return/newline
                 document.getElementById("escaper_text_box").value = document.getElementById("escaper_text_box").value.replace(/[^ -~\r\n]/g, function(value) {
@@ -72,14 +93,17 @@
 <div style="display:flex;justify-content:space-between;">
     <button onclick="escape_html_entities('weak')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape HTML Entities Weak</button>
     <button onclick="escape_html_entities('basic')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape HTML Entities Basic</button>
+    <button onclick="escape_html_entities('strict')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape HTML Entities Strict</button>
 </div>
 <div style="display:flex;justify-content:space-between;">
-    <button onclick="escape_html_entities('strict')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape HTML Entities Strict</button>
     <button onclick="escape_uri_components()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape URI Components</button>
 </div>
 <div style="display:flex;justify-content:space-between;">
     <button onclick="escape_unicode('basic')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape Unicode Basic</button>
     <button onclick="escape_unicode('strict')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape Unicode Strict</button>
+</div>
+<div style="display:flex;justify-content:space-between;">
+    <button onclick="undo()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Undo</button>
 </div>
 <p>
     <strong>HTML Entities Examples</strong>
