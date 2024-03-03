@@ -1,0 +1,188 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Number Formatter</title>
+</head>
+<style>
+    .input_box {
+        font-family: monospace; flex:1;
+    }
+    #custom_base_input {
+        margin-left: 5px;
+    }
+</style>
+<body>
+<h2>Number Formatter</h2>
+<label for="base2">base2 (Binary)</label>
+<div style="display:flex;" class="input_div">
+    <textarea type="text" id="base2" class="input_box"></textarea>
+</div>
+<label for="base8">base8 (Octal)</label>
+<div style="display:flex;" class="input_div">
+    <textarea type="text" id="base8" class="input_box"></textarea>
+</div>
+<label for="base10">base10 (Decimal)</label>
+<div style="display:flex;" class="input_div">
+    <textarea type="text" id="base10" class="input_box"></textarea>
+</div>
+<label for="base16">base16 (Hex)</label>
+<div style="display:flex;" class="input_div">
+    <textarea type="text" id="base16" class="input_box"></textarea>
+</div>
+<label for="base64">base64</label>
+<div style="display:flex;" class="input_div">
+    <textarea type="text" id="base64" class="input_box"></textarea>
+</div>
+<label for="base64_encoded">base64 Encoded</label>
+<div style="display:flex;" class="input_div">
+    <textarea type="text" id="base64_encoded" class="input_box"></textarea>
+</div>
+<label for="custom_base">Custom Base (2-64)</label><input type="text" id="custom_base_input">
+<div style="display:flex;" class="input_div">
+    <textarea type="text" id="custom_base" class="input_box"></textarea>
+</div>
+
+<script>
+    function convertBase(str, fromBase, toBase) {
+        const DIGITS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/";
+
+        const add = (x, y, base) => {
+            let z = [];
+            const n = Math.max(x.length, y.length);
+            let carry = 0;
+            let i = 0;
+            while (i < n || carry) {
+                const xi = i < x.length ? x[i] : 0;
+                const yi = i < y.length ? y[i] : 0;
+                const zi = carry + xi + yi;
+                z.push(zi % base);
+                carry = Math.floor(zi / base);
+                i++;
+            }
+            return z;
+        }
+
+        const multiplyByNumber = (num, x, base) => {
+            if (num < 0) return null;
+            if (num == 0) return [];
+
+            let result = [];
+            let power = x;
+            while (true) {
+                num & 1 && (result = add(result, power, base));
+                num = num >> 1;
+                if (num === 0) break;
+                power = add(power, power, base);
+            }
+
+            return result;
+        }
+
+        const parseToDigitsArray = (str, base) => {
+            const digits = str.split('');
+            let arr = [];
+            for (let i = digits.length - 1; i >= 0; i--) {
+                const n = DIGITS.indexOf(digits[i])
+                if (n == -1) return null;
+                arr.push(n);
+            }
+            return arr;
+        }
+
+        const digits = parseToDigitsArray(str, fromBase);
+        if (digits === null) return null;
+
+        let outArray = [];
+        let power = [1];
+        for (let i = 0; i < digits.length; i++) {
+            digits[i] && (outArray = add(outArray, multiplyByNumber(digits[i], power, toBase), toBase));
+            power = multiplyByNumber(fromBase, power, toBase);
+        }
+
+        let out = '';
+        for (let i = outArray.length - 1; i >= 0; i--)
+            out += DIGITS[outArray[i]];
+
+        return out;
+    }
+
+    function hexToBase64(hexstring) {
+        return btoa(hexstring.match(/\w{2}/g).map(function(a) {
+            return String.fromCharCode(parseInt(a, 16));
+        }).join(""));
+   }
+
+   function base64ToHex(base64string) {
+        const raw = atob(base64string);
+        let result = '';
+        for (let i = 0; i < raw.length; i++) {
+            const hex = raw.charCodeAt(i).toString(16);
+            result += (hex.length === 2 ? hex : '0' + hex);
+        }
+        return result;
+    }
+
+    function format(base_input, active_base) {
+        if (parseInt(active_base, 10) < 36) {
+            base_input = base_input.toLowerCase();
+        }
+        if (parseInt(active_base, 10) == 64) {
+            base_input = base_input.replaceAll("=", "");
+        }
+        if (active_base === "64_encoded") {
+            base_input = convertBase(base64ToHex(base_input), 16, 10);
+            active_base = 10;
+            console.log(base_input)
+        }
+        if (!base_input) {
+            document.getElementById("base2").value = "";
+            document.getElementById("base8").value = "";
+            document.getElementById("base10").value = "";
+            document.getElementById("base16").value = "";
+            document.getElementById("base64").value = "";
+            document.getElementById("base64_encoded").value = "";
+            document.getElementById("custom_base").value = "";
+            return;
+        }
+        let base_int = convertBase(base_input, active_base, 10);
+
+        document.getElementById("base2").value = convertBase(base_int, 10, 2);
+        document.getElementById("base8").value = convertBase(base_int, 10, 8);
+        document.getElementById("base10").value = convertBase(base_int, 10, 10);
+
+        let base16_value = convertBase(base_int, 10, 16);
+        if (base16_value.length % 2) {
+            base16_value = "0" + base16_value;
+        }
+        document.getElementById("base16").value = base16_value;
+
+        document.getElementById("base64").value = convertBase(base_int, 10, 64);
+
+        let base64_encoded_value = hexToBase64(base16_value);
+        document.getElementById("base64_encoded").value = base64_encoded_value;
+    }
+
+    function get_base_data(active_base) {
+        format(document.getElementById("base" + active_base).value, active_base);
+    }
+
+    function custom_base() {
+        let active_base = document.getElementById("custom_base_input").value;
+        if (!active_base) {
+            return;
+        }
+        let base_input = document.getElementById("custom_base").value;
+        if (parseInt(active_base, 10) < 36) {
+            base_input = base_input.toLowerCase();
+        }
+        format(base_input, active_base);
+    }
+
+    document.getElementById("base2").addEventListener('input', function() {get_base_data("2");}, false);
+    document.getElementById("base8").addEventListener('input', function() {get_base_data("8");}, false);
+    document.getElementById("base10").addEventListener('input', function() {get_base_data("10");}, false);
+    document.getElementById("base16").addEventListener('input', function() {get_base_data("16");}, false);
+    document.getElementById("base64").addEventListener('input', function() {get_base_data("64");}, false);
+    document.getElementById("base64_encoded").addEventListener('input', function() {get_base_data("64_encoded");}, false);
+    document.getElementById("custom_base").addEventListener('input', function() {custom_base();}, false);
+</script>
+</body>
