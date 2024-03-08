@@ -7,30 +7,6 @@
  * @website https://css.f53.dev/discord/RevertFont.css
 */ 
 
-@font-face{ 
-    font-family:Whitney;
-    font-style:normal; 
-    font-weight:300;
-    src:url(https://kuuuube.github.io/discord_fonts/46933da896ba96126074286056614542.woff2) format("woff2")
-}
-@font-face{
-    font-family:Whitney;
-    font-style:italic;
-    font-weight:300;
-    src:url(https://kuuuube.github.io/discord_fonts/1651ce6325c0da043476ace0bec3971b.woff2) format("woff2")
-}
-@font-face{
-    font-family:Whitney;
-    font-style:normal;
-    font-weight:400;
-    src:url(https://kuuuube.github.io/discord_fonts/24bda95d153a319704c33329f3ab84bb.woff2) format("woff2")
-}
-@font-face{
-    font-family:Whitney;
-    font-style:italic;
-    font-weight:400;
-    src:url(https://kuuuube.github.io/discord_fonts/7f18f1d5ab6ded7cf71bbc1f907ee3d4.woff2) format("woff2")
-}
 @font-face{
     font-family:Whitney;
     font-style:normal;
@@ -70,30 +46,6 @@
 @font-face{
     font-family:ABC Ginto Normal;
     font-style:normal;
-    font-weight:300;
-    src:url(https://kuuuube.github.io/discord_fonts/ab688947d482808a0b3347f84ebb17a9.woff2) format("woff2")
-}
-@font-face{
-    font-family:ABC Ginto Normal;
-    font-style:italic;
-    font-weight:300;
-    src:url(https://kuuuube.github.io/discord_fonts/0635f419b122d24f9f60ac4d1066cbc6.woff2) format("woff2")
-}
-@font-face{
-    font-family:ABC Ginto Normal;
-    font-style:normal;
-    font-weight:400;
-    src:url(https://kuuuube.github.io/discord_fonts/91dcabd038a2e07ea6fbe7ddb625ecfb.woff2) format("woff2")
-}
-@font-face{
-    font-family:ABC Ginto Normal;
-    font-style:italic;
-    font-weight:400;
-    src:url(https://kuuuube.github.io/discord_fonts/ea053183733605b24806f222b067b1e1.woff2) format("woff2")
-}
-@font-face{
-    font-family:ABC Ginto Normal;
-    font-style:normal;
     font-weight:500;
     src:url(https://kuuuube.github.io/discord_fonts/9491a199bd318f1fc38711fb5067f401.woff2) format("woff2")
 }
@@ -114,30 +66,6 @@
     font-style:italic;
     font-weight:700;
     src:url(https://kuuuube.github.io/discord_fonts/9a07cb5ae387a52309b7198543ae5e02.woff2) format("woff2")
-}
-@font-face{
-    font-family:ABC Ginto Nord;
-    font-style:normal;
-    font-weight:300;
-    src:url(https://kuuuube.github.io/discord_fonts/5e6f352adb4a6b55ed230f2f91769156.woff2) format("woff2")
-}
-@font-face{
-    font-family:ABC Ginto Nord;
-    font-style:italic;
-    font-weight:300;
-    src:url(https://kuuuube.github.io/discord_fonts/30b475dcfa1e8b74d815946e4c18ee09.woff2) format("woff2")
-}
-@font-face{
-    font-family:ABC Ginto Nord;
-    font-style:normal;
-    font-weight:400;
-    src:url(https://kuuuube.github.io/discord_fonts/1ace668db419a5014cf75bc116321af3.woff2) format("woff2")
-}
-@font-face{
-    font-family:ABC Ginto Nord;
-    font-style:italic;
-    font-weight:400;
-    src:url(https://kuuuube.github.io/discord_fonts/50510b66614a2f395530c61b7c9b6827.woff2) format("woff2")
 }
 @font-face{
     font-family:ABC Ginto Nord;
