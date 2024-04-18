@@ -122,24 +122,25 @@
     }
 
     function format(base_input, active_base) {
+        original_base = active_base;
         if (parseInt(active_base, 10) < 36) {
             base_input = base_input.toLowerCase();
         }
-        if (parseInt(active_base, 10) == 64) {
-            base_input = base_input.replaceAll("=", "");
-        }
         if (active_base === "64_encoded") {
-            base_input = convertBase(base64ToHex(base_input), 16, 10);
-            active_base = 10;
-            console.log(base_input)
+            try {
+                base_input = convertBase(base64ToHex(base_input), 16, 10);
+                active_base = 10;
+            } catch {
+                base_input = null;
+            }
         }
         if (!base_input) {
-            document.getElementById("base2").value = "";
-            document.getElementById("base8").value = "";
-            document.getElementById("base10").value = "";
-            document.getElementById("base16").value = "";
-            document.getElementById("base64").value = "";
-            document.getElementById("base64_encoded").value = "";
+            if (original_base != "2") {document.getElementById("base2").value = "";}
+            if (original_base != "8") {document.getElementById("base8").value = "";}
+            if (original_base != "10") {document.getElementById("base10").value = "";}
+            if (original_base != "16") {document.getElementById("base16").value = "";}
+            if (original_base != "64") {document.getElementById("base64").value = "";}
+            if (original_base != "64_encoded") {document.getElementById("base64_encoded").value = "";}
             document.getElementById("custom_base").value = "";
             return;
         }
@@ -153,12 +154,16 @@
         if (base16_value.length % 2) {
             base16_value = "0" + base16_value;
         }
-        document.getElementById("base16").value = base16_value;
+        if (active_base != "16") {
+            document.getElementById("base16").value = base16_value;
+        }
 
         document.getElementById("base64").value = convertBase(base_int, 10, 64);
 
         let base64_encoded_value = hexToBase64(base16_value);
-        document.getElementById("base64_encoded").value = base64_encoded_value;
+        if (original_base != "64_encoded") {
+            document.getElementById("base64_encoded").value = base64_encoded_value;
+        }
     }
 
     function get_base_data(active_base) {
