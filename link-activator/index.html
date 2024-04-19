@@ -15,7 +15,8 @@
 </div>
 <script>
     function update_link() {
-        document.getElementById("output_link").href = document.getElementById("input_box").value;
+        //add `#` at the end to workaround firefox mobile disallowing the `Download link` option for links that end in `.html`
+        document.getElementById("output_link").href = document.getElementById("input_box").value + "#";
         document.getElementById("output_link").innerHTML = document.getElementById("input_box").value;
     }
     document.getElementById("input_box").addEventListener("input", update_link);
