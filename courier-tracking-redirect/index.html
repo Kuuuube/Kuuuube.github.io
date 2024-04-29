@@ -1,0 +1,66 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Courier Tracking Redirect</title>
+</head>
+<style>
+    .header_wrapper {
+        text-align: center;
+    }
+
+    .big_link {
+        font-size:10vmin;
+        display: block;
+        margin: 1vmin;
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 10px;
+        background-color: rgb(4, 103, 198);
+        text-align: center;
+        text-decoration: none;
+        color: white;
+    }
+
+    input {
+        width: 100%;
+        font-size:10vmin;
+        border: 2px solid rgb(117, 117, 117);
+        border-radius: 10px;
+        background-color: rgb(239, 248, 255);
+    }
+
+    input::placeholder {
+        color: rgb(117, 117, 117);
+    }
+
+    .input_box_wrapper {
+        margin: 1vmin;
+    }
+</style>
+
+<h2 class="header_wrapper">Courier Tracking Redirect</h2>
+<div class="input_box_wrapper"><input type="url" id="input_box" placeholder="Tracking Number"></div>
+<h1 class="header_wrapper">Track with:</h1>
+<a id="orange_connex" href="" class="big_link">Orange Connex/Speedpak</a>
+<a id="usps" href="" class="big_link">USPS</a>
+<a id="canada_post" href="" class="big_link">Canada Post</a>
+
+<script>
+    function orange_connex(input_text) {
+        return "https://www.orangeconnex.com/tracking?language=en&trackingnumber=" + input_text;
+    }
+
+    function usps(input_text) {
+        return "https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=" + input_text;
+    }
+
+    function canada_post(input_text) {
+        return "https://www.canadapost-postescanada.ca/track-reperage/en#/details/" + input_text;
+    }
+
+    function update_links() {
+        let input_text = document.getElementById("input_box").value;
+        document.getElementById("orange_connex").href = orange_connex(input_text);
+        document.getElementById("usps").href = usps(input_text);
+        document.getElementById("canada_post").href = canada_post(input_text);
+    }
+    document.getElementById("input_box").addEventListener("input", update_links);
+</script>
