@@ -41,6 +41,7 @@
 <h1 class="header_wrapper">Track with:</h1>
 <a id="orange_connex" href="" class="big_link">Orange Connex/Speedpak</a>
 <a id="usps" href="" class="big_link">USPS</a>
+<a id="ups" href="" class="big_link">UPS</a>
 <a id="canada_post" href="" class="big_link">Canada Post</a>
 
 <script>
@@ -52,6 +53,10 @@
         return "https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=" + input_text;
     }
 
+    function ups(input_text) {
+        return "https://www.ups.com/WebTracking?trackingNumber=" + input_text;
+    }
+
     function canada_post(input_text) {
         return "https://www.canadapost-postescanada.ca/track-reperage/en#/details/" + input_text;
     }
@@ -60,6 +65,7 @@
         let input_text = document.getElementById("input_box").value;
         document.getElementById("orange_connex").href = orange_connex(input_text);
         document.getElementById("usps").href = usps(input_text);
+        document.getElementById("ups").href = ups(input_text);
         document.getElementById("canada_post").href = canada_post(input_text);
     }
     document.getElementById("input_box").addEventListener("input", update_links);
