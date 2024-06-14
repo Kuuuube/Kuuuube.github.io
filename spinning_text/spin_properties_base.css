@@ -1,0 +1,16 @@
+div.spin_properties_base_class {
+    width: fit-content;
+    height: fit-content;
+    display: inline-block;
+}
+
+.spin_properties_base_class {
+    animation-name: spin_properties_base_animation_name;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin_properties_base_animation_name {
+    from {transform:rotate(0deg)}
+    to {transform:rotate(360deg)}
+}
