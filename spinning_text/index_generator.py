@@ -5,8 +5,9 @@ spin_class_name = "s"
 spin_animation_name = "spin"
 
 minimum_spin_time = 0
-maximum_spin_time = 3000
+maximum_spin_time = 2500
 spin_variations = 1000
+animation_directions = ["normal", "reverse", "alternate", "alternate-reverse"]
 
 # make random_spins.css
 spin_variation_choices = range(0, spin_variations)
@@ -14,7 +15,8 @@ with open("random_spins.css", "w", encoding = "UTF-8") as random_spins_css:
     for i in spin_variation_choices:
         random_spins_css.write("." + spin_class_name + str(i) + "{")
         random_number = random.random()
-        random_spins_css.write("animation-duration:" + str(int(random_number * (maximum_spin_time - minimum_spin_time) + minimum_spin_time)) + "ms")
+        random_spins_css.write("animation-duration:" + str(int(random_number * (maximum_spin_time - minimum_spin_time) + minimum_spin_time)) + "ms;")
+        random_spins_css.write("animation-direction:" + random.choice(animation_directions) + ";")
         random_spins_css.write("}\n")
 
 # make spin_properties.css
