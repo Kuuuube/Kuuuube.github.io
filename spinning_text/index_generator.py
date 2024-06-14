@@ -10,7 +10,7 @@ spin_variation_choices = range(0, spin_variations)
 with open("random_spins.css", "w", encoding = "UTF-8") as random_spins_css:
     for i in spin_variation_choices:
         random_spins_css.write("." + spin_class_name + str(i) + "{")
-        random_spins_css.write("animation-duration:" + str(int(random.random() * 5000)) + "ms")
+        random_spins_css.write("animation-duration:" + str(int(random.random() * 3000)) + "ms")
         random_spins_css.write("}\n")
 
 # make spin_properties.css
