@@ -4,8 +4,8 @@ target_html_file = "カエル - Wikipedia.html"
 spin_class_name = "s"
 spin_animation_name = "spin"
 
-minimum_spin_time = 0
-maximum_spin_time = 2500
+minimum_spin_time = 300
+maximum_spin_time = 2000
 spin_variations = 1000
 animation_directions = ["normal", "reverse", "alternate", "alternate-reverse"]
 
