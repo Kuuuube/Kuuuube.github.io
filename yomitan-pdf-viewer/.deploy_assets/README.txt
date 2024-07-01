@@ -1,1 +1,0 @@
-Run `run.sh` and `update.sh` ONLY from the parent directory. DO NOT run them in `.deploy_assets`.
