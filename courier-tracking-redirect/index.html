@@ -42,6 +42,7 @@
 <a id="orange_connex" href="" class="big_link">Orange Connex/Speedpak</a>
 <a id="usps" href="" class="big_link">USPS</a>
 <a id="ups" href="" class="big_link">UPS</a>
+<a id="dhl" href="" class="big_link">DHL</a>
 <a id="canada_post" href="" class="big_link">Canada Post</a>
 
 <script>
@@ -57,6 +58,10 @@
         return "https://www.ups.com/WebTracking?trackingNumber=" + input_text;
     }
 
+    function dhl(input_text) {
+        return "https://www.dhl.com/us-en/home/tracking/tracking-express.html?submit=1&tracking-id=" + input_text;
+    }
+
     function canada_post(input_text) {
         return "https://www.canadapost-postescanada.ca/track-reperage/en#/details/" + input_text;
     }
@@ -66,6 +71,7 @@
         document.getElementById("orange_connex").href = orange_connex(input_text);
         document.getElementById("usps").href = usps(input_text);
         document.getElementById("ups").href = ups(input_text);
+        document.getElementById("dhl").href = dhl(input_text);
         document.getElementById("canada_post").href = canada_post(input_text);
     }
     document.getElementById("input_box").addEventListener("input", update_links);
