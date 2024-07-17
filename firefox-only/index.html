@@ -51,11 +51,11 @@
     let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false, space: false };
 
     function keydown_handler(e) {
-        if (e.repeat) { return; }
         let current_key = e.key.toLowerCase();
         if (MOVEMENT_KEYS.includes(current_key)) {
             e.preventDefault();
         }
+        if (e.repeat) { return; }
         if (current_key === MOVEMENT_KEYS[0]) {
             currently_held.left = true;
         }
