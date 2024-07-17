@@ -3,13 +3,30 @@
     <head>
         <title>Firefox Only</title>
         <style>
-            body {
+            body,
+            html {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                user-select: none;
+            }
+            #ship {
                 width:fit-content;
                 height: fit-content;
                 user-select: none;
                 font-family: monospace;
                 text-align: center;
                 line-height: 1;
+                position: absolute;
+            }
+            .projectile {
+                width:fit-content;
+                height: fit-content;
+                user-select: none;
+                font-family: monospace;
+                text-align: center;
+                line-height: 1;
+                position: absolute;
             }
         </style>
     </head>
@@ -18,14 +35,20 @@
 <script>
     document.body.innerHTML = "<h1>A gecko browser is required to run this webpage</h1>";
     document.caretPositionFromPoint(0, 0);
-    document.body.innerHTML = "<span id=\"ship\">△</span><br><span id=\"thrust\">𝍫</span>";
+    document.body.innerHTML = "<span id=\"ship\"><span id=\"ship_body\">△</span><br><span id=\"thrust\">𝍫</span></span>";
     const SHIP = document.getElementById("ship");
+    const SHIP_BODY = document.getElementById("ship_body");
     const THRUST = document.getElementById("thrust");
 
-    let current_margin = { top: 0, bottom: 0, left: 0, right: 0 };
-    let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false };
     const MOVEMENT_STEP_SIZE = 5;
     const MOVEMENT_KEYS = "cslr";
+
+    const PROJECTILE_SPEED = 10;
+
+    let current_margins = { top: 0, bottom: 0, left: 0, right: 0 };
+    let current_rotation = 0;
+    let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false };
+
     function keydown_handler(e) {
         let current_key = e.key.toLowerCase();
         if (MOVEMENT_KEYS.includes(current_key)) {
@@ -48,6 +71,10 @@
         }
         if (current_key === "shift") {
             currently_held.shift = true;
+        }
+        if (current_key === " ") {
+            let cloned_margins = JSON.parse(JSON.stringify(current_margins));
+            shoot_projectile(cloned_margins, current_rotation);
         }
     }
 
@@ -76,8 +103,60 @@
         }
     }
 
+    function shoot_projectile(margins, rotation) {
+        let projectile = document.createElement("span");
+        let adjusted_rotation = rotation + 90;
+        projectile.className = "projectile";
+        projectile.innerText = "-";
+        projectile.style.marginLeft = margins.left + "px";
+        projectile.style.marginTop = margins.top + "px";
+        projectile.style.rotate = adjusted_rotation + "deg";
+        document.body.append(projectile);
+        projectile_movement(projectile, margins, rotation);
+    }
+
+    function projectile_movement(projectile, margins, direction) {
+        switch (direction) {
+            case 0:
+                margins.top -= PROJECTILE_SPEED;
+                break;
+            case 45:
+                margins.top -= PROJECTILE_SPEED / 1.41;
+                margins.left += PROJECTILE_SPEED / 1.41;
+                break;
+            case 90:
+                margins.left += PROJECTILE_SPEED;
+                break;
+            case 135:
+                margins.left += PROJECTILE_SPEED / 1.41;
+                margins.top += PROJECTILE_SPEED / 1.41;
+                break;
+            case 180:
+                margins.top += PROJECTILE_SPEED;
+                break;
+            case 225:
+                margins.top += PROJECTILE_SPEED / 1.41;
+                margins.left -= PROJECTILE_SPEED / 1.41;
+                break;
+            case 270:
+                margins.left -= PROJECTILE_SPEED;
+                break;
+            case 315:
+                margins.left -= PROJECTILE_SPEED / 1.41;
+                margins.top -= PROJECTILE_SPEED / 1.41;
+                break;
+            case 360:
+                margins.top -= PROJECTILE_SPEED;
+                break;
+        }
+        projectile.style.marginLeft = margins.left + "px";
+        projectile.style.marginTop = margins.top + "px";
+        if (margins.left < 0 || window.innerWidth < margins.left || margins.top < 0 || window.innerHeight < margins.top) { return; }
+        setTimeout(function() { projectile_movement(projectile, margins, rotation); }, 100);
+    }
+
     function set_position() {
-        let body_info = document.body.getBoundingClientRect();
+        let body_info = SHIP.getBoundingClientRect();
         let x_bounds = {min: 0, max: window.innerWidth - body_info.width};
         let y_bounds = {min: 0, max: window.innerHeight - body_info.height}
 
@@ -89,18 +168,18 @@
             movement_size = MOVEMENT_STEP_SIZE * 2;
         }
 
-        current_margin.left -= movement_size * currently_held.left;
-        current_margin.left += movement_size * currently_held.right;
-        current_margin.top -= movement_size * currently_held.up;
-        current_margin.top += movement_size * currently_held.down;
+        current_margins.left -= movement_size * currently_held.left;
+        current_margins.left += movement_size * currently_held.right;
+        current_margins.top -= movement_size * currently_held.up;
+        current_margins.top += movement_size * currently_held.down;
 
-        if (current_margin.left < x_bounds.min) { current_margin.left = x_bounds.min; }
-        if (current_margin.left > x_bounds.max) { current_margin.left = x_bounds.max; }
-        document.body.style.marginLeft = current_margin.left + "px";
+        if (current_margins.left < x_bounds.min) { current_margins.left = x_bounds.min; }
+        if (current_margins.left > x_bounds.max) { current_margins.left = x_bounds.max; }
+        SHIP.style.marginLeft = current_margins.left + "px";
 
-        if (current_margin.top < y_bounds.min) { current_margin.top = y_bounds.min; }
-        if (current_margin.top > y_bounds.max) { current_margin.top = y_bounds.max; }
-        document.body.style.marginTop = current_margin.top + "px";
+        if (current_margins.top < y_bounds.min) { current_margins.top = y_bounds.min; }
+        if (current_margins.top > y_bounds.max) { current_margins.top = y_bounds.max; }
+        SHIP.style.marginTop = current_margins.top + "px";
     }
 
     function set_text() {
@@ -121,10 +200,11 @@
         }
 
         let angle = movement_vectors / divisor;
+        current_rotation = angle;
 
         if (currently_held.right || currently_held.left || currently_held.up || currently_held.down) {
             THRUST.style.color = "initial";
-            document.body.style.rotate = angle + "deg";
+            SHIP.style.rotate = angle + "deg";
         }
     }
 
