@@ -228,7 +228,13 @@
         current_rotation = angle;
 
         if (currently_held.right || currently_held.left || currently_held.up || currently_held.down) {
-            THRUST.style.color = "inherit";
+            if (currently_held.shift) {
+                THRUST.style.color = "red";
+            } else if (currently_held.ctrl) {
+                THRUST.style.color = "blue";
+            } else {
+                THRUST.style.color = "inherit";
+            }
             SHIP.style.rotate = angle + "deg";
         }
     }
