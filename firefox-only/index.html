@@ -44,12 +44,14 @@
     const MOVEMENT_KEYS = "cslr";
 
     const PROJECTILE_SPEED = 10;
+    const PROJECTILE_HOLD_RATE_OF_FIRE = 250;
 
     let current_margins = { top: 0, bottom: 0, left: 0, right: 0 };
     let current_rotation = 0;
-    let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false };
+    let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false, space: false };
 
     function keydown_handler(e) {
+        if (e.repeat) { return; }
         let current_key = e.key.toLowerCase();
         if (MOVEMENT_KEYS.includes(current_key)) {
             e.preventDefault();
@@ -73,8 +75,8 @@
             currently_held.shift = true;
         }
         if (current_key === " ") {
-            let cloned_margins = JSON.parse(JSON.stringify(current_margins));
-            shoot_projectile(cloned_margins, current_rotation);
+            currently_held.space = true;
+            shoot_projectile();
         }
     }
 
@@ -101,9 +103,20 @@
         if (current_key === "shift") {
             currently_held.shift = false;
         }
+        if (current_key === " ") {
+            currently_held.space = false;
+        }
     }
 
-    function shoot_projectile(margins, rotation) {
+    function shoot_projectile() {
+        if (!currently_held.space) {
+            return;
+        }
+
+        // current_margins must be cloned and cannot be a reference
+        let margins = JSON.parse(JSON.stringify(current_margins));
+        let rotation = current_rotation;
+
         let projectile = document.createElement("span");
         let adjusted_rotation = rotation + 90;
         projectile.className = "projectile";
@@ -113,6 +126,10 @@
         projectile.style.rotate = adjusted_rotation + "deg";
         document.body.append(projectile);
         projectile_movement(projectile, margins, rotation);
+
+        if (currently_held.space) {
+            setTimeout(shoot_projectile, PROJECTILE_HOLD_RATE_OF_FIRE);
+        }
     }
 
     function projectile_movement(projectile, margins, direction) {
@@ -155,7 +172,7 @@
             projectile.remove();
             return;
         }
-        setTimeout(function() { projectile_movement(projectile, margins, direction); }, 100);
+        setTimeout(function() { projectile_movement(projectile, margins, direction); }, 10);
     }
 
     function set_position() {
