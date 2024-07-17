@@ -151,8 +151,11 @@
         }
         projectile.style.marginLeft = margins.left + "px";
         projectile.style.marginTop = margins.top + "px";
-        if (margins.left < 0 || window.innerWidth < margins.left || margins.top < 0 || window.innerHeight < margins.top) { return; }
-        setTimeout(function() { projectile_movement(projectile, margins, rotation); }, 100);
+        if (margins.left < 0 || window.innerWidth < margins.left || margins.top < 0 || window.innerHeight < margins.top) {
+            projectile.remove();
+            return;
+        }
+        setTimeout(function() { projectile_movement(projectile, margins, direction); }, 100);
     }
 
     function set_position() {
