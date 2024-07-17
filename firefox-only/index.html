@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Firefox Only</title>
+        <style>
+            body {
+                width:fit-content;
+                height: fit-content;
+                user-select: none;
+                font-family: monospace;
+                text-align: center;
+                line-height: 1;
+            }
+        </style>
+    </head>
+    <body></body>
+</html>
+<script>
+    document.body.innerHTML = "<h1>A gecko browser is required to run this webpage</h1>";
+    document.caretPositionFromPoint(0, 0);
+    document.body.innerHTML = "<span id=\"ship\">△</span><br><span id=\"thrust\">𝍫</span>";
+    const SHIP = document.getElementById("ship");
+    const THRUST = document.getElementById("thrust");
+
+    let current_margin = { top: 0, bottom: 0, left: 0, right: 0 };
+    let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false };
+    const MOVEMENT_STEP_SIZE = 5;
+    const MOVEMENT_KEYS = "cslr";
+    function keydown_handler(e) {
+        let current_key = e.key.toLowerCase();
+        if (MOVEMENT_KEYS.includes(current_key)) {
+            e.preventDefault();
+        }
+        if (current_key === MOVEMENT_KEYS[0]) {
+            currently_held.left = true;
+        }
+        if (current_key === MOVEMENT_KEYS[1]) {
+            currently_held.right = true;
+        }
+        if (current_key === MOVEMENT_KEYS[2]) {
+            currently_held.up = true;
+        }
+        if (current_key === MOVEMENT_KEYS[3]) {
+            currently_held.down = true;
+        }
+        if (current_key === "control") {
+            currently_held.ctrl = true;
+        }
+        if (current_key === "shift") {
+            currently_held.shift = true;
+        }
+    }
+
+    function keyup_handler(e) {
+        let current_key = e.key.toLowerCase();
+        if (MOVEMENT_KEYS.includes(current_key)) {
+            e.preventDefault();
+        }
+        if (current_key === MOVEMENT_KEYS[0]) {
+            currently_held.left = false;
+        }
+        if (current_key === MOVEMENT_KEYS[1]) {
+            currently_held.right = false;
+        }
+        if (current_key === MOVEMENT_KEYS[2]) {
+            currently_held.up = false;
+        }
+        if (current_key === MOVEMENT_KEYS[3]) {
+            currently_held.down = false;
+        }
+        if (current_key === "control") {
+            currently_held.ctrl = false;
+        }
+        if (current_key === "shift") {
+            currently_held.shift = false;
+        }
+    }
+
+    function set_position() {
+        let body_info = document.body.getBoundingClientRect();
+        let x_bounds = {min: 0, max: window.innerWidth - body_info.width};
+        let y_bounds = {min: 0, max: window.innerHeight - body_info.height}
+
+        let movement_size = MOVEMENT_STEP_SIZE;
+        if (currently_held.ctrl) {
+            movement_size = MOVEMENT_STEP_SIZE / 2;
+        }
+        if (currently_held.shift) {
+            movement_size = MOVEMENT_STEP_SIZE * 2;
+        }
+
+        current_margin.left -= movement_size * currently_held.left;
+        current_margin.left += movement_size * currently_held.right;
+        current_margin.top -= movement_size * currently_held.up;
+        current_margin.top += movement_size * currently_held.down;
+
+        if (current_margin.left < x_bounds.min) { current_margin.left = x_bounds.min; }
+        if (current_margin.left > x_bounds.max) { current_margin.left = x_bounds.max; }
+        document.body.style.marginLeft = current_margin.left + "px";
+
+        if (current_margin.top < y_bounds.min) { current_margin.top = y_bounds.min; }
+        if (current_margin.top > y_bounds.max) { current_margin.top = y_bounds.max; }
+        document.body.style.marginTop = current_margin.top + "px";
+    }
+
+    function set_text() {
+        let movement_vectors = 0;
+        let divisor = 0;
+        if (currently_held.up) { movement_vectors += 0; divisor++; }
+        if (currently_held.up && currently_held.left) { movement_vectors += 360; }
+        if (currently_held.right) { movement_vectors += 90; divisor++; }
+        if (currently_held.down) { movement_vectors += 180; divisor++; }
+        if (currently_held.left) { movement_vectors += 270; divisor++; }
+
+        if (currently_held.right && currently_held.left) { movement_vectors -= 90 + 270; divisor -= 2; }
+        if (currently_held.up && currently_held.down) { movement_vectors -= 0 + 180; divisor -= 2; }
+
+        if (divisor === 0) {
+            THRUST.style.color = "rgba(0,0,0,0)";
+            return;
+        }
+
+        let angle = movement_vectors / divisor;
+
+        if (currently_held.right || currently_held.left || currently_held.up || currently_held.down) {
+            THRUST.style.color = "initial";
+            document.body.style.rotate = angle + "deg";
+        }
+    }
+
+    function event_loop() {
+        set_position();
+        set_text();
+        setTimeout(event_loop, 10);
+    }
+
+    document.addEventListener("keydown", keydown_handler);
+    document.addEventListener("keyup", keyup_handler);
+    window.addEventListener("resize", set_position);
+    setTimeout(event_loop, 0);
+</script>
