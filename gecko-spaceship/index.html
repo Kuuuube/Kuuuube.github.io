@@ -332,6 +332,7 @@
 
     document.addEventListener("keydown", keydown_handler);
     document.addEventListener("keyup", keyup_handler);
+    document.addEventListener("contextmenu", event => event.preventDefault());
     window.addEventListener("resize", set_position);
     setTimeout(event_loop, 0);
 </script>
