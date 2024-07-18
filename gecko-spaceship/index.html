@@ -27,6 +27,7 @@
                 line-height: 1;
                 position: absolute;
                 color: rgb(255, 255, 255);
+                font-size: 12px;
             }
             #ship_body {
                 font-weight: 1000;
@@ -185,9 +186,11 @@
     }
 
     function set_position() {
-        let body_info = SHIP.getBoundingClientRect();
-        let x_bounds = {min: 0, max: window.innerWidth - body_info.width};
-        let y_bounds = {min: 0, max: window.innerHeight - body_info.height}
+        let ship_info = SHIP.getBoundingClientRect();
+        let x_offset_min = 8;
+        let x_offset_max = -4;
+        let x_bounds = {min: 0 + x_offset_min, max: window.innerWidth - ship_info.width - x_offset_max};
+        let y_bounds = {min: 0, max: window.innerHeight - ship_info.height}
 
         let movement_size = MOVEMENT_STEP_SIZE;
         if (currently_held.ctrl) {
