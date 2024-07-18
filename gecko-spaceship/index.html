@@ -96,26 +96,7 @@
     const DEFAULT_MOVEMENT_KEYS = "wasd";
     const MOVEMENT_KEYS = (MOVEMENT_KEYS_OVERRIDE && MOVEMENT_KEYS_OVERRIDE[0].length >= DEFAULT_MOVEMENT_KEYS.length) ? MOVEMENT_KEYS_OVERRIDE[0] : DEFAULT_MOVEMENT_KEYS;
 
-    const KEYMAP_OVERLAY = document.getElementById("keymap");
-    KEYMAP_OVERLAY.innerHTML += "<u>Keymap</u><br><div class=\"horizontal_flex\"><span class=\"keymap_keys\" id=\"keymap_keys_0\"></span><span class=\"keymap_keys\" id=\"keymap_keys_1\"></span><span class=\"keymap_keys\" id=\"keymap_keys_2\"></span></div>";
-
-    const KEYMAP_KEYS_0 = document.getElementById("keymap_keys_0");
-    KEYMAP_KEYS_0.innerHTML += "Speed<br>";
-    KEYMAP_KEYS_0.innerHTML += "<span class=\"modifier_key\">" + "Shift" + "</span>";
-    KEYMAP_KEYS_0.innerHTML += "<br>";
-    KEYMAP_KEYS_0.innerHTML += "<span class=\"modifier_key\">" + "Ctrl" + "</span>";
-
-    const KEYMAP_KEYS_1 = document.getElementById("keymap_keys_1");
-    KEYMAP_KEYS_1.innerHTML += "Movement<br>";
-    KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[0] + "</span>";
-    KEYMAP_KEYS_1.innerHTML += "<br>";
-    KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[1] + "</span>";
-    KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[2] + "</span>";
-    KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[3] + "</span>";
-
-    const KEYMAP_KEYS_2 = document.getElementById("keymap_keys_2");
-    KEYMAP_KEYS_2.innerHTML += "Weapon<br>";
-    KEYMAP_KEYS_2.innerHTML += "<span class=\"modifier_key\">" + "Space" + "</span>";
+    setup_key_overlay();
 
     const PROJECTILE_SPEED = 10;
     const PROJECTILE_HOLD_RATE_OF_FIRE = 250;
@@ -123,6 +104,29 @@
     let current_margins = { top: window.innerHeight / 2, bottom: 0, left: window.innerWidth / 2, right: 0 };
     let current_rotation = 0;
     let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false, space: false };
+
+    function setup_key_overlay() {
+        const KEYMAP_OVERLAY = document.getElementById("keymap");
+        KEYMAP_OVERLAY.innerHTML += "<u>Keymap</u><br><div class=\"horizontal_flex\"><span class=\"keymap_keys\" id=\"keymap_keys_0\"></span><span class=\"keymap_keys\" id=\"keymap_keys_1\"></span><span class=\"keymap_keys\" id=\"keymap_keys_2\"></span></div>";
+
+        const KEYMAP_KEYS_0 = document.getElementById("keymap_keys_0");
+        KEYMAP_KEYS_0.innerHTML += "Speed<br>";
+        KEYMAP_KEYS_0.innerHTML += "<span class=\"modifier_key\">" + "Shift" + "</span>";
+        KEYMAP_KEYS_0.innerHTML += "<br>";
+        KEYMAP_KEYS_0.innerHTML += "<span class=\"modifier_key\">" + "Ctrl" + "</span>";
+
+        const KEYMAP_KEYS_1 = document.getElementById("keymap_keys_1");
+        KEYMAP_KEYS_1.innerHTML += "Movement<br>";
+        KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[0] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<br>";
+        KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[1] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[2] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[3] + "</span>";
+
+        const KEYMAP_KEYS_2 = document.getElementById("keymap_keys_2");
+        KEYMAP_KEYS_2.innerHTML += "Weapon<br>";
+        KEYMAP_KEYS_2.innerHTML += "<span class=\"modifier_key\">" + "Space" + "</span>";
+    }
 
     function keydown_handler(e) {
         let current_key = e.key.toLowerCase();
