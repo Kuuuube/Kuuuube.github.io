@@ -56,7 +56,9 @@
     const THRUST = document.getElementById("thrust");
 
     const MOVEMENT_STEP_SIZE = 5;
-    const MOVEMENT_KEYS = "cslr";
+    const MOVEMENT_KEYS_OVERRIDE = window.location.search.match(/(?<=(\?)).*/);
+    const DEFAULT_MOVEMENT_KEYS = "wasd";
+    const MOVEMENT_KEYS = (MOVEMENT_KEYS_OVERRIDE && MOVEMENT_KEYS_OVERRIDE[0].length >= DEFAULT_MOVEMENT_KEYS.length) ? MOVEMENT_KEYS_OVERRIDE[0] : DEFAULT_MOVEMENT_KEYS;
 
     const PROJECTILE_SPEED = 10;
     const PROJECTILE_HOLD_RATE_OF_FIRE = 250;
