@@ -11,6 +11,9 @@
                 --high-thrust-size: 150%;
 
                 --font-size: 12px;
+
+                --background-color: rgb(51, 51, 51);
+                --text-color: rgb(255, 255, 255);
             }
             body,
             html {
@@ -113,21 +116,27 @@
 
         const KEYMAP_KEYS_0 = document.getElementById("keymap_keys_0");
         KEYMAP_KEYS_0.innerHTML += "Speed<br>";
-        KEYMAP_KEYS_0.innerHTML += "<span class=\"modifier_key\">" + "Shift" + "</span>";
+        KEYMAP_KEYS_0.innerHTML += "<span id=\"shift_key\" class=\"modifier_key\">" + "Shift" + "</span>";
         KEYMAP_KEYS_0.innerHTML += "<br>";
-        KEYMAP_KEYS_0.innerHTML += "<span class=\"modifier_key\">" + "Ctrl" + "</span>";
+        KEYMAP_KEYS_0.innerHTML += "<span id=\"ctrl_key\" class=\"modifier_key\">" + "Ctrl" + "</span>";
 
         const KEYMAP_KEYS_1 = document.getElementById("keymap_keys_1");
         KEYMAP_KEYS_1.innerHTML += "Movement<br>";
-        KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[0] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<span id=\"up_key\" class=\"key\">" + MOVEMENT_KEYS[0] + "</span>";
         KEYMAP_KEYS_1.innerHTML += "<br>";
-        KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[1] + "</span>";
-        KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[2] + "</span>";
-        KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[3] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<span id=\"left_key\" class=\"key\">" + MOVEMENT_KEYS[1] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<span id=\"down_key\" class=\"key\">" + MOVEMENT_KEYS[2] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<span id=\"right_key\" class=\"key\">" + MOVEMENT_KEYS[3] + "</span>";
 
         const KEYMAP_KEYS_2 = document.getElementById("keymap_keys_2");
         KEYMAP_KEYS_2.innerHTML += "Weapon<br>";
-        KEYMAP_KEYS_2.innerHTML += "<span class=\"modifier_key\">" + "Space" + "</span>";
+        KEYMAP_KEYS_2.innerHTML += "<span id=\"space_key\" class=\"modifier_key\">" + "Space" + "</span>";
+    }
+
+    function set_key_state(key_name, pressed) {
+        let key = document.getElementById(key_name + "_key");
+        key.style.backgroundColor = pressed ? "var(--text-color)" : "var(--background-color)";
+        key.style.color = pressed ? "var(--background-color)" : "var(--text-color)";
     }
 
     function keydown_handler(e) {
@@ -138,27 +147,36 @@
         if (e.repeat) { return; }
         if (current_key === MOVEMENT_KEYS[0]) {
             currently_held.up = true;
+            set_key_state("up", currently_held.up);
         }
         if (current_key === MOVEMENT_KEYS[1]) {
             currently_held.left = true;
+            set_key_state("left", currently_held.left);
         }
         if (current_key === MOVEMENT_KEYS[2]) {
             currently_held.down = true;
+            set_key_state("down", currently_held.down);
         }
         if (current_key === MOVEMENT_KEYS[3]) {
             currently_held.right = true;
+            set_key_state("right", currently_held.right);
         }
         if (current_key === "control") {
             currently_held.ctrl = !currently_held.ctrl;
             currently_held.shift = false;
+            set_key_state("shift", currently_held.shift);
+            set_key_state("ctrl", currently_held.ctrl);
         }
         if (current_key === "shift") {
             currently_held.shift = !currently_held.shift;
             currently_held.ctrl = false;
+            set_key_state("shift", currently_held.shift);
+            set_key_state("ctrl", currently_held.ctrl);
         }
         if (current_key === " ") {
             currently_held.space = true;
             shoot_projectile();
+            set_key_state("space", currently_held.space);
         }
     }
 
@@ -169,18 +187,23 @@
         }
         if (current_key === MOVEMENT_KEYS[0]) {
             currently_held.up = false;
+            set_key_state("up", currently_held.up);
         }
         if (current_key === MOVEMENT_KEYS[1]) {
             currently_held.left = false;
+            set_key_state("left", currently_held.left);
         }
         if (current_key === MOVEMENT_KEYS[2]) {
             currently_held.down = false;
+            set_key_state("down", currently_held.down);
         }
         if (current_key === MOVEMENT_KEYS[3]) {
             currently_held.right = false;
+            set_key_state("right", currently_held.right);
         }
         if (current_key === " ") {
             currently_held.space = false;
+            set_key_state("space", currently_held.space);
         }
     }
 
