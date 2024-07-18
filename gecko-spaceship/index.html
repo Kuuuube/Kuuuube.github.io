@@ -109,9 +109,10 @@
     const PROJECTILE_SPEED = 10;
     const PROJECTILE_HOLD_RATE_OF_FIRE = 250;
 
-    let current_margin_top = window.innerHeight / 2;
-    let current_margin_left = window.innerWidth / 2;
-    let current_rotation = 0;
+    let ship_margin_top = window.innerHeight / 2;
+    let ship_margin_left = window.innerWidth / 2;
+    let ship_rotation = 0;
+
     let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false, space: false };
 
     function setup_key_overlay() {
@@ -224,10 +225,10 @@
             return;
         }
 
-        let margin_left = current_margin_left;
-        let margin_top = current_margin_top;
-        let rotation = current_rotation;
-        let adjusted_rotation = current_rotation - 90;
+        let margin_left = ship_margin_left;
+        let margin_top = ship_margin_top;
+        let rotation = ship_rotation;
+        let adjusted_rotation = ship_rotation - 90;
 
         let projectile = document.createElement("span");
         projectile.className = "projectile";
@@ -301,18 +302,18 @@
             movement_size = MOVEMENT_STEP_SIZE * 2;
         }
 
-        current_margin_left -= movement_size * currently_held.left;
-        current_margin_left += movement_size * currently_held.right;
-        current_margin_top -= movement_size * currently_held.up;
-        current_margin_top += movement_size * currently_held.down;
+        ship_margin_left -= movement_size * currently_held.left;
+        ship_margin_left += movement_size * currently_held.right;
+        ship_margin_top -= movement_size * currently_held.up;
+        ship_margin_top += movement_size * currently_held.down;
 
-        if (current_margin_left < x_bounds.min) { current_margin_left = x_bounds.min; }
-        if (current_margin_left > x_bounds.max) { current_margin_left = x_bounds.max; }
-        SHIP.style.marginLeft = current_margin_left + "px";
+        if (ship_margin_left < x_bounds.min) { ship_margin_left = x_bounds.min; }
+        if (ship_margin_left > x_bounds.max) { ship_margin_left = x_bounds.max; }
+        SHIP.style.marginLeft = ship_margin_left + "px";
 
-        if (current_margin_top < y_bounds.min) { current_margin_top = y_bounds.min; }
-        if (current_margin_top > y_bounds.max) { current_margin_top = y_bounds.max; }
-        SHIP.style.marginTop = current_margin_top + "px";
+        if (ship_margin_top < y_bounds.min) { ship_margin_top = y_bounds.min; }
+        if (ship_margin_top > y_bounds.max) { ship_margin_top = y_bounds.max; }
+        SHIP.style.marginTop = ship_margin_top + "px";
     }
 
     function set_text() {
@@ -333,7 +334,7 @@
         }
 
         let angle = movement_vectors / divisor;
-        current_rotation = angle;
+        ship_rotation = angle;
 
         if (currently_held.right || currently_held.left || currently_held.up || currently_held.down) {
             if (currently_held.shift) {
