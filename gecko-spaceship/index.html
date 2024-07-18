@@ -4,8 +4,11 @@
         <title>Gecko Spaceship</title>
         <style>
             :root {
-                --low-thrust: rgb(151, 151, 255);
-                --high-thrust: rgb(255, 108, 108);
+                --low-thrust-color: rgb(151, 151, 255);
+                --low-thrust-size: 75%;
+
+                --high-thrust-color: rgb(255, 137, 137);
+                --high-thrust-size: 150%;
             }
             body,
             html {
@@ -79,10 +82,12 @@
             currently_held.down = true;
         }
         if (current_key === "control") {
-            currently_held.ctrl = true;
+            currently_held.ctrl = !currently_held.ctrl;
+            currently_held.shift = false;
         }
         if (current_key === "shift") {
-            currently_held.shift = true;
+            currently_held.shift = !currently_held.shift;
+            currently_held.ctrl = false;
         }
         if (current_key === " ") {
             currently_held.space = true;
@@ -106,12 +111,6 @@
         }
         if (current_key === MOVEMENT_KEYS[3]) {
             currently_held.down = false;
-        }
-        if (current_key === "control") {
-            currently_held.ctrl = false;
-        }
-        if (current_key === "shift") {
-            currently_held.shift = false;
         }
         if (current_key === " ") {
             currently_held.space = false;
@@ -234,11 +233,14 @@
 
         if (currently_held.right || currently_held.left || currently_held.up || currently_held.down) {
             if (currently_held.shift) {
-                THRUST.style.color = "var(--high-thrust)";
+                THRUST.style.color = "var(--high-thrust-color)";
+                THRUST.style.fontSize = "var(--high-thrust-size)";
             } else if (currently_held.ctrl) {
-                THRUST.style.color = "var(--low-thrust)";
+                THRUST.style.color = "var(--low-thrust-color)";
+                THRUST.style.fontSize = "var(--low-thrust-size)";
             } else {
                 THRUST.style.color = "inherit";
+                THRUST.style.fontSize = "inherit";
             }
             SHIP.style.rotate = angle + "deg";
         }
