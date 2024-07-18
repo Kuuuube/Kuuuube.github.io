@@ -72,16 +72,16 @@
         }
         if (e.repeat) { return; }
         if (current_key === MOVEMENT_KEYS[0]) {
-            currently_held.left = true;
-        }
-        if (current_key === MOVEMENT_KEYS[1]) {
-            currently_held.right = true;
-        }
-        if (current_key === MOVEMENT_KEYS[2]) {
             currently_held.up = true;
         }
-        if (current_key === MOVEMENT_KEYS[3]) {
+        if (current_key === MOVEMENT_KEYS[1]) {
+            currently_held.left = true;
+        }
+        if (current_key === MOVEMENT_KEYS[2]) {
             currently_held.down = true;
+        }
+        if (current_key === MOVEMENT_KEYS[3]) {
+            currently_held.right = true;
         }
         if (current_key === "control") {
             currently_held.ctrl = !currently_held.ctrl;
@@ -103,16 +103,16 @@
             e.preventDefault();
         }
         if (current_key === MOVEMENT_KEYS[0]) {
-            currently_held.left = false;
-        }
-        if (current_key === MOVEMENT_KEYS[1]) {
-            currently_held.right = false;
-        }
-        if (current_key === MOVEMENT_KEYS[2]) {
             currently_held.up = false;
         }
-        if (current_key === MOVEMENT_KEYS[3]) {
+        if (current_key === MOVEMENT_KEYS[1]) {
+            currently_held.left = false;
+        }
+        if (current_key === MOVEMENT_KEYS[2]) {
             currently_held.down = false;
+        }
+        if (current_key === MOVEMENT_KEYS[3]) {
+            currently_held.right = false;
         }
         if (current_key === " ") {
             currently_held.space = false;
