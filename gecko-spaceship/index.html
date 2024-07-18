@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Firefox Only</title>
+        <title>Gecko Spaceship</title>
         <style>
+            :root {
+                --low-thrust: rgb(151, 151, 255);
+                --high-thrust: rgb(255, 108, 108);
+            }
             body,
             html {
                 width: 100%;
@@ -229,9 +233,9 @@
 
         if (currently_held.right || currently_held.left || currently_held.up || currently_held.down) {
             if (currently_held.shift) {
-                THRUST.style.color = "red";
+                THRUST.style.color = "var(--high-thrust)";
             } else if (currently_held.ctrl) {
-                THRUST.style.color = "blue";
+                THRUST.style.color = "var(--low-thrust)";
             } else {
                 THRUST.style.color = "inherit";
             }
