@@ -190,10 +190,10 @@
 
     function set_position() {
         let ship_info = SHIP.getBoundingClientRect();
-        let x_offset_min = 8;
-        let x_offset_max = -4;
-        let x_bounds = {min: 0 + x_offset_min, max: window.innerWidth - ship_info.width - x_offset_max};
-        let y_bounds = {min: 0, max: window.innerHeight - ship_info.height}
+        let offset_min = 8;
+        let offset_max = -4;
+        let x_bounds = {min: 0 + offset_min * 2, max: window.innerWidth - ship_info.width + offset_max};
+        let y_bounds = {min: 0 + offset_min, max: window.innerHeight - ship_info.height + offset_max}
 
         let movement_size = MOVEMENT_STEP_SIZE;
         if (currently_held.ctrl) {
