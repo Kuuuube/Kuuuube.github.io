@@ -121,6 +121,14 @@
         }
     }
 
+    function reset_hold_keys() {
+        currently_held.up = false;
+        currently_held.left = false;
+        currently_held.down = false;
+        currently_held.right = false;
+        currently_held.space = false;
+    }
+
     function shoot_projectile() {
         if (!currently_held.space) {
             return;
@@ -253,6 +261,9 @@
     }
 
     function event_loop() {
+        if (!document.hasFocus()) {
+            reset_hold_keys();
+        }
         set_position();
         set_text();
         setTimeout(event_loop, 10);
