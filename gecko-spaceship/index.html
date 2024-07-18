@@ -126,13 +126,14 @@
         // current_margins must be cloned and cannot be a reference
         let margins = JSON.parse(JSON.stringify(current_margins));
         let rotation = current_rotation;
+        let adjusted_rotation = current_rotation - 90;
 
         let projectile = document.createElement("span");
         projectile.className = "projectile";
-        projectile.innerText = "︱";
+        projectile.innerText = "—";
         projectile.style.marginLeft = margins.left + "px";
         projectile.style.marginTop = margins.top + "px";
-        projectile.style.rotate = rotation + "deg";
+        projectile.style.rotate = adjusted_rotation + "deg";
         document.body.append(projectile);
         projectile_movement(projectile, margins, rotation);
 
