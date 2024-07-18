@@ -109,7 +109,8 @@
     const PROJECTILE_SPEED = 10;
     const PROJECTILE_HOLD_RATE_OF_FIRE = 250;
 
-    let current_margins = { top: window.innerHeight / 2, left: window.innerWidth / 2 };
+    let current_margin_top = window.innerHeight / 2;
+    let current_margin_left = window.innerWidth / 2;
     let current_rotation = 0;
     let currently_held = { left: false, right: false, up: false, down: false, shift: false, ctrl: false, space: false };
 
@@ -223,66 +224,66 @@
             return;
         }
 
-        // current_margins must be cloned and cannot be a reference
-        let margins = JSON.parse(JSON.stringify(current_margins));
+        let margin_left = current_margin_left;
+        let margin_top = current_margin_top;
         let rotation = current_rotation;
         let adjusted_rotation = current_rotation - 90;
 
         let projectile = document.createElement("span");
         projectile.className = "projectile";
         projectile.innerText = "—";
-        projectile.style.marginLeft = margins.left + "px";
-        projectile.style.marginTop = margins.top + "px";
+        projectile.style.marginLeft = margin_left + "px";
+        projectile.style.marginTop = margin_top + "px";
         projectile.style.rotate = adjusted_rotation + "deg";
         document.body.append(projectile);
-        projectile_movement(projectile, margins, rotation);
+        projectile_movement(projectile, margin_left, margin_top, rotation);
 
         if (currently_held.space) {
             setTimeout(shoot_projectile, PROJECTILE_HOLD_RATE_OF_FIRE);
         }
     }
 
-    function projectile_movement(projectile, margins, direction) {
+    function projectile_movement(projectile, margin_left, margin_top, direction) {
         switch (direction) {
             case 0:
-                margins.top -= PROJECTILE_SPEED;
+                margin_top -= PROJECTILE_SPEED;
                 break;
             case 45:
-                margins.top -= PROJECTILE_SPEED / 1.41;
-                margins.left += PROJECTILE_SPEED / 1.41;
+                margin_top -= PROJECTILE_SPEED / 1.41;
+                margin_left += PROJECTILE_SPEED / 1.41;
                 break;
             case 90:
-                margins.left += PROJECTILE_SPEED;
+                margin_left += PROJECTILE_SPEED;
                 break;
             case 135:
-                margins.left += PROJECTILE_SPEED / 1.41;
-                margins.top += PROJECTILE_SPEED / 1.41;
+                margin_left += PROJECTILE_SPEED / 1.41;
+                margin_top += PROJECTILE_SPEED / 1.41;
                 break;
             case 180:
-                margins.top += PROJECTILE_SPEED;
+                margin_top += PROJECTILE_SPEED;
                 break;
             case 225:
-                margins.top += PROJECTILE_SPEED / 1.41;
-                margins.left -= PROJECTILE_SPEED / 1.41;
+                margin_top += PROJECTILE_SPEED / 1.41;
+                margin_left -= PROJECTILE_SPEED / 1.41;
                 break;
             case 270:
-                margins.left -= PROJECTILE_SPEED;
+                margin_left -= PROJECTILE_SPEED;
                 break;
             case 315:
-                margins.left -= PROJECTILE_SPEED / 1.41;
-                margins.top -= PROJECTILE_SPEED / 1.41;
+                margin_left -= PROJECTILE_SPEED / 1.41;
+                margin_top -= PROJECTILE_SPEED / 1.41;
                 break;
             case 360:
-                margins.top -= PROJECTILE_SPEED;
+                margin_top -= PROJECTILE_SPEED;
                 break;
         }
-        projectile.style.marginLeft = margins.left + "px";
-        projectile.style.marginTop = margins.top + "px";
-        if (margins.left < 0 || window.innerWidth < margins.left || margins.top < 0 || window.innerHeight < margins.top) {
+        projectile.style.marginLeft = margin_left + "px";
+        projectile.style.marginTop = margin_top + "px";
+        if (margin_left < 0 || window.innerWidth < margin_left || margin_top < 0 || window.innerHeight < margin_top) {
             projectile.remove();
             return;
         }
-        setTimeout(function() { projectile_movement(projectile, margins, direction); }, 10);
+        setTimeout(function() { projectile_movement(projectile, margin_left, margin_top, direction); }, 10);
     }
 
     function set_position() {
@@ -300,18 +301,18 @@
             movement_size = MOVEMENT_STEP_SIZE * 2;
         }
 
-        current_margins.left -= movement_size * currently_held.left;
-        current_margins.left += movement_size * currently_held.right;
-        current_margins.top -= movement_size * currently_held.up;
-        current_margins.top += movement_size * currently_held.down;
+        current_margin_left -= movement_size * currently_held.left;
+        current_margin_left += movement_size * currently_held.right;
+        current_margin_top -= movement_size * currently_held.up;
+        current_margin_top += movement_size * currently_held.down;
 
-        if (current_margins.left < x_bounds.min) { current_margins.left = x_bounds.min; }
-        if (current_margins.left > x_bounds.max) { current_margins.left = x_bounds.max; }
-        SHIP.style.marginLeft = current_margins.left + "px";
+        if (current_margin_left < x_bounds.min) { current_margin_left = x_bounds.min; }
+        if (current_margin_left > x_bounds.max) { current_margin_left = x_bounds.max; }
+        SHIP.style.marginLeft = current_margin_left + "px";
 
-        if (current_margins.top < y_bounds.min) { current_margins.top = y_bounds.min; }
-        if (current_margins.top > y_bounds.max) { current_margins.top = y_bounds.max; }
-        SHIP.style.marginTop = current_margins.top + "px";
+        if (current_margin_top < y_bounds.min) { current_margin_top = y_bounds.min; }
+        if (current_margin_top > y_bounds.max) { current_margin_top = y_bounds.max; }
+        SHIP.style.marginTop = current_margin_top + "px";
     }
 
     function set_text() {
