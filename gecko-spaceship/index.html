@@ -9,6 +9,8 @@
 
                 --high-thrust-color: rgb(255, 137, 137);
                 --high-thrust-size: 150%;
+
+                --font-size: 12px;
             }
             body,
             html {
@@ -28,7 +30,7 @@
                 line-height: 1;
                 position: absolute;
                 color: rgb(255, 255, 255);
-                font-size: 12px;
+                font-size: var(--font-size);
             }
             #ship_body {
                 font-weight: 1000;
@@ -43,6 +45,40 @@
                 position: absolute;
                 color: rgb(255, 255, 255);
             }
+            #keymap {
+                font-family: monospace;
+                text-align: center;
+                position: absolute;
+                left: 90%;
+                top: 0;
+            }
+            .horizontal_flex {
+                display: flex;
+                justify-content: space-between;
+            }
+            .key {
+                border:1px solid white;
+                width: var(--font-size);
+                min-width: var(--font-size);
+                max-width: var(--font-size);
+                height: var(--font-size);
+                min-height: var(--font-size);
+                max-height: var(--font-size);
+                display: inline-block;
+            }
+            .modifier_key {
+                border:1px solid white;
+                height: var(--font-size);
+                min-height: var(--font-size);
+                max-height: var(--font-size);
+                display: inline-block;
+            }
+            .keymap_keys {
+                margin: calc(var(--font-size) / 2);
+            }
+            #keymap_keys_0 {
+                text-align: left;
+            }
         </style>
     </head>
     <body></body>
@@ -50,7 +86,7 @@
 <script>
     document.body.innerHTML = "<h1>A gecko browser is required to run this webpage</h1>";
     document.caretPositionFromPoint(0, 0);
-    document.body.innerHTML = "<span id=\"ship\"><span id=\"ship_body\">△</span><br><span id=\"thrust\">𝍫</span></span>";
+    document.body.innerHTML = "<span id=\"ship\"><span id=\"ship_body\">△</span><br><span id=\"thrust\">𝍫</span></span><span id=\"keymap\"></span>";
     const SHIP = document.getElementById("ship");
     const SHIP_BODY = document.getElementById("ship_body");
     const THRUST = document.getElementById("thrust");
@@ -59,6 +95,27 @@
     const MOVEMENT_KEYS_OVERRIDE = window.location.search.match(/(?<=(\?)).*/);
     const DEFAULT_MOVEMENT_KEYS = "wasd";
     const MOVEMENT_KEYS = (MOVEMENT_KEYS_OVERRIDE && MOVEMENT_KEYS_OVERRIDE[0].length >= DEFAULT_MOVEMENT_KEYS.length) ? MOVEMENT_KEYS_OVERRIDE[0] : DEFAULT_MOVEMENT_KEYS;
+
+    const KEYMAP_OVERLAY = document.getElementById("keymap");
+    KEYMAP_OVERLAY.innerHTML += "<u>Keymap</u><br><div class=\"horizontal_flex\"><span class=\"keymap_keys\" id=\"keymap_keys_0\"></span><span class=\"keymap_keys\" id=\"keymap_keys_1\"></span><span class=\"keymap_keys\" id=\"keymap_keys_2\"></span></div>";
+
+    const KEYMAP_KEYS_0 = document.getElementById("keymap_keys_0");
+    KEYMAP_KEYS_0.innerHTML += "Speed<br>";
+    KEYMAP_KEYS_0.innerHTML += "<span class=\"modifier_key\">" + "Shift" + "</span>";
+    KEYMAP_KEYS_0.innerHTML += "<br>";
+    KEYMAP_KEYS_0.innerHTML += "<span class=\"modifier_key\">" + "Ctrl" + "</span>";
+
+    const KEYMAP_KEYS_1 = document.getElementById("keymap_keys_1");
+    KEYMAP_KEYS_1.innerHTML += "Movement<br>";
+    KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[0] + "</span>";
+    KEYMAP_KEYS_1.innerHTML += "<br>";
+    KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[1] + "</span>";
+    KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[2] + "</span>";
+    KEYMAP_KEYS_1.innerHTML += "<span class=\"key\">" + MOVEMENT_KEYS[3] + "</span>";
+
+    const KEYMAP_KEYS_2 = document.getElementById("keymap_keys_2");
+    KEYMAP_KEYS_2.innerHTML += "Weapon<br>";
+    KEYMAP_KEYS_2.innerHTML += "<span class=\"modifier_key\">" + "Space" + "</span>";
 
     const PROJECTILE_SPEED = 10;
     const PROJECTILE_HOLD_RATE_OF_FIRE = 250;
