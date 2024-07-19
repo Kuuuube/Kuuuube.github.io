@@ -97,6 +97,14 @@
             #keymap_keys_0 {
                 text-align: left;
             }
+            @keyframes ship_destroyed_spin {
+                from { transform:rotate(0deg); }
+                to { transform:rotate(360deg); }
+            }
+            @keyframes ship_destroyed_fade_out {
+                0% { opacity: 100%; }
+                100% { opacity: 0%; }
+            }
         </style>
     </head>
     <body></body>
@@ -389,7 +397,10 @@
     }
 
     function destroy_ship() {
-        SHIP.remove();
+        HEALTHBAR.remove();
+        THRUST.remove();
+        SHIP.style.animation += "ship_destroyed_spin 1.5s infinite linear, ship_destroyed_fade_out 2s 1 linear forwards";
+        setTimeout(() => { SHIP.remove(); }, 5000);
     }
 
     function event_loop() {
