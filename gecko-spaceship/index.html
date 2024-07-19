@@ -127,6 +127,8 @@
     const WALL_COLLISION_DAMAGE = 50 / TICK_RATE;
 
     const MOVEMENT_STEP_SIZE = 500 / TICK_RATE;
+    const CTRL_WALL_COLLISION_DAMAGE = WALL_COLLISION_DAMAGE * 0.1;
+    const SHIFT_WALL_COLLISION_DAMAGE = SHIP_HEALTH;
     const SHIFT_MOVEMENT_STEP_SIZE = MOVEMENT_STEP_SIZE * 2;
     const CTRL_MOVEMENT_STEP_SIZE = MOVEMENT_STEP_SIZE / 3;
     const MOVEMENT_KEYS_OVERRIDE = window.location.search.match(/(?<=(\?)).*/);
@@ -336,7 +338,13 @@
         ship_margin_top -= movement_size * currently_held.up;
         ship_margin_top += movement_size * currently_held.down;
 
-        let collision_damage = WALL_COLLISION_DAMAGE - currently_held.ctrl * WALL_COLLISION_DAMAGE * 0.9 + currently_held.shift * WALL_COLLISION_DAMAGE * 2;
+        let collision_damage = WALL_COLLISION_DAMAGE;
+        if (currently_held.ctrl) {
+            collision_damage = CTRL_WALL_COLLISION_DAMAGE;
+        }
+        if (currently_held.shift) {
+            collision_damage = SHIFT_WALL_COLLISION_DAMAGE;
+        }
 
         if (ship_margin_left < x_bounds.min) {
             ship_margin_left = x_bounds.min;
