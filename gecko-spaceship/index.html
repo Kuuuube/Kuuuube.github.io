@@ -334,23 +334,25 @@
         ship_margin_top -= movement_size * currently_held.up;
         ship_margin_top += movement_size * currently_held.down;
 
+        let collision_damage = WALL_COLLISION_DAMAGE - currently_held.ctrl * WALL_COLLISION_DAMAGE * 0.5 + currently_held.shift * WALL_COLLISION_DAMAGE;
+
         if (ship_margin_left < x_bounds.min) {
             ship_margin_left = x_bounds.min;
-            SHIP_HEALTH -= WALL_COLLISION_DAMAGE;
+            SHIP_HEALTH -= collision_damage;
         }
         if (ship_margin_left > x_bounds.max) {
             ship_margin_left = x_bounds.max;
-            SHIP_HEALTH -= WALL_COLLISION_DAMAGE;
+            SHIP_HEALTH -= collision_damage;
         }
         SHIP.style.marginLeft = ship_margin_left + "px";
 
         if (ship_margin_top < y_bounds.min) {
             ship_margin_top = y_bounds.min;
-            SHIP_HEALTH -= WALL_COLLISION_DAMAGE;
+            SHIP_HEALTH -= collision_damage;
         }
         if (ship_margin_top > y_bounds.max) {
             ship_margin_top = y_bounds.max;
-            SHIP_HEALTH -= WALL_COLLISION_DAMAGE;
+            SHIP_HEALTH -= collision_damage;
         }
         SHIP.style.marginTop = ship_margin_top + "px";
     }
