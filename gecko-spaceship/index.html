@@ -14,6 +14,9 @@
 
                 --background-color: rgb(51, 51, 51);
                 --text-color: rgb(255, 255, 255);
+
+                --border-color-disabled: rgb(26, 26, 26);
+                --text-color-disabled: rgb(163, 163, 163);
             }
             body,
             html {
@@ -178,6 +181,14 @@
         let key = document.getElementById(key_name + "_key");
         key.style.backgroundColor = pressed ? "var(--text-color)" : "var(--background-color)";
         key.style.color = pressed ? "var(--background-color)" : "var(--text-color)";
+        key.style.borderColor = "inherit";
+    }
+
+    function set_key_disabled(key_name) {
+        let key = document.getElementById(key_name + "_key");
+        key.style.backgroundColor = "var(--background-color)";
+        key.style.color = "var(--text-color-disabled)";
+        key.style.borderColor = "var(--text-color-disabled)";
     }
 
     function keydown_handler(e) {
@@ -205,7 +216,6 @@
         if (current_key === "control" && !currently_held.shift) {
             currently_held.ctrl = !currently_held.ctrl;
             currently_held.shift = false;
-            set_key_state("shift", currently_held.shift);
             set_key_state("ctrl", currently_held.ctrl);
         }
         if (current_key === "shift" && !currently_held.shift && !boosters_disabled) {
@@ -215,8 +225,9 @@
                 currently_held.shift = false;
                 setTimeout(() => {
                     boosters_disabled = false;
+                    set_key_state("shift", currently_held.shift);
                 }, BOOSTERS_COOLDOWN_TIME);
-                set_key_state("shift", currently_held.shift);
+                set_key_disabled("shift");
             }, BOOSTERS_SPEED_TIME);
             boosters_disabled = true;
             set_key_state("shift", currently_held.shift);
