@@ -112,10 +112,11 @@
     const THRUST = document.getElementById("thrust");
     const HEALTHBAR = document.getElementById("healthbar");
 
-    let SHIP_HEALTH = 100;
-
     const TICK_RATE = 120;
     const TICK_TIME_MS = 1000 / TICK_RATE;
+
+    let SHIP_HEALTH = 100;
+    const WALL_COLLISION_DAMAGE = 50 / TICK_RATE;
 
     const MOVEMENT_STEP_SIZE = 500 / TICK_RATE;
     const MOVEMENT_KEYS_OVERRIDE = window.location.search.match(/(?<=(\?)).*/);
@@ -325,12 +326,24 @@
         ship_margin_top -= movement_size * currently_held.up;
         ship_margin_top += movement_size * currently_held.down;
 
-        if (ship_margin_left < x_bounds.min) { ship_margin_left = x_bounds.min; }
-        if (ship_margin_left > x_bounds.max) { ship_margin_left = x_bounds.max; }
+        if (ship_margin_left < x_bounds.min) {
+            ship_margin_left = x_bounds.min;
+            SHIP_HEALTH -= WALL_COLLISION_DAMAGE;
+        }
+        if (ship_margin_left > x_bounds.max) {
+            ship_margin_left = x_bounds.max;
+            SHIP_HEALTH -= WALL_COLLISION_DAMAGE;
+        }
         SHIP.style.marginLeft = ship_margin_left + "px";
 
-        if (ship_margin_top < y_bounds.min) { ship_margin_top = y_bounds.min; }
-        if (ship_margin_top > y_bounds.max) { ship_margin_top = y_bounds.max; }
+        if (ship_margin_top < y_bounds.min) {
+            ship_margin_top = y_bounds.min;
+            SHIP_HEALTH -= WALL_COLLISION_DAMAGE;
+        }
+        if (ship_margin_top > y_bounds.max) {
+            ship_margin_top = y_bounds.max;
+            SHIP_HEALTH -= WALL_COLLISION_DAMAGE;
+        }
         SHIP.style.marginTop = ship_margin_top + "px";
     }
 
