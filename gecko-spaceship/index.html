@@ -99,15 +99,18 @@
     const SHIP_BODY = document.getElementById("ship_body");
     const THRUST = document.getElementById("thrust");
 
-    const MOVEMENT_STEP_SIZE = 5;
+    const TICK_RATE = 120;
+    const TICK_TIME_MS = 1000 / TICK_RATE;
+
+    const MOVEMENT_STEP_SIZE = 500 / TICK_RATE;
     const MOVEMENT_KEYS_OVERRIDE = window.location.search.match(/(?<=(\?)).*/);
     const DEFAULT_MOVEMENT_KEYS = "wasd";
     const MOVEMENT_KEYS = (MOVEMENT_KEYS_OVERRIDE && MOVEMENT_KEYS_OVERRIDE[0].length >= DEFAULT_MOVEMENT_KEYS.length) ? MOVEMENT_KEYS_OVERRIDE[0] : DEFAULT_MOVEMENT_KEYS;
 
     setup_key_overlay();
 
-    const PROJECTILE_SPEED = 10;
-    const PROJECTILE_HOLD_RATE_OF_FIRE = 250;
+    const PROJECTILE_SPEED = 1000 / TICK_RATE;
+    const PROJECTILE_HOLD_RATE_OF_FIRE = TICK_TIME_MS * 25;
 
     let ship_margin_top = window.innerHeight / 2;
     let ship_margin_left = window.innerWidth / 2;
@@ -284,7 +287,7 @@
             projectile.remove();
             return;
         }
-        setTimeout(function() { projectile_movement(projectile, margin_left, margin_top, direction); }, 10);
+        setTimeout(function() { projectile_movement(projectile, margin_left, margin_top, direction); }, TICK_TIME_MS);
     }
 
     function set_position() {
@@ -357,7 +360,7 @@
         }
         set_position();
         set_text();
-        setTimeout(event_loop, 10);
+        setTimeout(event_loop, TICK_TIME_MS);
     }
 
     document.addEventListener("keydown", keydown_handler);
