@@ -38,6 +38,18 @@
             #ship_body {
                 font-weight: 1000;
             }
+            #healthbar {
+                --border-width: 4px;
+                width: 14.4px;
+                height: 14.3px;
+                margin-left: calc(-1 * var(--border-width));
+                margin-top: calc(-1 * var(--border-width));
+                position: absolute;
+                border-image: linear-gradient(90deg, rgba(0,255,0,1) 43%, rgba(255,0,0,1) 43%) 1;
+                border-image-width: 1 0 0 0;
+                border-width: var(--border-width);
+                border-style: solid;
+            }
             .projectile {
                 width: fit-content;
                 height: fit-content;
@@ -94,10 +106,13 @@
     if (!document.caretPositionFromPoint) {
         throw new Error("Unsupported browser version")
     }
-    document.body.innerHTML = "<span id=\"ship\"><span id=\"ship_body\">△</span><br><span id=\"thrust\">𝍫</span></span><span id=\"keymap_container\"></span>";
+    document.body.innerHTML = "<span id=\"ship\"><span id=\"ship_body\"><span id=\"healthbar\"></span>△</span><br><span id=\"thrust\">𝍫</span></span><span id=\"keymap_container\"></span>";
     const SHIP = document.getElementById("ship");
     const SHIP_BODY = document.getElementById("ship_body");
     const THRUST = document.getElementById("thrust");
+    const HEALTHBAR = document.getElementById("healthbar");
+
+    let SHIP_HEALTH = 100;
 
     const TICK_RATE = 120;
     const TICK_TIME_MS = 1000 / TICK_RATE;
@@ -354,12 +369,19 @@
         }
     }
 
+    function set_healthbar() {
+        HEALTHBAR.style.rotate = "-" + ship_rotation + "deg"
+        HEALTHBAR.style.borderImage = "linear-gradient(90deg, rgba(0,255,0,1)" + SHIP_HEALTH + "%, rgba(255,0,0,1) " + SHIP_HEALTH + "%) 1";
+        HEALTHBAR.style.borderImageWidth = "1 0 0 0";
+    }
+
     function event_loop() {
         if (!document.hasFocus()) {
             reset_hold_keys();
         }
         set_position();
         set_text();
+        set_healthbar();
         setTimeout(event_loop, TICK_TIME_MS);
     }
 
