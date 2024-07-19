@@ -388,6 +388,10 @@
         HEALTHBAR.style.borderImageWidth = "1 0 0 0";
     }
 
+    function destroy_ship() {
+        SHIP.remove();
+    }
+
     function event_loop() {
         if (!document.hasFocus()) {
             reset_hold_keys();
@@ -395,6 +399,10 @@
         set_position();
         set_text();
         set_healthbar();
+        if (SHIP_HEALTH <= 0) {
+            destroy_ship();
+            return;
+        }
         setTimeout(event_loop, TICK_TIME_MS);
     }
 
