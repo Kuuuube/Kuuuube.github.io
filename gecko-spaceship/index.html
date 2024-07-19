@@ -131,6 +131,11 @@
     const SHIFT_WALL_COLLISION_DAMAGE = SHIP_HEALTH;
     const SHIFT_MOVEMENT_STEP_SIZE = MOVEMENT_STEP_SIZE * 2;
     const CTRL_MOVEMENT_STEP_SIZE = MOVEMENT_STEP_SIZE / 3;
+
+    const BOOSTERS_SPEED_TIME = 200000 / TICK_RATE;
+    const BOOSTERS_COOLDOWN_TIME = 200000 / TICK_RATE;
+    let boosters_disabled = false;
+
     const MOVEMENT_KEYS_OVERRIDE = window.location.search.match(/(?<=(\?)).*/);
     const DEFAULT_MOVEMENT_KEYS = "wasd";
     const MOVEMENT_KEYS = (MOVEMENT_KEYS_OVERRIDE && MOVEMENT_KEYS_OVERRIDE[0].length >= DEFAULT_MOVEMENT_KEYS.length) ? MOVEMENT_KEYS_OVERRIDE[0] : DEFAULT_MOVEMENT_KEYS;
@@ -197,15 +202,23 @@
             currently_held.right = true;
             set_key_state("right", currently_held.right);
         }
-        if (current_key === "control") {
+        if (current_key === "control" && !currently_held.shift) {
             currently_held.ctrl = !currently_held.ctrl;
             currently_held.shift = false;
             set_key_state("shift", currently_held.shift);
             set_key_state("ctrl", currently_held.ctrl);
         }
-        if (current_key === "shift") {
-            currently_held.shift = !currently_held.shift;
+        if (current_key === "shift" && !currently_held.shift && !boosters_disabled) {
+            currently_held.shift = true;
             currently_held.ctrl = false;
+            setTimeout(() => {
+                currently_held.shift = false;
+                setTimeout(() => {
+                    boosters_disabled = false;
+                }, BOOSTERS_COOLDOWN_TIME);
+                set_key_state("shift", currently_held.shift);
+            }, BOOSTERS_SPEED_TIME);
+            boosters_disabled = true;
             set_key_state("shift", currently_held.shift);
             set_key_state("ctrl", currently_held.ctrl);
         }
