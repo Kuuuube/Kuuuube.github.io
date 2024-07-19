@@ -127,6 +127,8 @@
     const WALL_COLLISION_DAMAGE = 50 / TICK_RATE;
 
     const MOVEMENT_STEP_SIZE = 500 / TICK_RATE;
+    const SHIFT_MOVEMENT_STEP_SIZE = MOVEMENT_STEP_SIZE * 2;
+    const CTRL_MOVEMENT_STEP_SIZE = MOVEMENT_STEP_SIZE / 3;
     const MOVEMENT_KEYS_OVERRIDE = window.location.search.match(/(?<=(\?)).*/);
     const DEFAULT_MOVEMENT_KEYS = "wasd";
     const MOVEMENT_KEYS = (MOVEMENT_KEYS_OVERRIDE && MOVEMENT_KEYS_OVERRIDE[0].length >= DEFAULT_MOVEMENT_KEYS.length) ? MOVEMENT_KEYS_OVERRIDE[0] : DEFAULT_MOVEMENT_KEYS;
@@ -323,10 +325,10 @@
 
         let movement_size = MOVEMENT_STEP_SIZE;
         if (currently_held.ctrl) {
-            movement_size = MOVEMENT_STEP_SIZE / 2;
+            movement_size = CTRL_MOVEMENT_STEP_SIZE;
         }
         if (currently_held.shift) {
-            movement_size = MOVEMENT_STEP_SIZE * 2;
+            movement_size = SHIFT_MOVEMENT_STEP_SIZE;
         }
 
         ship_margin_left -= movement_size * currently_held.left;
@@ -334,7 +336,7 @@
         ship_margin_top -= movement_size * currently_held.up;
         ship_margin_top += movement_size * currently_held.down;
 
-        let collision_damage = WALL_COLLISION_DAMAGE - currently_held.ctrl * WALL_COLLISION_DAMAGE * 0.5 + currently_held.shift * WALL_COLLISION_DAMAGE;
+        let collision_damage = WALL_COLLISION_DAMAGE - currently_held.ctrl * WALL_COLLISION_DAMAGE * 0.9 + currently_held.shift * WALL_COLLISION_DAMAGE * 2;
 
         if (ship_margin_left < x_bounds.min) {
             ship_margin_left = x_bounds.min;
