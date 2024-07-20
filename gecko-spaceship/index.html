@@ -9,6 +9,7 @@
             }
             :root {
                 font-family: "Symbola Minimal", "monospace";
+                font-size: var(--font-size);
                 --low-thrust-color: rgb(151, 151, 255);
                 --low-thrust-size: 75%;
 
@@ -40,7 +41,6 @@
                 line-height: 1;
                 position: absolute;
                 color: rgb(255, 255, 255);
-                font-size: var(--font-size);
             }
             #ship_body {
                 font-weight: 1000;
@@ -61,11 +61,12 @@
                 width: fit-content;
                 height: fit-content;
                 user-select: none;
-                font-family: monospace;
                 text-align: center;
                 line-height: 1;
                 position: absolute;
                 color: rgb(255, 255, 255);
+                display: flex;
+                justify-content: center;
             }
             #keymap_container {
                 position: absolute;
@@ -283,20 +284,24 @@
         if (!currently_held.space) {
             return;
         }
+        let ship_body_info = SHIP_BODY.getBoundingClientRect();
+        console.log(ship_body_info);
 
-        let margin_left = ship_margin_left;
-        let margin_top = ship_margin_top;
-        let rotation = ship_rotation;
-        let adjusted_rotation = ship_rotation - 90;
+        const PROJECTILE_OFFSET_LEFT = -4.5;
+        const PROJECTILE_OFFSET_TOP = 4.5;
+        let margin_left = ship_body_info.x;
+        let margin_top = ship_body_info.y;
 
         let projectile = document.createElement("span");
         projectile.className = "projectile";
-        projectile.innerText = "—";
+        projectile.innerText = "𝍩";
         projectile.style.marginLeft = margin_left + "px";
         projectile.style.marginTop = margin_top + "px";
-        projectile.style.rotate = adjusted_rotation + "deg";
+        projectile.style.rotate = ship_rotation + "deg";
+        projectile.style.width = ship_body_info.width + "px";
+        projectile.style.height = ship_body_info.height + "px";
         document.body.append(projectile);
-        projectile_movement(projectile, margin_left, margin_top, rotation);
+        projectile_movement(projectile, margin_left, margin_top, ship_rotation);
 
         if (currently_held.space) {
             setTimeout(shoot_projectile, PROJECTILE_HOLD_RATE_OF_FIRE);
