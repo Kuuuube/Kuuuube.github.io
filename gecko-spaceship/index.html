@@ -3,7 +3,12 @@
     <head>
         <title>Gecko Spaceship</title>
         <style>
+            @font-face {
+                font-family: "Symbola Minimal";
+                src: url(./Symbola_Minimal.woff2);
+            }
             :root {
+                font-family: "Symbola Minimal", "monospace";
                 --low-thrust-color: rgb(151, 151, 255);
                 --low-thrust-size: 75%;
 
@@ -31,7 +36,6 @@
                 width:fit-content;
                 height: fit-content;
                 user-select: none;
-                font-family: monospace;
                 text-align: center;
                 line-height: 1;
                 position: absolute;
@@ -43,8 +47,8 @@
             }
             #healthbar {
                 --border-width: 4px;
-                width: 14.4px;
-                height: 14.3px;
+                width: 9.5px;
+                height: var(--font-size);
                 margin-left: calc(-1 * var(--border-width));
                 margin-top: calc(-1 * var(--border-width));
                 position: absolute;
