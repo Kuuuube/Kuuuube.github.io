@@ -8,7 +8,7 @@
     }
 
     .big_link {
-        font-size:10vmin;
+        font-size: 8vmin;
         display: block;
         margin: 1vmin;
         border: 2px solid rgb(0, 0, 0);
@@ -34,16 +34,25 @@
     .input_box_wrapper {
         margin: 1vmin;
     }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 10px;
+    }
 </style>
 
 <h2 class="header_wrapper">Courier Tracking Redirect</h2>
 <div class="input_box_wrapper"><input type="url" id="input_box" placeholder="Tracking Number"></div>
 <h1 class="header_wrapper">Track with:</h1>
-<a id="orange_connex" href="" class="big_link">Orange Connex/Speedpak</a>
-<a id="usps" href="" class="big_link">USPS</a>
-<a id="ups" href="" class="big_link">UPS</a>
-<a id="dhl" href="" class="big_link">DHL</a>
-<a id="canada_post" href="" class="big_link">Canada Post</a>
+<div class="grid-container">
+    <a id="orange_connex" href="" class="big_link">Orange Connex/Speedpak</a>
+    <a id="usps" href="" class="big_link">USPS</a>
+    <a id="ups" href="" class="big_link">UPS</a>
+    <a id="dhl" href="" class="big_link">DHL</a>
+    <a id="canada_post" href="" class="big_link">Canada Post</a>
+    <a id="yanwen" href="" class="big_link">Yanwen</a>
+</div>
 
 <script>
     function orange_connex(input_text) {
@@ -66,6 +75,10 @@
         return "https://www.canadapost-postescanada.ca/track-reperage/en#/details/" + input_text;
     }
 
+    function yanwen(input_text) {
+        return "https://track.yw56.com.cn/cn/querydel?nums=" + input_text;
+    }
+
     function update_links() {
         let input_text = document.getElementById("input_box").value;
         document.getElementById("orange_connex").href = orange_connex(input_text);
@@ -73,6 +86,7 @@
         document.getElementById("ups").href = ups(input_text);
         document.getElementById("dhl").href = dhl(input_text);
         document.getElementById("canada_post").href = canada_post(input_text);
+        document.getElementById("yanwen").href = yanwen(input_text);
     }
     document.getElementById("input_box").addEventListener("input", update_links);
 </script>
