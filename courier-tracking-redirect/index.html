@@ -5,6 +5,7 @@
 <style>
     .header_wrapper {
         text-align: center;
+        margin: 0;
     }
 
     .big_link {
@@ -35,7 +36,13 @@
         margin: 1vmin;
     }
 
-    .grid-container {
+    .grid-container-1 {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        padding: 10px;
+    }
+
+    .grid-container-2 {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         padding: 10px;
@@ -45,13 +52,27 @@
 <h2 class="header_wrapper">Courier Tracking Redirect</h2>
 <div class="input_box_wrapper"><input type="url" id="input_box" placeholder="Tracking Number"></div>
 <h1 class="header_wrapper">Track with:</h1>
-<div class="grid-container">
-    <a id="orange_connex" href="" class="big_link">Orange Connex/Speedpak</a>
-    <a id="usps" href="" class="big_link">USPS</a>
+
+<h2 class="header_wrapper">International</h2>
+<div class="grid-container-2">
     <a id="ups" href="" class="big_link">UPS</a>
     <a id="dhl" href="" class="big_link">DHL</a>
-    <a id="canada_post" href="" class="big_link">Canada Post</a>
+</div>
+
+<h2 class="header_wrapper">USA</h2>
+<div class="grid-container-1">
+    <a id="usps" href="" class="big_link">USPS</a>
+</div>
+
+<h2 class="header_wrapper">China</h2>
+<div class="grid-container-2">
+    <a id="orange_connex" href="" class="big_link">Orange Connex/Speedpak</a>
     <a id="yanwen" href="" class="big_link">Yanwen</a>
+</div>
+
+<h2 class="header_wrapper">Canada</h2>
+<div class="grid-container-1">
+    <a id="canada_post" href="" class="big_link">Canada Post</a>
 </div>
 
 <script>
