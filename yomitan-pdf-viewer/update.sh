@@ -1,4 +1,4 @@
-# get latest github tag minus the "v" on front (`.[0].name` cannot be used as this repo's tagging is bugged and always finds the tag `vundefined`)
+# get latest github tag minus the "v" on front
 pdfjs_version=$(curl "https://api.github.com/repos/mozilla/pdf.js/releases/latest" | jq -r '.tag_name' | sed 's/^v//')
 
 wget "https://github.com/mozilla/pdf.js/releases/download/v$pdfjs_version/pdfjs-$pdfjs_version-dist.zip"
