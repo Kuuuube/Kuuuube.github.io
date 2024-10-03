@@ -1,0 +1,124 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>USB HID Descriptor Grabber</title>
+</head>
+<style>
+    #header {
+        text-align: center;
+    }
+
+    #parse_button {
+        margin: 5px;
+        min-height: 5%;
+        width: 49%;
+        font-size: 160%;
+        flex: 1;
+    }
+
+    fieldset, textarea {
+        width: 100%;
+        min-height: 200px;
+        height: 30%;
+        color: #000;
+        font-family: monospace;
+    }
+
+    .wrapper {
+        display:flex;
+        justify-content:space-between;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .custom_file_upload {
+        border: 2px dashed #407cff;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+    }
+
+    .min_height {
+        height: fit-content;
+        min-height: fit-content;
+    }
+</style>
+<body>
+    <div id="header">
+        <h2>USB HID Descriptor Grabber</h2>
+    </div>
+
+    <div class="wrapper">
+        <label for="file_upload" class="custom_file_upload">
+            Click here to upload a file containing a USB HID descriptor (typically .sys)
+        </label>
+        <input id="file_upload" type="file">
+    </div>
+
+    <div class="wrapper">
+        <fieldset>
+            <legend>Hex Data</legend>
+            <textarea id="hex_text_box"></textarea>
+        </fieldset>
+    </div>
+
+    <div class="wrapper">
+        <button onclick="parse()" id="parse_button" type="button">Parse</button>
+    </div>
+
+    <div class="wrapper">
+        <fieldset>
+            <legend>Most Likely Descriptor</legend>
+            <textarea id="most_likely_text_box"></textarea>
+        </fieldset>
+    </div>
+
+    <div class="wrapper">
+        <fieldset class="min_height">
+            <legend>Other possible descriptors</legend>
+            <div id="other_descriptors_text_boxes"></div>
+        </fieldset>
+    </div>
+
+    <script src="descriptor_parser.js"></script>
+    <script>
+        function buf2hex(array_buffer) {
+            return [...new Uint8Array(array_buffer)].map(x => x.toString(16).padStart(2, '0')).join('');
+        }
+
+        function file_uploaded(e) {
+            let reader = new FileReader();
+            let file_input = document.getElementById("file_upload");
+            let file = file_input.files[0];
+            let output = reader.readAsArrayBuffer(file);
+            reader.onloadend = () => {
+                document.getElementById("hex_text_box").value = buf2hex(reader.result);
+            }
+        }
+
+        function parse() {
+            let parsed_hid_data = go_parse_hidrepdesc();
+            let possible_descriptors = parsed_hid_data.match(/0x.*?Usage.*?(\r\n|\n)(\r|\n|(?!0x\w\w,\s+\/\/\s+Unknown).)*0xC0,\s+\/\/\s+End Collection/g);
+            if (!possible_descriptors) {
+                document.getElementById("most_likely_text_box").value = "No descriptors found";
+                return;
+            }
+            let possible_descriptors_array = [...possible_descriptors];
+            possible_descriptors_array.sort((a, b) => b.length - a.length); //longest to shortest string
+            let most_likely_descriptor = possible_descriptors_array[0];
+            document.getElementById("most_likely_text_box").value = most_likely_descriptor;
+
+            if (possible_descriptors_array.length > 1) {
+                document.getElementById("other_descriptors_text_boxes").innerHTML = "";
+                for (let i = 1; i < possible_descriptors_array.length; i++) {
+                    document.getElementById("other_descriptors_text_boxes").innerHTML += "<textarea>" + possible_descriptors_array[i] + "</textarea>";
+                }
+            }
+        }
+    
+        document.getElementById("file_upload").addEventListener("change", file_uploaded, false);
+    </script>
+</body>
