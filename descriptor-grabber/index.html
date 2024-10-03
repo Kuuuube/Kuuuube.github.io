@@ -100,6 +100,8 @@
         }
 
         function parse() {
+            document.getElementById("other_descriptors_text_boxes").innerHTML = "";
+
             let parsed_hid_data = go_parse_hidrepdesc();
             let possible_descriptors = parsed_hid_data.match(/0x.*?Usage.*?(\r\n|\n)(\r|\n|(?!0x\w\w,\s+\/\/\s+Unknown).)*0xC0,\s+\/\/\s+End Collection/g);
             if (!possible_descriptors) {
@@ -112,7 +114,6 @@
             document.getElementById("most_likely_text_box").value = most_likely_descriptor;
 
             if (possible_descriptors_array.length > 1) {
-                document.getElementById("other_descriptors_text_boxes").innerHTML = "";
                 for (let i = 1; i < possible_descriptors_array.length; i++) {
                     document.getElementById("other_descriptors_text_boxes").innerHTML += "<textarea>" + possible_descriptors_array[i] + "</textarea>";
                 }
