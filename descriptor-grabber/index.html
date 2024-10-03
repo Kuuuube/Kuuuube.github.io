@@ -101,23 +101,32 @@
 
         function parse() {
             document.getElementById("other_descriptors_text_boxes").innerHTML = "";
+            document.getElementById("parse_button").innerText = "Parsing";
+            document.getElementById("parse_button").disabled = true;
 
-            let parsed_hid_data = go_parse_hidrepdesc();
-            let possible_descriptors = parsed_hid_data.match(/0x.*?Usage.*?(\r\n|\n)(\r|\n|(?!0x\w\w,\s+\/\/\s+Unknown).)*0xC0,\s+\/\/\s+End Collection/g);
-            if (!possible_descriptors) {
-                document.getElementById("most_likely_text_box").value = "No descriptors found";
-                return;
-            }
-            let possible_descriptors_array = [...possible_descriptors];
-            possible_descriptors_array.sort((a, b) => b.length - a.length); //longest to shortest string
-            let most_likely_descriptor = possible_descriptors_array[0];
-            document.getElementById("most_likely_text_box").value = most_likely_descriptor;
-
-            if (possible_descriptors_array.length > 1) {
-                for (let i = 1; i < possible_descriptors_array.length; i++) {
-                    document.getElementById("other_descriptors_text_boxes").innerHTML += "<textarea>" + possible_descriptors_array[i] + "</textarea>";
+            setTimeout(() => {
+                let parsed_hid_data = go_parse_hidrepdesc();
+                let possible_descriptors = parsed_hid_data.match(/0x.*?Usage.*?(\r\n|\n)(\r|\n|(?!0x\w\w,\s+\/\/\s+Unknown).)*0xC0,\s+\/\/\s+End Collection/g);
+                if (!possible_descriptors) {
+                    document.getElementById("most_likely_text_box").value = "No descriptors found";
+                    document.getElementById("parse_button").innerText = "Parse";
+                    document.getElementById("parse_button").disabled = false;
+                    return;
                 }
-            }
+                let possible_descriptors_array = [...possible_descriptors];
+                possible_descriptors_array.sort((a, b) => b.length - a.length); //longest to shortest string
+                let most_likely_descriptor = possible_descriptors_array[0];
+                document.getElementById("most_likely_text_box").value = most_likely_descriptor;
+
+                if (possible_descriptors_array.length > 1) {
+                    for (let i = 1; i < possible_descriptors_array.length; i++) {
+                        document.getElementById("other_descriptors_text_boxes").innerHTML += "<textarea>" + possible_descriptors_array[i] + "</textarea>";
+                    }
+                }
+
+                document.getElementById("parse_button").innerText = "Parse";
+                document.getElementById("parse_button").disabled = false;
+            }, 0);
         }
     
         document.getElementById("file_upload").addEventListener("change", file_uploaded, false);
