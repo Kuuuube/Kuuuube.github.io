@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+  <title>Homoglyph Finder</title>
+  <link href="styles.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <script src="homoglyph.js"></script>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <br><br>
+      <h1 class="center green-text-darken">Homoglyph Finder</h1>
+      <div class="row center">
+          <textarea cols="40" rows="10" id="main-textarea" placeholder="Enter text here"></textarea>
+      </div>
+      <table>
+        <tbody id="results-table-body">
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <script>
+    document.querySelector("#main-textarea").addEventListener("input", update_table);
+    function update_table() {
+      const table = document.querySelector("#results-table-body");
+      const table_header = "<tr>\n<th scope=\"col\" id=\"col1\">Character</th>\n<th scope=\"col\">Homoglyphs</th>\n</tr>";
+      const input_text = document.querySelector("#main-textarea").value;
+      table.innerHTML = table_header;
+
+      if (input_text.length === 0) {
+        return;
+      }
+
+      for (i = 0; i < input_text.length; i++) {
+        table.innerHTML += make_table_row(input_text[i], homoglyph_dict[input_text[i]])
+      }
+    }
+
+    function make_table_row(character, homoglyphs) {
+      if (!homoglyphs || homoglyphs.length <= 0) {
+        return "<tr><td>" + character + "</td><td>"
+      }
+      return "<tr><td>" + character + "</td><td>" + "<code>" + homoglyphs.join("</code>, <code>") + "</code>" + "</td></tr>";
+    }
+  </script>
+</body>
+</html>

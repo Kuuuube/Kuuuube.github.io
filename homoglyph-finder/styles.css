@@ -1,0 +1,107 @@
+.green-text {
+  color: #4caf50;
+}
+.green-text-darken {
+  color: #388e3c;
+}
+body {
+  background-color: #fafdee;
+  margin: 0;
+}
+html {
+  box-sizing: border-box;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+main {
+  display: block;
+}
+textarea {
+  overflow: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: 0;
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  box-shadow: none;
+  transition: box-shadow 0.3s, border 0.3s;
+  width: 100%;
+  height: 47px;
+  background-color: transparent;
+  line-height: normal;
+  overflow-y: hidden;
+  padding: 0.8rem 0 0.8rem 0;
+  resize: none;
+  min-height: 3rem;
+  box-sizing: border-box;
+}
+textarea:focus {
+  border-bottom: 1px solid #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a;
+}
+table, td, th {
+  border: none;
+  padding: 15px 5px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+table {
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+tr {
+  transition: background-color 0.25s ease;
+}
+tr:hover {
+  background-color: rgba(242, 242, 242, 0.5);
+}
+tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.center {
+  text-align: center;
+}
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+h1 {
+  font-weight: 400;
+  font-size: 4.2rem;
+  line-height: 110%;
+  margin: 2.8rem 0 1.68rem 0;
+}
+::placeholder {
+  color: #d1d1d1;
+}
+code {
+  background-color: rgba(187, 187, 187, 0.4);
+  border-radius: 2px;
+  padding: 0em 0.2em;
+}
+#col1 {
+  width: 200px;
+}
