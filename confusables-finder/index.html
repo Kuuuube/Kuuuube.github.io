@@ -25,7 +25,7 @@
     document.querySelector("#main-textarea").addEventListener("input", update_table);
     function update_table() {
       const table = document.querySelector("#results-table-body");
-      const table_header = "<tr><th scope=\"col\" id=\"main-col\">Character</th><th scope=\"col\" class=\"other-cols\">Confusables</th><th scope=\"col\" class=\"other-cols\">Intentionals</th></tr>";
+      const table_header = "<tr><th scope=\"col\" class=\"small-col\">Character</th><th scope=\"col\" class=\"small-col\">Intentionals</th><th scope=\"col\">Confusables</th></tr>";
       const input_text = document.querySelector("#main-textarea").value;
       table.innerHTML = table_header;
 
@@ -36,20 +36,20 @@
       const input_chars = [...input_text];
 
       for (const char of input_chars) {
-        table.innerHTML += make_table_row(char, get_chars_from_dict(char, confusables_dict), get_chars_from_dict(char, intentionals_dict))
+        table.innerHTML += make_table_row(char, [get_chars_from_dict(char, intentionals_dict), get_chars_from_dict(char, confusables_dict)])
       }
     }
 
-    function make_table_row(character, confusables, intentionals) {
-      let confusables_string = "";
-      if (confusables && confusables.length > 0) {
-        confusables_string = "<code>" + confusables.join("</code>, <code>") + "</code>"
+    function make_table_row(character, columns) {
+      let column_strings = [];
+      for (const column of columns) {
+        let column_string = "";
+        if (column && column.length > 0) {
+          column_string = "<code>" + column.join("</code>, <code>") + "</code>"
+        }
+        column_strings.push(column_string);
       }
-      let intentionals_string = "";
-      if (intentionals && intentionals.length > 0) {
-        intentionals_string = "<code>" + intentionals.join("</code>, <code>") + "</code>"
-      }
-      return "<tr><td>" + character + "</td><td>" + confusables_string + "</td><td>" + intentionals_string + "</td></tr>";
+      return "<tr><td>" + character + "</td><td>" + column_strings.join("</td><td>") + "</td></tr>";
     }
 
     function get_chars_from_dict(character, input_dict) {
