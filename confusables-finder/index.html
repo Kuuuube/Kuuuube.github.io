@@ -2,15 +2,15 @@
 <html lang="en"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-  <title>Homoglyph Finder</title>
+  <title>Confusables Finder</title>
   <link href="styles.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <script src="homoglyph.js"></script>
+  <script src="confusables.js"></script>
 </head>
 <body>
   <main>
     <div class="container">
       <br><br>
-      <h1 class="center green-text-darken">Homoglyph Finder</h1>
+      <h1 class="center green-text-darken">Confusables Finder</h1>
       <div class="row center">
           <textarea cols="40" rows="10" id="main-textarea" placeholder="Enter text here"></textarea>
       </div>
@@ -24,7 +24,7 @@
     document.querySelector("#main-textarea").addEventListener("input", update_table);
     function update_table() {
       const table = document.querySelector("#results-table-body");
-      const table_header = "<tr>\n<th scope=\"col\" id=\"col1\">Character</th>\n<th scope=\"col\">Homoglyphs</th>\n</tr>";
+      const table_header = "<tr>\n<th scope=\"col\" id=\"col1\">Character</th>\n<th scope=\"col\">Confusables</th>\n</tr>";
       const input_text = document.querySelector("#main-textarea").value;
       table.innerHTML = table_header;
 
@@ -33,15 +33,27 @@
       }
 
       for (i = 0; i < input_text.length; i++) {
-        table.innerHTML += make_table_row(input_text[i], homoglyph_dict[input_text[i]])
+        table.innerHTML += make_table_row(input_text[i], get_confusables(input_text[i]))
       }
     }
 
-    function make_table_row(character, homoglyphs) {
-      if (!homoglyphs || homoglyphs.length <= 0) {
+    function make_table_row(character, confusables) {
+      if (!confusables || confusables.length <= 0) {
         return "<tr><td>" + character + "</td><td>"
       }
-      return "<tr><td>" + character + "</td><td>" + "<code>" + homoglyphs.join("</code>, <code>") + "</code>" + "</td></tr>";
+      return "<tr><td>" + character + "</td><td>" + "<code>" + confusables.join("</code>, <code>") + "</code>" + "</td></tr>";
+    }
+
+    function get_confusables(character) {
+      if (confusables_dict[character]) {
+        return confusables_dict[character];
+      }
+      for (const [key, value] of Object.entries(confusables_dict)) {
+        if (value.includes(character)) {
+          const filtered_values = value.filter(function(e) { return e !== character }); //remove current character
+          return [...filtered_values, key]
+        }
+      }
     }
   </script>
 </body>

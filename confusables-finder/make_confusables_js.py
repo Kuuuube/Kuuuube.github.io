@@ -19,7 +19,7 @@ for confusable_raw in confusables_raw:
     else:
         confusables_dict[base_character].append(confusable)
 
-with open("homoglyph.js", "w") as output_file:
-    output_file.write("const homoglyph_dict = ")
+with open("confusables.js", "w") as output_file:
+    output_file.write("const confusables_dict = ")
     confusables_json_string = json.dumps(confusables_dict)
     output_file.write(("\n" + confusables_json_string + "\n").replace("], ", "],\n    ").replace("\n{", "{\n    ").replace("}\n", "\n}\n"))

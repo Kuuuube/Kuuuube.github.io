@@ -1,4 +1,4 @@
-const homoglyph_dict = {
+const confusables_dict = {
     "\u0596": ["\u05ad"],
     "\u0598": ["\u05ae"],
     "\u0599": ["\u05a8"],
