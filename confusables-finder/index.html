@@ -32,8 +32,10 @@
         return;
       }
 
-      for (i = 0; i < input_text.length; i++) {
-        table.innerHTML += make_table_row(input_text[i], get_confusables(input_text[i]))
+      const input_chars = [...input_text];
+
+      for (const char of input_chars) {
+        table.innerHTML += make_table_row(char, get_confusables(char))
       }
     }
 
