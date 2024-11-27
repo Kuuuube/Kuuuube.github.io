@@ -103,6 +103,9 @@ code {
   border-radius: 2px;
   padding: 0em 0.2em;
 }
-#col1 {
-  width: 200px;
+#main-col {
+  width: 10%;
+}
+.other-cols {
+  width: 40%;
 }
