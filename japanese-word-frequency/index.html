@@ -1,8 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; width=device-width" charset="UTF-8">
 		<title>Japanese Word Frequency Lookup</title>
+        <link rel="stylesheet" href="../styles.css">
 		<script defer>
             function finished_loading() {
                 try {
@@ -137,35 +138,64 @@
             "ぱ":"パ","ぴ":"ピ","ぷ":"プ","ぺ":"ペ","ぽ":"ポ",
             "ゃ":"ャ","ゅ":"ュ","ょ":"ョ"}
         </script>
+        <style>
+            h1 {
+                text-align: center;
+                font-size: 300%;
+            }
+            h2 {
+                text-align: center;
+            }
+            textarea {
+                width: 100%;
+                font-size: 225%;
+                resize: none;
+            }
+            button {
+                font-size: 225%;
+            }
+            .small_button {
+                width: 12.5%;
+            }
+            .big_button {
+                width:50%;
+            }
+            .buttons_container {
+                display: flex;
+                justify-content: space-between;
+            }
+        </style>
 	</head>
 	<body onload="finished_loading();">
         <noscript>
-            <h1 style="text-align:center;font-size:300%;">Javascript must be enabled.</h1>
-            <h2 style="text-align:center">Frequency list loading and querying cannot be performed otherwise.</h2>
+            <h1>Javascript must be enabled.</h1>
+            <h2>Frequency list loading and querying cannot be performed otherwise.</h2>
             <div style="padding-bottom:100%;"></div>
         </noscript>
-        <div id="loading">
-            <h1 style="text-align:center;font-size:300%">Loading...</h1>
-        </div>
         <div>
-            <h2 style="text-align:center;">Japanese Word Frequency Lookup</h2>
-            <fieldset>
-                <legend>Word</legend>
-                <textarea id="word_input" name="word_input" rows="3" style="width:100%;color:#000;font-size:225%;resize:none;"></textarea>
-            </fieldset>
-            <div style="display:flex;justify-content:space-between;">
-                <input onclick="convert_to_katakana()" type="button" style="width:12.5%;font-size:225%;" value="カタカナ">
-                <input onclick="get_freq()" type="button" style="width:50%;font-size:225%;" value="Search">
-                <input onclick="convert_to_hiragana()" type="button" style="width:12.5%;font-size:225%;" value="ひらがな">
+            <div id="loading">
+                <h1>Loading...</h1>
             </div>
-            <fieldset>
-                <legend>Word Frequency</legend>
-                <textarea id="word_freq_output" name="word_freq_output" rows="7" style="width:100%;color:#000;font-size:225%;resize:none;" readonly="readonly"></textarea>
-            </fieldset>
-            <fieldset>
-                <legend>Kanji Frequency</legend>
-                <textarea id="kanji_freq_output" name="kanji_freq_output" rows="5" style="width:100%;color:#000;font-size:225%;resize:none;" readonly="readonly"></textarea>
-            </fieldset>
+            <div>
+                <h2>Japanese Word Frequency Lookup</h2>
+                <fieldset>
+                    <legend>Word</legend>
+                    <textarea id="word_input" name="word_input" rows="3"></textarea>
+                </fieldset>
+                <div class="buttons_container">
+                    <button onclick="convert_to_katakana()" type="button" class="small_button">カタカナ</button>
+                    <button onclick="get_freq()" type="button" class="big_button">Search</button>
+                    <button onclick="convert_to_hiragana()" type="button" class="small_button">ひらがな</button>
+                </div>
+                <fieldset>
+                    <legend>Word Frequency</legend>
+                    <textarea id="word_freq_output" name="word_freq_output" rows="7" readonly></textarea>
+                </fieldset>
+                <fieldset>
+                    <legend>Kanji Frequency</legend>
+                    <textarea id="kanji_freq_output" name="kanji_freq_output" rows="5" readonly></textarea>
+                </fieldset>
+            </div>
         </div>
         <br>
         <p>
