@@ -330,11 +330,11 @@ strong {
 a {
     color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
     text-decoration: underline;
-    filter: invert(56%) sepia(78%) saturate(874%) hue-rotate(190deg) brightness(101%) contrast(99%);
+    /* filter: invert(56%) sepia(78%) saturate(874%) hue-rotate(190deg) brightness(101%) contrast(99%); */
 }
 a:hover {
     --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
-    filter: invert(71%) sepia(10%) saturate(2341%) hue-rotate(186deg) brightness(98%) contrast(105%);
+    /* filter: invert(71%) sepia(10%) saturate(2341%) hue-rotate(186deg) brightness(98%) contrast(105%); */
 }
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
     color: inherit;
