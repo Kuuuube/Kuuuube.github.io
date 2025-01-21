@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+    <title>Stopwatch</title>
+    <style>
+        html, body {
+            margin: 0;
+            overflow: hidden;
+            cursor: pointer;
+            user-select: none;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+            color: black;
+            fill: black;
+            background-color: white;
+        }
+        svg {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-inline: auto;
+            width: fit-content;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                color: white;
+                fill: white;
+                background-color: black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="info">Click to start and stop, Double click to reset</div>
+    <svg id="stopwatch"><text id="svg_text"></text></svg>
+</body>
+<script>
+let timer_running = false;
+let keep_timer_alive = true;
+const start_timer_display = "00:00.0"
+let start_time = null;
+const stopwatch_svg = document.querySelector("#stopwatch");
+let timer_offset = 0;
+
+let timer_loop_timeout = null;
+
+function update_svg(svg_element, text) {
+    svg_element.querySelector("text").textContent = text;
+    const svg_bounding_box = svg_element.getBBox();
+    svg_element.setAttribute("viewBox", svg_bounding_box.x + " " + svg_bounding_box.y + " " + svg_bounding_box.width + " " + svg_bounding_box.height);
+}
+
+function get_timer_delta() {
+    const current_time = Date.now();
+    return current_time - start_time;
+}
+
+function timer_loop() {
+    timer_running = true;
+    const date_delta = new Date(get_timer_delta() + timer_offset);
+    const stopwatch_string = date_delta.getMinutes().toString().padStart(2, "0") + ":" + date_delta.getSeconds().toString().padStart(2, "0") + "." + date_delta.getMilliseconds().toString().padStart(3, "0")[0];
+    update_svg(stopwatch_svg, stopwatch_string);
+    timer_loop_timeout = setTimeout(timer_loop, 100);
+}
+
+function end_timer_loop() {
+    clearTimeout(timer_loop_timeout);
+    timer_running = false;
+}
+
+document.addEventListener("click", (e) => {
+    if (!timer_running) {
+        keep_timer_alive = true;
+        start_time = Date.now();
+        end_timer_loop();
+        timer_loop();
+    } else {
+        end_timer_loop();
+        timer_offset += get_timer_delta();
+    }
+});
+
+// double click event fires after all other mouse click events
+document.addEventListener("dblclick", (e) => {
+    start_time = Date.now();
+    e.preventDefault();
+    update_svg(stopwatch_svg, start_timer_display);
+    end_timer_loop();
+    timer_offset = 0;
+});
+
+// doing this twice magically stops a reflow when clicking to start the timer
+update_svg(stopwatch_svg, start_timer_display);
+update_svg(stopwatch_svg, start_timer_display);
+</script>
