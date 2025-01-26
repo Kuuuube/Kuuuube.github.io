@@ -1,7 +1,20 @@
+<!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;width=device-width" charset="UTF-8">
     <title>Link Activator</title>
     <link rel="stylesheet" href="../styles.css">
+    <style>
+        #input_box {
+            width: 100%;
+            font-size: 10vmin;
+        }
+
+        #output_link {
+            width: 100%;
+            font-size: 10vmin;
+            display: block;
+        }
+    </style>
 </head>
 <h2>
     Link Activator
@@ -11,8 +24,8 @@
 </div>
 <br>
 <div>
-    <input type="url" id="input_box" placeholder="https://example.com" style="width:100%;font-size:10vmin">
-    <a id="output_link" href="" style="width:100%;font-size:10vmin;display:block;"></a>
+    <input type="url" id="input_box" placeholder="https://example.com">
+    <a id="output_link" href=""></a>
 </div>
 <script>
     function update_link() {
