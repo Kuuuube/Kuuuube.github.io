@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;width=device-width" charset="UTF-8">
+    <title>Text Repeater</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        #input_box {
+            width: 100%;
+            font-size: 10vmin;
+        }
+
+        #output_text {
+            width: 100%;
+            font-size: 10vmin;
+            display: block;
+        }
+    </style>
+</head>
+<h2>
+    Text Repeater
+</h2>
+<br>
+<div>
+    <input type="url" id="input_box" placeholder="Type here...">
+    <div id="output_text"></div>
+</div>
+<script>
+    function update_text() {
+        document.getElementById("output_text").innerHTML = document.getElementById("input_box").value;
+    }
+    const input_box = document.getElementById("input_box");
+    input_box.addEventListener("input", update_text);
+    input_box.focus();
+</script>
