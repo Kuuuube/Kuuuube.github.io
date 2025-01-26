@@ -15,14 +15,16 @@
         }
     </style>
 </head>
-<h2>
-    Text Repeater
-</h2>
-<br>
-<div>
-    <input type="url" id="input_box" placeholder="Type here...">
-    <div id="output_text"></div>
-</div>
+<body>
+    <h2>
+        Text Repeater
+    </h2>
+    <br>
+    <div>
+        <input type="url" id="input_box" placeholder="Type here...">
+        <div id="output_text"></div>
+    </div>
+</body>
 <script>
     function update_text() {
         document.getElementById("output_text").innerHTML = document.getElementById("input_box").value;
