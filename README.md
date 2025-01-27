@@ -1,6 +1,6 @@
-# [kuuube.github.io](https://kuuube.github.io)
+# [kuuuube.github.io](https://kuuuube.github.io)
 
-Quick explanations for the pages on [kuuube.github.io](https://kuuube.github.io).
+Quick explanations for the pages on [kuuuube.github.io](https://kuuuube.github.io).
 
 ## Tablet Guides
 
