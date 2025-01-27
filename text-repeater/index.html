@@ -32,4 +32,8 @@
     const input_box = document.getElementById("input_box");
     input_box.addEventListener("input", update_text);
     input_box.focus();
+
+    const url_params = new URLSearchParams(window.location.search);
+    input_box.value = url_params.get("input");
+    update_text()
 </script>
