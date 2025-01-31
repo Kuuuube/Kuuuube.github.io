@@ -5,10 +5,29 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <style>
+    body, html {
+        height: 100%;
+    }
     code {
         background-color: rgba(187, 187, 187, 0.4);
         border-radius: 6px;
         padding: 0em 0.2em;
+    }
+    .button_wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    .button_element {
+        margin: 5px;
+        min-height: 5%;
+        width: 49%;
+        font-size: 160%;
+        flex: 1;
+    }
+    #escaper_text_box {
+        width: 100%;
+        height: 30%;
+        font-family: monospace;
     }
 </style>
 <script>
@@ -96,33 +115,28 @@
         }).join('')
     }
 </script>
-<style>
-    body, html {
-        height: 100%;
-    }
-</style>
 <body>
-    <div style="display:flex;justify-content:space-between;">
+    <div class="button_wrapper">
         <h2>Escaper</h2><a href="../unescaper/index.html"><h2>Unescaper</h2></a>
     </div>
-    <textarea id="escaper_text_box" style="width: 100%; height: 30%; font-family: monospace;"></textarea>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="escape_html_entities('weak')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape HTML Entities Weak</button>
-        <button onclick="escape_html_entities('basic')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape HTML Entities Basic</button>
-        <button onclick="escape_html_entities('strict')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape HTML Entities Strict</button>
+    <textarea id="escaper_text_box"></textarea>
+    <div class="button_wrapper">
+        <button onclick="escape_html_entities('weak')" class="button_element" type="button">Escape HTML Entities Weak</button>
+        <button onclick="escape_html_entities('basic')" class="button_element" type="button">Escape HTML Entities Basic</button>
+        <button onclick="escape_html_entities('strict')" class="button_element" type="button">Escape HTML Entities Strict</button>
     </div>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="escape_uri_components()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape URI Components</button>
+    <div class="button_wrapper">
+        <button onclick="escape_uri_components()" class="button_element" type="button">Escape URI Components</button>
     </div>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="escape_unicode('basic')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape Unicode Basic</button>
-        <button onclick="escape_unicode('strict')" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape Unicode Strict</button>
+    <div class="button_wrapper">
+        <button onclick="escape_unicode('basic')" class="button_element" type="button">Escape Unicode Basic</button>
+        <button onclick="escape_unicode('strict')" class="button_element" type="button">Escape Unicode Strict</button>
     </div>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="escape_ascii()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Escape ASCII</button>
+    <div class="button_wrapper">
+        <button onclick="escape_ascii()" class="button_element" type="button">Escape ASCII</button>
     </div>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="undo()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Undo</button>
+    <div class="button_wrapper">
+        <button onclick="undo()" class="button_element" type="button">Undo</button>
     </div>
     <p>
         <strong>HTML Entities Examples</strong>
