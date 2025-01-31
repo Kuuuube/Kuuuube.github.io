@@ -5,10 +5,29 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <style>
+    body, html {
+        height: 100%;
+    }
     code {
         background-color: rgba(187, 187, 187, 0.4);
         border-radius: 6px;
         padding: 0em 0.2em;
+    }
+    .button_wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    .button_element {
+        margin: 5px;
+        min-height: 5%;
+        width: 49%;
+        font-size: 160%;
+        flex: 1;
+    }
+    #unescaper_text_box {
+        width: 100%;
+        height: 30%;
+        font-family: monospace;
     }
 </style>
 <script>
@@ -19,7 +38,9 @@
             if (last_string === document.getElementById("unescaper_text_box").value) {
                 last_string = previous_strings.pop();
             }
-            document.getElementById("unescaper_text_box").value = last_string;
+            if (last_string) {
+                document.getElementById("unescaper_text_box").value = last_string;
+            }
         }
     }
 
@@ -54,30 +75,25 @@
         });
     }
 </script>
-<style>
-    body, html {
-        height: 100%;
-    }
-</style>
 <body>
-    <div style="display:flex;justify-content:space-between;">
+    <div class="button_wrapper">
         <h2>Unescaper</h2><a href="../escaper/index.html"><h2>Escaper</h2></a>
     </div>
-    <textarea id="unescaper_text_box" style="width: 100%; height: 30%; font-family: monospace;"></textarea>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="unescape_html_entities()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape HTML Entities</button>
+    <textarea id="unescaper_text_box"></textarea>
+    <div class="button_wrapper">
+        <button onclick="unescape_html_entities()" class="button_element" type="button">Unescape HTML Entities</button>
     </div>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="unescape_uri_components()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape URI Components</button>
+    <div class="button_wrapper">
+        <button onclick="unescape_uri_components()" class="button_element" type="button">Unescape URI Components</button>
     </div>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="unescape_unicode()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape Unicode</button>
+    <div class="button_wrapper">
+        <button onclick="unescape_unicode()" class="button_element" type="button">Unescape Unicode</button>
     </div>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="unescape_ascii()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Unescape Ascii</button>
+    <div class="button_wrapper">
+        <button onclick="unescape_ascii()" class="button_element" type="button">Unescape Ascii</button>
     </div>
-    <div style="display:flex;justify-content:space-between;">
-        <button onclick="undo()" style="margin: 5px; min-height: 5%; width: 49%; font-size: 160%; flex: 1;" type="button">Undo</button>
+    <div class="button_wrapper">
+        <button onclick="undo()" class="button_element" type="button">Undo</button>
     </div>
     <p>
         <strong>HTML Entities Examples</strong>
