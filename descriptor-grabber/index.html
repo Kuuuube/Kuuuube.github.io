@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>USB HID Descriptor Grabber</title>
@@ -41,6 +42,10 @@
         width: 100%;
         text-align: center;
     }
+    .custom_file_upload:hover,
+    .custom_file_upload.drag_over {
+        border-color: #98b8ff;
+    }
 
     .min_height {
         height: fit-content;
@@ -53,7 +58,7 @@
     </div>
 
     <div class="wrapper">
-        <label for="file_upload" class="custom_file_upload">
+        <label for="file_upload" class="custom_file_upload" id="file_upload_drop_zone">
             Click here to upload a file containing a USB HID descriptor (typically .sys)
         </label>
         <input id="file_upload" type="file">
@@ -90,16 +95,6 @@
             return [...new Uint8Array(array_buffer)].map(x => x.toString(16).padStart(2, '0')).join('');
         }
 
-        function file_uploaded(e) {
-            let reader = new FileReader();
-            let file_input = document.getElementById("file_upload");
-            let file = file_input.files[0];
-            let output = reader.readAsArrayBuffer(file);
-            reader.onloadend = () => {
-                document.getElementById("hex_text_box").value = buf2hex(reader.result);
-            }
-        }
-
         function parse() {
             document.getElementById("other_descriptors_text_boxes").innerHTML = "";
             document.getElementById("parse_button").innerText = "Parsing";
@@ -129,7 +124,43 @@
                 document.getElementById("parse_button").disabled = false;
             }, 0);
         }
+
+        function process_file(file) {
+            let reader = new FileReader();
+            let output = reader.readAsArrayBuffer(file);
+            reader.onloadend = () => {
+                document.getElementById("hex_text_box").value = buf2hex(reader.result);
+            }
+        }
+
+        function file_uploaded(e) {
+            let file_input = document.getElementById("file_upload");
+            process_file(file_input.files[0]);   
+        }
     
         document.getElementById("file_upload").addEventListener("change", file_uploaded, false);
+
+        function file_drop_enter(e) {
+            e.preventDefault();
+            document.getElementById("file_upload_drop_zone").classList.add("drag_over")
+        }
+        function file_drop_over(e) {
+            e.preventDefault();
+        }
+        function file_drop_leave(e) {
+            e.preventDefault();
+            document.getElementById("file_upload_drop_zone").classList.remove("drag_over")
+        }
+        function file_dropped(e) {
+            e.preventDefault();
+            document.getElementById("file_upload_drop_zone").classList.remove("drag_over")
+            if (!e.dataTransfer) { return; }
+            process_file(e.dataTransfer.items[0].getAsFile());
+        }
+
+        document.getElementById("file_upload_drop_zone").addEventListener("dragenter", file_drop_enter, false);
+        document.getElementById("file_upload_drop_zone").addEventListener("dragover", file_drop_over, false);
+        document.getElementById("file_upload_drop_zone").addEventListener("dragleave", file_drop_leave, false);
+        document.getElementById("file_upload_drop_zone").addEventListener("drop", file_dropped, false);
     </script>
 </body>
