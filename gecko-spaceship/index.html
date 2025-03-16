@@ -8,8 +8,6 @@
                 src: url(./Symbola_Minimal.woff2);
             }
             :root {
-                font-family: "Symbola Minimal", "monospace";
-                font-size: var(--font-size);
                 --low-thrust-color: rgb(151, 151, 255);
                 --low-thrust-size: 75%;
 
@@ -23,6 +21,9 @@
 
                 --border-color-disabled: rgb(26, 26, 26);
                 --text-color-disabled: rgb(163, 163, 163);
+
+                font-family: "Symbola Minimal", "monospace";
+                font-size: var(--font-size);
             }
             body,
             html {
@@ -90,13 +91,22 @@
                 height: var(--font-size);
                 min-height: var(--font-size);
                 max-height: var(--font-size);
-                display: inline-block;
+                padding: calc(var(--font-size) / 2.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .modifier_key {
                 border: 1px solid white;
                 height: var(--font-size);
                 min-height: var(--font-size);
                 max-height: var(--font-size);
+                padding: calc(var(--font-size) / 2.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .key_wrapper {
                 display: inline-block;
             }
             .keymap_keys {
@@ -166,21 +176,21 @@
 
         const KEYMAP_KEYS_0 = document.getElementById("keymap_keys_0");
         KEYMAP_KEYS_0.innerHTML += "Speed<br>";
-        KEYMAP_KEYS_0.innerHTML += "<span id=\"shift_key\" class=\"modifier_key\">" + "Shift" + "</span>";
+        KEYMAP_KEYS_0.innerHTML += "<span class=\"key_wrapper\"><span id=\"shift_key\" class=\"modifier_key\">" + "Shift" + "</span></span>";
         KEYMAP_KEYS_0.innerHTML += "<br>";
-        KEYMAP_KEYS_0.innerHTML += "<span id=\"ctrl_key\" class=\"modifier_key\">" + "Ctrl" + "</span>";
+        KEYMAP_KEYS_0.innerHTML += "<span class=\"key_wrapper\"><span id=\"ctrl_key\" class=\"modifier_key\">" + "Ctrl" + "</span></span>";
 
         const KEYMAP_KEYS_1 = document.getElementById("keymap_keys_1");
         KEYMAP_KEYS_1.innerHTML += "Movement<br>";
-        KEYMAP_KEYS_1.innerHTML += "<span id=\"up_key\" class=\"key\">" + MOVEMENT_KEYS[0] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<span class=\"key_wrapper\"><span id=\"up_key\" class=\"key\">" + MOVEMENT_KEYS[0] + "</span></span>";
         KEYMAP_KEYS_1.innerHTML += "<br>";
-        KEYMAP_KEYS_1.innerHTML += "<span id=\"left_key\" class=\"key\">" + MOVEMENT_KEYS[1] + "</span>";
-        KEYMAP_KEYS_1.innerHTML += "<span id=\"down_key\" class=\"key\">" + MOVEMENT_KEYS[2] + "</span>";
-        KEYMAP_KEYS_1.innerHTML += "<span id=\"right_key\" class=\"key\">" + MOVEMENT_KEYS[3] + "</span>";
+        KEYMAP_KEYS_1.innerHTML += "<span class=\"key_wrapper\"><span id=\"left_key\" class=\"key\">" + MOVEMENT_KEYS[1] + "</span></span>";
+        KEYMAP_KEYS_1.innerHTML += "<span class=\"key_wrapper\"><span id=\"down_key\" class=\"key\">" + MOVEMENT_KEYS[2] + "</span></span>";
+        KEYMAP_KEYS_1.innerHTML += "<span class=\"key_wrapper\"><span id=\"right_key\" class=\"key\">" + MOVEMENT_KEYS[3] + "</span></span>";
 
         const KEYMAP_KEYS_2 = document.getElementById("keymap_keys_2");
         KEYMAP_KEYS_2.innerHTML += "Weapon<br>";
-        KEYMAP_KEYS_2.innerHTML += "<span id=\"space_key\" class=\"modifier_key\">" + "Space" + "</span>";
+        KEYMAP_KEYS_2.innerHTML += "<span class=\"key_wrapper\"><span id=\"space_key\" class=\"modifier_key\">" + "Space" + "</span></span>";
     }
 
     function set_key_state(key_name, pressed) {
