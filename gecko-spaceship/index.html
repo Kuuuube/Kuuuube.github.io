@@ -295,7 +295,7 @@
     }
 
     function shoot_projectile() {
-        if (!currently_held.space) {
+        if (!currently_held.space || SHIP_HEALTH <= 0) {
             return;
         }
         let ship_body_info = SHIP_BODY.getBoundingClientRect();
