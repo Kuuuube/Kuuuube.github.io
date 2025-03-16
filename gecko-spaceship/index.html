@@ -147,6 +147,7 @@
     const MOVEMENT_KEYS_OVERRIDE = window.location.search.match(/(?<=(\?)).*/);
     const DEFAULT_MOVEMENT_KEYS = "wasd";
     const MOVEMENT_KEYS = (MOVEMENT_KEYS_OVERRIDE && MOVEMENT_KEYS_OVERRIDE[0].length >= DEFAULT_MOVEMENT_KEYS.length) ? MOVEMENT_KEYS_OVERRIDE[0] : DEFAULT_MOVEMENT_KEYS;
+    const ACTION_KEYS = {control: "control", shift: "shift", space: " "};
 
     setup_key_overlay();
 
@@ -198,7 +199,7 @@
 
     function keydown_handler(e) {
         let current_key = e.key.toLowerCase();
-        if (MOVEMENT_KEYS.includes(current_key)) {
+        if (MOVEMENT_KEYS.includes(current_key) || Object.values(ACTION_KEYS).includes(current_key)) {
             e.preventDefault();
         }
         if (e.repeat) { return; }
@@ -218,12 +219,12 @@
             currently_held.right = true;
             set_key_state("right", currently_held.right);
         }
-        if (current_key === "control" && !currently_held.shift) {
+        if (current_key === ACTION_KEYS["control"] && !currently_held.shift) {
             currently_held.ctrl = !currently_held.ctrl;
             currently_held.shift = false;
             set_key_state("ctrl", currently_held.ctrl);
         }
-        if (current_key === "shift" && !currently_held.shift && !boosters_disabled) {
+        if (current_key === ACTION_KEYS["shift"] && !currently_held.shift && !boosters_disabled) {
             currently_held.shift = true;
             currently_held.ctrl = false;
             setTimeout(() => {
@@ -238,7 +239,7 @@
             set_key_state("shift", currently_held.shift);
             set_key_state("ctrl", currently_held.ctrl);
         }
-        if (current_key === " ") {
+        if (current_key === ACTION_KEYS["space"]) {
             currently_held.space = true;
             shoot_projectile();
             set_key_state("space", currently_held.space);
@@ -247,7 +248,7 @@
 
     function keyup_handler(e) {
         let current_key = e.key.toLowerCase();
-        if (MOVEMENT_KEYS.includes(current_key)) {
+        if (MOVEMENT_KEYS.includes(current_key) || Object.values(ACTION_KEYS).includes(current_key)) {
             e.preventDefault();
         }
         if (current_key === MOVEMENT_KEYS[0]) {
@@ -266,7 +267,7 @@
             currently_held.right = false;
             set_key_state("right", currently_held.right);
         }
-        if (current_key === " ") {
+        if (current_key === ACTION_KEYS["space"]) {
             currently_held.space = false;
             set_key_state("space", currently_held.space);
         }
