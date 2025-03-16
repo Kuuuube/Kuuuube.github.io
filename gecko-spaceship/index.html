@@ -316,9 +316,7 @@
         document.body.append(projectile);
         projectile_movement(projectile, margin_left, margin_top, ship_rotation);
 
-        if (currently_held.space) {
-            setTimeout(shoot_projectile, PROJECTILE_HOLD_RATE_OF_FIRE);
-        }
+        setTimeout(shoot_projectile, PROJECTILE_HOLD_RATE_OF_FIRE);
     }
 
     function projectile_movement(projectile, margin_left, margin_top, direction) {
