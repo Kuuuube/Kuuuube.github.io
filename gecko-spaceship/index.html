@@ -427,25 +427,30 @@
             collision_damage = SHIFT_WALL_COLLISION_DAMAGE;
         }
 
+        let collision = false;
         if (ship_margin_left < x_bounds.min) {
             ship_margin_left = x_bounds.min;
-            SHIP_HEALTH -= collision_damage;
+            collision = true;
         }
         if (ship_margin_left > x_bounds.max) {
             ship_margin_left = x_bounds.max;
-            SHIP_HEALTH -= collision_damage;
+            collision = true;
         }
         SHIP.style.marginLeft = ship_margin_left + "px";
 
         if (ship_margin_top < y_bounds.min) {
             ship_margin_top = y_bounds.min;
-            SHIP_HEALTH -= collision_damage;
+            collision = true;
         }
         if (ship_margin_top > y_bounds.max) {
             ship_margin_top = y_bounds.max;
-            SHIP_HEALTH -= collision_damage;
+            collision = true;
         }
         SHIP.style.marginTop = ship_margin_top + "px";
+
+        if (collision) {
+            SHIP_HEALTH -= collision_damage;
+        }
     }
 
     function set_text() {
