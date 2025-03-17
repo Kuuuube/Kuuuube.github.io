@@ -362,30 +362,30 @@
         if (angle_deg_normalized_360 === 0) {
             let a = distance * Math.cos(angle_deg_normalized_90 * (Math.PI / 180));
             let b = distance * Math.sin(angle_deg_normalized_90 * (Math.PI / 180));
-            return {a: b, b: -a};
+            return {x: b, y: -a};
         } else if (angle_deg_normalized_360 > 0 && angle_deg_normalized_360 <= 90) {
             let a = distance * Math.cos(angle_deg_normalized_90 * (Math.PI / 180));
             let b = distance * Math.sin(angle_deg_normalized_90 * (Math.PI / 180));
-            return {a: a, b: -b};
+            return {x: a, y: -b};
         } else if (angle_deg_normalized_360 > 90 && angle_deg_normalized_360 <= 180) {
             let a = distance * Math.cos(angle_deg_normalized_90 * (Math.PI / 180));
             let b = distance * Math.sin(angle_deg_normalized_90 * (Math.PI / 180));
-            return {a: b, b: a};
+            return {x: b, y: a};
         } else if (angle_deg_normalized_360 > 180 && angle_deg_normalized_360 <= 270) {
             let a = distance * Math.cos(angle_deg_normalized_90 * (Math.PI / 180));
             let b = distance * Math.sin(angle_deg_normalized_90 * (Math.PI / 180));
-            return {a: -a, b: b};
+            return {x: -a, y: b};
         } else if (angle_deg_normalized_360 > 270 && angle_deg_normalized_360 <= 360) {
             let a = distance * Math.cos(angle_deg_normalized_90 * (Math.PI / 180));
             let b = distance * Math.sin(angle_deg_normalized_90 * (Math.PI / 180));
-            return {a: -a, b: -b};
+            return {x: -a, y: -b};
         }
     }
 
     function projectile_movement(projectile, margin_left, margin_top, direction) {
         let travel = get_angular_travel(PROJECTILE_SPEED, direction);
-        margin_left += travel.a;
-        margin_top += travel.b;
+        margin_left += travel.x;
+        margin_top += travel.y;
         projectile.style.marginLeft = margin_left + "px";
         projectile.style.marginTop = margin_top + "px";
         if (margin_left < 0 || window.innerWidth < margin_left || margin_top < 0 || window.innerHeight < margin_top) {
