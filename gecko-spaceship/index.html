@@ -355,23 +355,34 @@
         }
 
         let angle_deg_normalized_90 = angle_deg % 90;
-        if (angle_deg_normalized_90 < 0) {
+        if (angle_deg_normalized_90 < 0 || angle_deg_normalized_360 === 0 || angle_deg_normalized_360 === 180) {
             angle_deg_normalized_90 += 90;
         }
 
-        let a = distance * Math.cos(angle_deg_normalized_90 * (Math.PI / 180));
-        let b = distance * Math.sin(angle_deg_normalized_90 * (Math.PI / 180));
+        // The coordinate system is weird
+        //        -
+        //        |
+        //   - ---|--- +
+        //        |
+        //        +
+        //
+        //        0
+        //        |
+        // 270 ---|--- 90
+        //        |
+        //       180
 
-        if (angle_deg_normalized_360 === 0 || angle_deg_normalized_360 == 360) {
-            return {x: b, y: -a};
-        } else if (angle_deg_normalized_360 > 0 && angle_deg_normalized_360 <= 90) {
-            return {x: a, y: -b};
+        let x = distance * Math.cos(angle_deg_normalized_90 * (Math.PI / 180));
+        let y = distance * Math.sin(angle_deg_normalized_90 * (Math.PI / 180));
+
+        if (angle_deg_normalized_360 >= 0 && angle_deg_normalized_360 <= 90) {
+            return {x: x, y: -y};
         } else if (angle_deg_normalized_360 > 90 && angle_deg_normalized_360 <= 180) {
-            return {x: b, y: a};
+            return {x: x, y: y};
         } else if (angle_deg_normalized_360 > 180 && angle_deg_normalized_360 <= 270) {
-            return {x: -a, y: b};
-        } else if (angle_deg_normalized_360 > 270 && angle_deg_normalized_360 < 360) {
-            return {x: -a, y: -b};
+            return {x: -x, y: y};
+        } else if (angle_deg_normalized_360 > 270 && angle_deg_normalized_360 <= 360) {
+            return {x: -x, y: -y};
         }
     }
 
