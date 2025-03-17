@@ -58,7 +58,8 @@
                 border-width: var(--border-width);
                 border-style: solid;
             }
-            .projectile {
+            .projectile,
+            .debris {
                 width: fit-content;
                 height: fit-content;
                 user-select: none;
@@ -146,6 +147,9 @@
 
     let SHIP_HEALTH = 100;
     const WALL_COLLISION_DAMAGE = SHIP_HEALTH / 2 / TICK_RATE;
+    const DEATH_DEBRIS_COUNT = 100;
+    const DEATH_DEBRIS_SPEED_MULT = 50 / TICK_RATE;
+    const DEATH_DEBRIS_PARTICLES = ["-", "|", "_"];
 
     const MOVEMENT_STEP_SIZE = 500 / TICK_RATE;
     const CTRL_WALL_COLLISION_DAMAGE = WALL_COLLISION_DAMAGE * 0.1;
@@ -319,6 +323,31 @@
         setTimeout(shoot_projectile, PROJECTILE_HOLD_RATE_OF_FIRE);
     }
 
+    function generate_ship_debris() {
+        let ship_body_info = SHIP_BODY.getBoundingClientRect();
+
+        const PROJECTILE_OFFSET_LEFT = -4.5;
+        const PROJECTILE_OFFSET_TOP = 4.5;
+        let margin_left = ship_body_info.x;
+        let margin_top = ship_body_info.y;
+
+        let random_rotation = Math.floor(Math.random() * 360);
+
+        let projectile = document.createElement("span");
+        projectile.className = "debris";
+        projectile.innerText = DEATH_DEBRIS_PARTICLES[Math.floor(Math.random() * DEATH_DEBRIS_PARTICLES.length)];
+        projectile.style.marginLeft = margin_left + "px";
+        projectile.style.marginTop = margin_top + "px";
+        projectile.style.rotate = random_rotation + "deg";
+        projectile.style.width = ship_body_info.width + "px";
+        projectile.style.height = ship_body_info.height + "px";
+        projectile.style.animation += "ship_destroyed_spin 0.1s infinite linear, ship_destroyed_fade_out 0.5s 1 linear forwards";
+        document.body.append(projectile);
+        projectile_movement(projectile, margin_left, margin_top, random_rotation);
+
+        setTimeout(shoot_projectile, random_rotation);
+    }
+
     function get_angular_travel(distance, angle_deg) {
         let angle_deg_normalized_360 = angle_deg % 360;
         if (angle_deg_normalized_360 < 0) {
@@ -459,7 +488,10 @@
     function destroy_ship() {
         HEALTHBAR.remove();
         THRUST.remove();
-        SHIP.style.animation += "ship_destroyed_spin 1.5s infinite linear, ship_destroyed_fade_out 2s 1 linear forwards";
+        SHIP.style.animation += "ship_destroyed_spin 1.5s infinite linear, ship_destroyed_fade_out 1s 1 linear forwards";
+        for (let i = 0; i < 25; i++) {
+            generate_ship_debris();
+        }
         setTimeout(() => { SHIP.remove(); }, 5000);
     }
 
