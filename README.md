@@ -107,3 +107,7 @@ A webpage where every character on the page spins in a varying speed and directi
 Basic spaceship game demo that intentionally only runs on the Gecko browser engine (Firefox's engine). Trying to load in in a browser using Blink (Chrome's engine) will fail.
 
 Movement keys can be rebound by appending `?` and then the desired keys to the URL. For example: `https://kuuuube.github.io/gecko-spaceship/?yrst` will rebind `wasd` to `yrst`.
+
+### [Word Card Puzzle](https://kuuuube.github.io/word-card-puzzle)
+
+Word puzzle game where the goal is to create words using all cards. Code is located at https://github.com/Kuuuube/word-card-puzzle.
