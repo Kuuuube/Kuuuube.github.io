@@ -84,6 +84,16 @@
 </div>
 
 <script>
+    const COURIERS_LIST = [
+        {courier: "orange_connex", name: "Orange Connex/Speedpak", function: orange_connex},
+        {courier: "usps", name: "USPS", function: usps},
+        {courier: "ups", name: "UPS", function: ups},
+        {courier: "dhl", name: "DHL", function: dhl},
+        {courier: "canada_post", name: "Canada Post", function: canada_post},
+        {courier: "yanwen", name: "Yanwen", function: yanwen},
+        {courier: "sypost", name: "Sypost", function: sypost},
+    ]
+
     function orange_connex(input_text) {
         return "https://www.orangeconnex.com/tracking?language=en&trackingnumber=" + input_text;
     }
@@ -114,17 +124,8 @@
 
     function update_links() {
         let input_text = document.getElementById("input_box").value;
-        const couriers = [
-            {courier: "orange_connex", function: orange_connex},
-            {courier: "usps", function: usps},
-            {courier: "ups", function: ups},
-            {courier: "dhl", function: dhl},
-            {courier: "canada_post", function: canada_post},
-            {courier: "yanwen", function: yanwen},
-            {courier: "sypost", function: sypost},
-        ]
 
-        for (const courier of couriers) {
+        for (const courier of COURIERS_LIST) {
             document.getElementById(courier.courier).href = courier.function(input_text);
         }
     }
