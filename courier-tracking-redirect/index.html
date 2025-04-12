@@ -75,6 +75,7 @@
 <div class="grid-container-2">
     <a id="orange_connex" href="" class="big_link">Orange Connex/Speedpak</a>
     <a id="yanwen" href="" class="big_link">Yanwen</a>
+    <a id="sypost" href="" class="big_link">Sypost</a>
 </div>
 
 <h2 class="header_wrapper">Canada</h2>
@@ -107,6 +108,10 @@
         return "https://track.yw56.com.cn/cn/querydel?nums=" + input_text;
     }
 
+    function sypost(input_text) {
+        return "https://sypost.net/search?orderNo=" + input_text;
+    }
+
     function update_links() {
         let input_text = document.getElementById("input_box").value;
         document.getElementById("orange_connex").href = orange_connex(input_text);
@@ -115,6 +120,7 @@
         document.getElementById("dhl").href = dhl(input_text);
         document.getElementById("canada_post").href = canada_post(input_text);
         document.getElementById("yanwen").href = yanwen(input_text);
+        document.getElementById("sypost").href = sypost(input_text);
     }
     document.getElementById("input_box").addEventListener("input", update_links);
 </script>
