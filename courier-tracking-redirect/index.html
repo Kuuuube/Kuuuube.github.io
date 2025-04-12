@@ -114,13 +114,19 @@
 
     function update_links() {
         let input_text = document.getElementById("input_box").value;
-        document.getElementById("orange_connex").href = orange_connex(input_text);
-        document.getElementById("usps").href = usps(input_text);
-        document.getElementById("ups").href = ups(input_text);
-        document.getElementById("dhl").href = dhl(input_text);
-        document.getElementById("canada_post").href = canada_post(input_text);
-        document.getElementById("yanwen").href = yanwen(input_text);
-        document.getElementById("sypost").href = sypost(input_text);
+        const couriers = [
+            {courier: "orange_connex", function: orange_connex},
+            {courier: "usps", function: usps},
+            {courier: "ups", function: ups},
+            {courier: "dhl", function: dhl},
+            {courier: "canada_post", function: canada_post},
+            {courier: "yanwen", function: yanwen},
+            {courier: "sypost", function: sypost},
+        ]
+
+        for (const courier of couriers) {
+            document.getElementById(courier.courier).href = courier.function(input_text);
+        }
     }
     document.getElementById("input_box").addEventListener("input", update_links);
 </script>
