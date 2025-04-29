@@ -56,6 +56,12 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
         padding: 10px;
     }
+
+    .grid-container-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        padding: 10px;
+    }
 </style>
 
 <h2 class="header_wrapper">Courier Tracking Redirect</h2>
@@ -63,9 +69,10 @@
 <h1 class="header_wrapper">Track with:</h1>
 
 <h2 class="header_wrapper">International</h2>
-<div class="grid-container-2">
+<div class="grid-container-3">
     <a id="ups" href="" class="big_link">UPS</a>
     <a id="dhl" href="" class="big_link">DHL</a>
+    <a id="fedex" href="" class="big_link">FedEx</a>
 </div>
 
 <h2 class="header_wrapper">USA</h2>
@@ -93,6 +100,7 @@
         {courier: "usps", name: "USPS", function: usps},
         {courier: "ups", name: "UPS", function: ups},
         {courier: "dhl", name: "DHL", function: dhl},
+        {courier: "fedex", name: "FedEx", function: fedex},
         {courier: "canada_post", name: "Canada Post", function: canada_post},
         {courier: "yanwen", name: "Yanwen", function: yanwen},
         {courier: "sypost", name: "Sypost", function: sypost},
@@ -112,6 +120,10 @@
 
     function dhl(input_text) {
         return "https://www.dhl.com/us-en/home/tracking/tracking-express.html?submit=1&tracking-id=" + input_text;
+    }
+
+    function fedex(input_text) {
+        return "https://www.fedex.com/fedextrack/?trknbr=" + input_text;
     }
 
     function canada_post(input_text) {
