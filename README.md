@@ -68,6 +68,10 @@ Highly optimized, static version of [kotu.io's minimal pairs test](https://kotu.
 
 Hiragana, Katakana, and Hentaigana learning tool. Adapted from existing tools. Code is located at https://github.com/Kuuuube/kana-quiz.
 
+### [Kana Quiz Sounds](https://kuuuube.github.io/kana-quiz-sounds)
+
+Hiragana and Katakana learning tool without romaji. Code is located at https://github.com/Kuuuube/kana-quiz-sounds.
+
 ### [Texthooker](https://kuuuube.github.io/texthooker)
 
 Mirror of Anacreon's texthooker page for when it has issues causing downtime. For users looking for a texthooker page, I recommend the more fully featured [Renji's Texthooker UI](https://renji-xd.github.io/texthooker-ui/) (download for local use here: https://raw.githubusercontent.com/Renji-XD/texthooker-ui/refs/heads/main/docs/index.html).
