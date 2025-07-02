@@ -12,9 +12,6 @@
             }
 
             function get_freq() {
-                if (cc100_json == undefined || jpdb_json == undefined || novels_json == undefined || bbcwj_json == undefined || aozora_bunko_json == undefined || innocent_ranked_json == undefined || jpdb_kanji_json == undefined || innocent_ranked_kanji_json == undefined || wikipedia_kanji_json == undefined || aozora_bunko_kanji_json == undefined) {
-                    parse_jsons();
-                }
                 let word_input = document.getElementById("word_input").value.trim();
 
                 //Word frequency dicts
