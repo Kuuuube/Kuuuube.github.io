@@ -1,1 +1,1 @@
-const get_frequency_json = ''
+const frequency_dictionary_json = {}
