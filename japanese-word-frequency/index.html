@@ -30,6 +30,12 @@
                 }
                 document.getElementById("word_freq_output").value += "\nJPDB: " + jpdb;
 
+                let jpdb_v2 = jpdb_v2_json[word_input];
+                if (jpdb_v2 == undefined) {
+                    jpdb_v2 = "Word not found";
+                }
+                document.getElementById("word_freq_output").value += "\nJPDBv2: " + jpdb_v2;
+
                 let novels = novels_json[word_input];
                 if (novels == undefined) {
                     novels = "Word not found";
@@ -105,6 +111,7 @@
         </script>
         <script src="CC100.js" defer></script>
         <script src="JPDB.js" defer></script>
+        <script src="JPDB_v2.js" defer></script>
         <script src="novels.js" defer></script>
         <script src="Aozora_Bunko.js" defer></script>
         <script src="BCCWJ.js" defer></script>
@@ -202,9 +209,9 @@
             <br>
         </p>
         <p>
-            <strong>JPDB</strong>
+            <strong>JPDB and JPDBv2</strong>
             <br>
-            A frequency dictionary made from <a href="https://jpdb.io/">JPDB</a>, which is a site that has analyzed many light novels, visual novels, anime and j-drama. It contains about 183k words.
+            A frequency dictionary made from <a href="https://jpdb.io/">JPDB</a>, which is a site that has analyzed many light novels, visual novels, anime and j-drama. JPDB contains about 183k words. JPDBv2 contains about 497k words.
             <br>
             Frequencies for hiragana versions of kanji dictionary entries will be marked by ㋕. For example, if you search 成る, you will see frequencies for both なる and 成る.
         </p>
