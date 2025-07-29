@@ -1,0 +1,35 @@
+#shape_image {
+    height: 256px;
+    width: 256px;
+
+    --outline-drop-shadow-pos: 2px;
+    --outline-drop-shadow-neg: calc(var(--outline-drop-shadow-pos) * -1);
+    filter:
+        drop-shadow(var(--outline-drop-shadow-pos) 0px 0 white)
+        drop-shadow(0px var(--outline-drop-shadow-pos) 0 white)
+        drop-shadow(var(--outline-drop-shadow-neg) 0px 0 white)
+        drop-shadow(0px var(--outline-drop-shadow-neg) 0 white)
+        drop-shadow(var(--outline-drop-shadow-pos) var(--outline-drop-shadow-pos) 0 white)
+        drop-shadow(var(--outline-drop-shadow-neg) var(--outline-drop-shadow-pos) 0 white)
+        drop-shadow(var(--outline-drop-shadow-pos) var(--outline-drop-shadow-neg) 0 white)
+        drop-shadow(var(--outline-drop-shadow-neg) var(--outline-drop-shadow-neg) 0 white);
+    margin: calc(var(--outline-drop-shadow-pos) * 2.5);
+}
+
+.vertical_flex_container {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em;
+}
+
+.shape_dimensions_container {
+    display: flex;
+    flex-direction: row;
+}
+
+.center-aligner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}

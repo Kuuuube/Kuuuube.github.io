@@ -3,33 +3,15 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>Mass Calculator</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./mass_styles.css">
     <script src="./mass_list.js"></script>
     <script src="./mass_calculator.js" defer></script>
-    <style>
-        #shape_image {
-            height: 512px;
-            width: 512px;
-
-            --outline-drop-shadow-pos: 2px;
-            --outline-drop-shadow-neg: calc(var(--outline-drop-shadow-pos) * -1);
-            filter:
-                drop-shadow(var(--outline-drop-shadow-pos) 0px 0 white)
-                drop-shadow(0px var(--outline-drop-shadow-pos) 0 white)
-                drop-shadow(var(--outline-drop-shadow-neg) 0px 0 white)
-                drop-shadow(0px var(--outline-drop-shadow-neg) 0 white)
-                drop-shadow(var(--outline-drop-shadow-pos) var(--outline-drop-shadow-pos) 0 white)
-                drop-shadow(var(--outline-drop-shadow-neg) var(--outline-drop-shadow-pos) 0 white)
-                drop-shadow(var(--outline-drop-shadow-pos) var(--outline-drop-shadow-neg) 0 white)
-                drop-shadow(var(--outline-drop-shadow-neg) var(--outline-drop-shadow-neg) 0 white);
-            margin: calc(var(--outline-drop-shadow-pos) * 2.5);
-        }
-    </style>
 </head>
 <body>
+    <div class="center-aligner">
     <img id="shape_image" src="./shape_images/cube.png" alt="cube">
-    <div>
+        <h2>Density</h2>
         <div id="density_inputs">
-            Density:
             <input id="density_selection" type="text" value="7870" class="updateMassOnChange">
             <select id="material_type_select">
                 <option value="elements">Elements</option>
@@ -42,8 +24,8 @@
             <select id="stainless_steels_density_select" class="density_select_container"></select>
             <select id="elements_density_select" class="density_select_container" hidden></select>
         </div>
+        <h2>Shape</h2>
         <div id="shape_inputs">
-            Shape:
             <select id="shape_select" class="updateMassOnChange">
                 <option value="cube">Cube</option>
                 <option value="rectangular_prism">Rectangular Prism</option>
@@ -51,17 +33,32 @@
             </select>
         </div>
         <div id="dimensions_inputs">
-            <span class="shape_dimensions_container" id="cube_dimensions">
-                Length/Width/Height: <input id="cube_side_length" type="text" value="1" class="updateMassOnChange">
-            </span>
-            <span class="shape_dimensions_container" id="rectangular_prism_dimensions" hidden>
-                Length: <input id="rectangular_prism_length" type="text" value="1" class="updateMassOnChange">
-                Width: <input id="rectangular_prism_width" type="text" value="1" class="updateMassOnChange">
-                Height: <input id="rectangular_prism_height" type="text" value="1" class="updateMassOnChange">
-            </span>
-            <span class="shape_dimensions_container" id="sphere_dimensions" hidden>
-                Diameter: <input id="sphere_diameter" type="text" value="1" class="updateMassOnChange">
-            </span>
+            <div class="shape_dimensions_container" id="cube_dimensions">
+                <div class="vertical_flex_container">
+                    <h2>Length/Width/Height</h2>
+                    <input id="cube_side_length" type="text" value="1" class="updateMassOnChange">
+                </div>
+            </div>
+            <div class="shape_dimensions_container" id="rectangular_prism_dimensions" hidden>
+                <div class="vertical_flex_container">
+                    <h2>Length</h2>
+                    <input id="rectangular_prism_length" type="text" value="1" class="updateMassOnChange">
+                </div>
+                <div class="vertical_flex_container">
+                    <h2>Width</h2>
+                    <input id="rectangular_prism_width" type="text" value="1" class="updateMassOnChange">
+                </div>
+                <div class="vertical_flex_container">
+                    <h2>Height</h2>
+                    <input id="rectangular_prism_height" type="text" value="1" class="updateMassOnChange">
+                </div>
+            </div>
+            <div class="shape_dimensions_container" id="sphere_dimensions" hidden>
+                <div class="vertical_flex_container">
+                    <h2>Diameter</h2>
+                    <input id="sphere_diameter" type="text" value="1" class="updateMassOnChange">
+                </div>
+            </div>
             <select id="dimensions_unit_select" class="updateMassOnChange">
                 <option value="mm">mm (millimeter)</option>
                 <option value="cm">cm (centimeter)</option>
@@ -71,16 +68,16 @@
                 <option value="ft">ft (foot)</option>
             </select>
         </div>
-    </div>
-    <div>
-        Mass:
-        <span id="result_mass"></span>
-        <select id="result_unit_select" class="updateMassOnChange">
-            <option value="mg">mg (milligram)</option>
-            <option value="g">g (gram)</option>
-            <option value="kg" selected>kg (kilogram)</option>
-            <option value="oz">oz (ounce)</option>
-            <option value="lb">lb (pound)</option>
-        </select>
+        <div id="mass_container" class="vertical_flex_container">
+            <h2>Mass</h2>
+            <span id="result_mass"></span>
+            <select id="result_unit_select" class="updateMassOnChange">
+                <option value="mg">mg (milligram)</option>
+                <option value="g">g (gram)</option>
+                <option value="kg" selected>kg (kilogram)</option>
+                <option value="oz">oz (ounce)</option>
+                <option value="lb">lb (pound)</option>
+            </select>
+        </div>
     </div>
 </body>
