@@ -12,6 +12,15 @@
     <div id="main-center-aligner">
         <div id="main-inner-container">
             <img id="shape_image" src="./shape_images/cube.png" alt="cube">
+            <h2>Shape</h2>
+            <div id="shape_inputs">
+                <select id="shape_select" class="updateMassOnChange">
+                    <option value="cube">Cube</option>
+                    <option value="rectangular_prism">Rectangular Prism</option>
+                    <option value="sphere">Sphere</option>
+                </select>
+            </div>
+            <hr>
             <h2>Density</h2>
             <div id="density_inputs">
                 <input id="density_selection" type="text" value="7870" class="updateMassOnChange density_input">
@@ -25,15 +34,6 @@
                 <select id="steels_density_select" class="density_select_container" hidden></select>
                 <select id="stainless_steels_density_select" class="density_select_container"></select>
                 <select id="elements_density_select" class="density_select_container" hidden></select>
-            </div>
-            <hr>
-            <h2>Shape</h2>
-            <div id="shape_inputs">
-                <select id="shape_select" class="updateMassOnChange">
-                    <option value="cube">Cube</option>
-                    <option value="rectangular_prism">Rectangular Prism</option>
-                    <option value="sphere">Sphere</option>
-                </select>
             </div>
             <hr>
             <div id="dimensions_inputs">
