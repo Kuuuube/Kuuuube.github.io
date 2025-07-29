@@ -55,8 +55,6 @@ function calculate_mass() {
         }
     }
 
-    console.log(result_mass_kg);
-
     document.querySelector("#result_mass").textContent = kilograms_to_result(result_mass_kg, result_mass_unit);
 }
 
