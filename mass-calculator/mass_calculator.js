@@ -187,6 +187,9 @@ function populate_material_list() {
 
     const wood_density_select = document.querySelector("#wood_density_select");
     populate_materials_select(wood_density_select, wood_mass_list)
+
+    const mineral_density_select = document.querySelector("#mineral_density_select");
+    populate_materials_select(mineral_density_select, mineral_mass_list)
 }
 
 function update_density_input() {
