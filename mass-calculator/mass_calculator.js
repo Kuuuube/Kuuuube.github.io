@@ -8,8 +8,8 @@ function calculate_mass() {
     let result_mass_kg = 0;
     switch (shape) {
         case "cube": {
-            const side_length = convert_to_meters(document.querySelector("#cube_side_length").value, size_source_unit);
-            const volume_meters = Math.pow(side_length, 3);
+            const edge_length = convert_to_meters(document.querySelector("#cube_edge_length").value, size_source_unit);
+            const volume_meters = Math.pow(edge_length, 3);
             result_mass_kg = volume_meters * mean_density;
             break;
         }
