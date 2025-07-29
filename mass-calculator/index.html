@@ -21,17 +21,21 @@
             Shape:
             <select id="shape_select" class="updateMassOnChange">
                 <option value="cube">Cube</option>
+                <option value="rectangular_prism">Rectangular Prism</option>
                 <option value="sphere">Sphere</option>
             </select>
         </div>
         <div id="dimensions_inputs">
             <span class="shape_dimensions_container" id="cube_dimensions">
-                Length/Width/Height:
-                <input id="cube_side_length" type="text" value="1" class="updateMassOnChange">
+                Length/Width/Height: <input id="cube_side_length" type="text" value="1" class="updateMassOnChange">
+            </span>
+            <span class="shape_dimensions_container" id="rectangular_prism_dimensions">
+                Length: <input id="rectangular_prism_length" type="text" value="1" class="updateMassOnChange">
+                Width: <input id="rectangular_prism_width" type="text" value="1" class="updateMassOnChange">
+                Height: <input id="rectangular_prism_height" type="text" value="1" class="updateMassOnChange">
             </span>
             <span class="shape_dimensions_container" id="sphere_dimensions">
-                Diameter:
-                <input id="sphere_diameter" type="text" value="1" class="updateMassOnChange">
+                Diameter: <input id="sphere_diameter" type="text" value="1" class="updateMassOnChange">
             </span>
             <select id="dimensions_unit_select" class="updateMassOnChange">
                 <option value="mm">mm (millimeter)</option>

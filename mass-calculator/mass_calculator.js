@@ -13,6 +13,14 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "rectangular_prism": {
+            const length = convert_to_meters(document.querySelector("#rectangular_prism_length").value, size_source_unit);
+            const width = convert_to_meters(document.querySelector("#rectangular_prism_width").value, size_source_unit);
+            const height = convert_to_meters(document.querySelector("#rectangular_prism_height").value, size_source_unit);
+            const volume_meters = length * width * height;
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "sphere": {
             const diameter = convert_to_meters(document.querySelector("#sphere_diameter").value, size_source_unit);
             const radius = diameter / 2;
