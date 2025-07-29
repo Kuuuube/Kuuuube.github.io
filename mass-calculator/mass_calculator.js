@@ -101,6 +101,12 @@ function kilogram_meter_cubed_to_result(value, target_unit) {
             return value / 1000;
         case "kg/m3":
             return value;
+        case "lb/in3":
+            return value / 27679.9;
+        case "lb/ft3":
+            return value / 16;
+        case "oz/in3":
+            return value / 1730;
         default:
             return 0;
     }
@@ -112,6 +118,12 @@ function convert_to_kilogram_meter_cubed(value, source_unit) {
             return value * 1000;
         case "kg/m3":
             return value;
+        case "lb/in3":
+            return value * 27679.9;
+        case "lb/ft3":
+            return value * 16;
+        case "oz/in3":
+            return value * 1730;
         default:
             return 0;
     }
