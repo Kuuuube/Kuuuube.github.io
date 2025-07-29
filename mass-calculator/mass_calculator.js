@@ -108,10 +108,18 @@ function populate_material_list() {
     populate_materials_select(steels_density_select, steels_mass_list);
 }
 
+function update_density_input() {
+    for (const element of document.querySelectorAll(".density_select_container")) {
+        if (!element.hidden) {
+            document.querySelector("#density_selection").value = element.value;
+        }
+    }
+    calculate_mass();
+}
+
 for (const element of document.querySelectorAll(".density_select_container")) {
-    element.addEventListener("change", (e) => {
-        document.querySelector("#density_selection").value = e.target.value;
-        calculate_mass();
+    element.addEventListener("change", () => {
+        update_density_input();
     });
 }
 
@@ -121,6 +129,7 @@ document.querySelector("#shape_select").addEventListener("change", (e) => {
 
 document.querySelector("#material_type_select").addEventListener("change", (e) => {
     show_active_material_type_select();
+    update_density_input();
 });
 
 for (const element of document.querySelectorAll(".updateMassOnChange")) {
