@@ -9,6 +9,19 @@
         #shape_image {
             height: 512px;
             width: 512px;
+
+            --outline-drop-shadow-pos: 2px;
+            --outline-drop-shadow-neg: calc(var(--outline-drop-shadow-pos) * -1);
+            filter:
+                drop-shadow(var(--outline-drop-shadow-pos) 0px 0 white)
+                drop-shadow(0px var(--outline-drop-shadow-pos) 0 white)
+                drop-shadow(var(--outline-drop-shadow-neg) 0px 0 white)
+                drop-shadow(0px var(--outline-drop-shadow-neg) 0 white)
+                drop-shadow(var(--outline-drop-shadow-pos) var(--outline-drop-shadow-pos) 0 white)
+                drop-shadow(var(--outline-drop-shadow-neg) var(--outline-drop-shadow-pos) 0 white)
+                drop-shadow(var(--outline-drop-shadow-pos) var(--outline-drop-shadow-neg) 0 white)
+                drop-shadow(var(--outline-drop-shadow-neg) var(--outline-drop-shadow-neg) 0 white);
+            margin: calc(var(--outline-drop-shadow-pos) * 2.5);
         }
     </style>
 </head>
