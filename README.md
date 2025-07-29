@@ -92,6 +92,10 @@ Not all shipping providers are covered. If you would like me to add a shipping p
 
 A stopwatch. It counts up. Click once to start and stop, doubleclick to reset. Laps are not supported.
 
+### [Mass Calculator](https://kuuuube.github.io/mass-calculator)
+
+Calculates the mass of shapes in various materials.
+
 ## Fun
 
 ### [Random Workout](https://kuuuube.github.io/random-workout-generator)
