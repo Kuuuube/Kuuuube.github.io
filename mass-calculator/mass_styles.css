@@ -42,3 +42,7 @@ input, select {
 .dimension_input, .density_input {
     width: 7.5em;
 }
+
+h2 {
+    text-decoration: underline;
+}
