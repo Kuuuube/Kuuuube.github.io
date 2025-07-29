@@ -1,9 +1,10 @@
 function calculate_mass() {
     const shape = document.querySelector("#shape_select").value;
-    const mean_density = document.querySelector("#density_selection").value;
-
+    const density_unit = document.querySelector("#density_unit_select").value;
     const size_source_unit = document.querySelector("#dimensions_unit_select").value;
     const result_mass_unit = document.querySelector("#result_unit_select").value;
+
+    const mean_density = convert_to_kilogram_meter_cubed(document.querySelector("#density_selection").value, density_unit);
 
     let result_mass_kg = 0;
     switch (shape) {
@@ -94,6 +95,28 @@ function kilograms_to_result(value, target_unit) {
     }
 }
 
+function kilogram_meter_cubed_to_result(value, target_unit) {
+    switch (target_unit) {
+        case "g/cm3":
+            return value / 1000;
+        case "kg/m3":
+            return value;
+        default:
+            return 0;
+    }
+}
+
+function convert_to_kilogram_meter_cubed(value, source_unit) {
+    switch (source_unit) {
+        case "g/cm3":
+            return value * 1000;
+        case "kg/m3":
+            return value;
+        default:
+            return 0;
+    }
+}
+
 function show_active_shape_dimensions_select() {
     const active_shape = document.querySelector("#shape_select").value;
 
@@ -114,10 +137,12 @@ function show_active_material_type_select() {
 }
 
 function populate_materials_select(select_element, mass_list) {
+    const density_unit = document.querySelector("#density_unit_select").value;
+    select_element.innerHTML = "";
     for (const material of mass_list) {
         const option_element = document.createElement("option");
-        option_element.value = material.mean_density;
-        option_element.text = material.material + " (" + material.mean_density + "kg/m3)";
+        option_element.value = kilogram_meter_cubed_to_result(material.mean_density, density_unit);
+        option_element.text = material.material + " (" + kilogram_meter_cubed_to_result(material.mean_density, density_unit) + density_unit + ")";
         select_element.add(option_element);
     }
     // Add custom option to switch to when user manually inputs a density
@@ -151,6 +176,14 @@ function update_density_input() {
     calculate_mass();
 }
 
+function set_custom_density() {
+    for (const element of document.querySelectorAll(".density_select_container")) {
+        if (!element.hidden) {
+            element.value = "custom";
+        }
+    }
+}
+
 for (const element of document.querySelectorAll(".density_select_container")) {
     element.addEventListener("change", () => {
         update_density_input();
@@ -158,11 +191,7 @@ for (const element of document.querySelectorAll(".density_select_container")) {
 }
 
 document.querySelector("#density_selection").addEventListener("input", () => {
-    for (const element of document.querySelectorAll(".density_select_container")) {
-        if (!element.hidden) {
-            element.value = "custom";
-        }
-    }
+    set_custom_density();
 });
 
 document.querySelector("#shape_select").addEventListener("change", (e) => {
@@ -173,6 +202,21 @@ document.querySelector("#material_type_select").addEventListener("change", (e) =
     show_active_material_type_select();
     update_density_input();
 });
+
+document.querySelector("#density_unit_select").addEventListener("change", () => {
+    let custom = false;
+    for (const element of document.querySelectorAll(".density_select_container")) {
+        if (!element.hidden && element.value === "custom") {
+            custom = true;
+        }
+    }
+    populate_material_list();
+    if (custom) {
+        set_custom_density();
+    } else {
+        update_density_input();
+    }
+})
 
 for (const element of document.querySelectorAll(".updateMassOnChange")) {
     element.addEventListener("input", calculate_mass);
