@@ -184,6 +184,9 @@ function populate_material_list() {
 
     const human_density_select = document.querySelector("#human_density_select");
     populate_materials_select(human_density_select, human_mass_list);
+
+    const wood_density_select = document.querySelector("#wood_density_select");
+    populate_materials_select(wood_density_select, wood_mass_list)
 }
 
 function update_density_input() {
