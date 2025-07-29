@@ -370,7 +370,7 @@ button {
 button:focus:not(:focus-visible) {
     outline: 0;
 }
-button, input {
+button, input, select {
     margin: 0;
     font-family: inherit;
     font-size: inherit;

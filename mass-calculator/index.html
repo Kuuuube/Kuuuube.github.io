@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Mass Calculator</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="./mass_calculator.js" defer></script>
+</head>
+<body>
+    <div>
+        <div id="density_inputs">
+            Density:
+            <input id="density_selection" type="text" value="7850" class="updateMassOnChange">
+            <select id="density_select">
+                <option value="7850">Mild Steel (7850kg/m3)</option>
+                <option value="7870">Iron (7870kg/m3)</option>
+                <option value="2700">Aluminum (2700kg/m3)</option>
+                <option value="8930">Copper (8930kg/m3)</option>
+            </select>
+        </div>
+        <div id="shape_inputs">
+            Shape:
+            <select id="shape_select" class="updateMassOnChange">
+                <option value="cube">Cube</option>
+                <option value="sphere">Sphere</option>
+            </select>
+        </div>
+        <div id="dimensions_inputs">
+            <span class="shape_dimensions_container" id="cube_dimensions">
+                Length/Width/Height:
+                <input id="cube_side_length" type="text" value="1" class="updateMassOnChange">
+            </span>
+            <span class="shape_dimensions_container" id="sphere_dimensions">
+                Diameter:
+                <input id="sphere_diameter" type="text" value="1" class="updateMassOnChange">
+            </span>
+            <select id="dimensions_unit_select" class="updateMassOnChange">
+                <option value="mm">mm (millimeter)</option>
+                <option value="cm">cm (centimeter)</option>
+                <option value="m" selected>m (meter)</option>
+                <option value="km">km (kilometer)</option>
+                <option value="in">in (inch)</option>
+                <option value="ft">ft (foot)</option>
+            </select>
+        </div>
+    </div>
+    <div>
+        Mass:
+        <span id="result_mass"></span>
+        <select id="result_unit_select" class="updateMassOnChange">
+            <option value="mg">mg (milligram)</option>
+            <option value="g">g (gram)</option>
+            <option value="kg" selected>kg (kilogram)</option>
+            <option value="oz">oz (ounce)</option>
+            <option value="lb">lb (pound)</option>
+        </select>
+    </div>
+</body>
