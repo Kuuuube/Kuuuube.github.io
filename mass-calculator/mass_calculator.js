@@ -21,6 +21,14 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "cylinder": {
+            const diameter = convert_to_meters(document.querySelector("#cylinder_diameter").value, size_source_unit);
+            const height = convert_to_meters(document.querySelector("#cylinder_height").value, size_source_unit);
+            const radius = diameter / 2;
+            const volume_meters = Math.PI * Math.pow(radius, 2) * height;
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "sphere": {
             const diameter = convert_to_meters(document.querySelector("#sphere_diameter").value, size_source_unit);
             const radius = diameter / 2;

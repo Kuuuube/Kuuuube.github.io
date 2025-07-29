@@ -19,6 +19,7 @@
                     <option value="cube">Cube</option>
                     <option value="rectangular_prism">Rectangular Prism</option>
                     <option value="sphere">Sphere</option>
+                    <option value="cylinder">Cylinder</option>
                 </select>
             </div>
 
@@ -66,6 +67,16 @@
                     <div class="vertical_flex_container">
                         <h2>Diameter</h2>
                         <input id="sphere_diameter" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <div class="shape_dimensions_container" id="cylinder_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Diameter</h2>
+                        <input id="cylinder_diameter" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Height</h2>
+                        <input id="cylinder_height" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <select id="dimensions_unit_select" class="updateMassOnChange">
