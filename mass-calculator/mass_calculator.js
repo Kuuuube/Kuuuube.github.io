@@ -29,6 +29,7 @@ function calculate_mass() {
             break;
         }
         case "spherical_cap": {
+            // https://www.1728.org/diamform.htm
             const diameter = convert_to_meters(document.querySelector("#spherical_cap_diameter").value, size_source_unit);
             const radius = diameter / 2;
             const height = convert_to_meters(document.querySelector("#spherical_cap_height").value, size_source_unit);
