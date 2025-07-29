@@ -3,19 +3,24 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>Mass Calculator</title>
     <link rel="stylesheet" href="../styles.css">
+    <script src="./mass_list.js"></script>
     <script src="./mass_calculator.js" defer></script>
 </head>
 <body>
     <div>
         <div id="density_inputs">
             Density:
-            <input id="density_selection" type="text" value="7850" class="updateMassOnChange">
-            <select id="density_select">
-                <option value="7850">Mild Steel (7850kg/m3)</option>
-                <option value="7870">Iron (7870kg/m3)</option>
-                <option value="2700">Aluminum (2700kg/m3)</option>
-                <option value="8930">Copper (8930kg/m3)</option>
+            <input id="density_selection" type="text" value="7870" class="updateMassOnChange">
+            <select id="material_type_select">
+                <option value="elements">Elements</option>
+                <optgroup label="Metal Alloys">
+                    <option value="steels">Steels</option>
+                    <option value="stainless_steels" selected>Stainless Steels</option>
+                </optgroup>
             </select>
+            <select id="steels_density_select" class="density_select_container" hidden></select>
+            <select id="stainless_steels_density_select" class="density_select_container"></select>
+            <select id="elements_density_select" class="density_select_container" hidden></select>
         </div>
         <div id="shape_inputs">
             Shape:
@@ -29,12 +34,12 @@
             <span class="shape_dimensions_container" id="cube_dimensions">
                 Length/Width/Height: <input id="cube_side_length" type="text" value="1" class="updateMassOnChange">
             </span>
-            <span class="shape_dimensions_container" id="rectangular_prism_dimensions">
+            <span class="shape_dimensions_container" id="rectangular_prism_dimensions" hidden>
                 Length: <input id="rectangular_prism_length" type="text" value="1" class="updateMassOnChange">
                 Width: <input id="rectangular_prism_width" type="text" value="1" class="updateMassOnChange">
                 Height: <input id="rectangular_prism_height" type="text" value="1" class="updateMassOnChange">
             </span>
-            <span class="shape_dimensions_container" id="sphere_dimensions">
+            <span class="shape_dimensions_container" id="sphere_dimensions" hidden>
                 Diameter: <input id="sphere_diameter" type="text" value="1" class="updateMassOnChange">
             </span>
             <select id="dimensions_unit_select" class="updateMassOnChange">

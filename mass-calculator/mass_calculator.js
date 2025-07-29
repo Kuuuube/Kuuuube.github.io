@@ -76,13 +76,46 @@ function show_active_shape_dimensions_select() {
     }
 }
 
-document.querySelector("#density_select").addEventListener("change", (e) => {
-    e.target.previousElementSibling.value = e.target.value;
-    calculate_mass();
-});
+function show_active_material_type_select() {
+    const active_material_type = document.querySelector("#material_type_select").value;
+    for (const element of document.querySelectorAll(".density_select_container")) {
+        element.hidden = !(element.id === active_material_type + "_density_select");
+    }
+}
+
+function populate_materials_select(select_element, mass_list) {
+    for (const material of mass_list) {
+        const option_element = document.createElement("option");
+        option_element.value = material.mean_density;
+        option_element.text = material.material + " (" + material.mean_density + "kg/m3)";
+        select_element.add(option_element);
+    }
+}
+
+function populate_material_list() {
+    const elements_density_select = document.querySelector("#elements_density_select");
+    populate_materials_select(elements_density_select, elements_mass_list);
+
+    const stainless_steels_density_select = document.querySelector("#stainless_steels_density_select");
+    populate_materials_select(stainless_steels_density_select, stainless_steels_mass_list);
+
+    const steels_density_select = document.querySelector("#steels_density_select");
+    populate_materials_select(steels_density_select, steels_mass_list);
+}
+
+for (const element of document.querySelectorAll(".density_select_container")) {
+    element.addEventListener("change", (e) => {
+        document.querySelector("#density_selection").value = e.target.value;
+        calculate_mass();
+    });
+}
 
 document.querySelector("#shape_select").addEventListener("change", (e) => {
     show_active_shape_dimensions_select();
+});
+
+document.querySelector("#material_type_select").addEventListener("change", (e) => {
+    show_active_material_type_select();
 });
 
 for (const element of document.querySelectorAll(".updateMassOnChange")) {
@@ -91,3 +124,4 @@ for (const element of document.querySelectorAll(".updateMassOnChange")) {
 
 show_active_shape_dimensions_select();
 calculate_mass();
+populate_material_list();
