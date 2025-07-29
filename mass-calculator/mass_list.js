@@ -132,7 +132,12 @@ const stainless_steels_mass_list = [
 const steels_mass_list = [
     {material: "1008", mean_density: 7872},
     {material: "1018", mean_density: 7870},
+    {material: "1045", mean_density: 7870},
+    {material: "1095", mean_density: 7850},
+    {material: "12L14", mean_density: 7870},
     {material: "4130", mean_density: 7850},
+    {material: "4140", mean_density: 7850},
+    {material: "8620", mean_density: 7850},
     {material: "52100", mean_density: 7810},
     {material: "A36", mean_density: 7850},
     {material: "SUJ2", mean_density: 7850},
