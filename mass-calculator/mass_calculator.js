@@ -72,7 +72,7 @@ function kilograms_to_result(value, target_unit) {
 function show_active_shape_dimensions_select() {
     const active_shape = document.querySelector("#shape_select").value;
     for (const element of document.querySelectorAll(".shape_dimensions_container")) {
-        element.hidden = !element.id.includes(active_shape);
+        element.hidden = !(element.id === active_shape + "_dimensions");
     }
 }
 
