@@ -120,6 +120,9 @@ function populate_material_list() {
 
     const steels_density_select = document.querySelector("#steels_density_select");
     populate_materials_select(steels_density_select, steels_mass_list);
+
+    const human_density_select = document.querySelector("#human_density_select");
+    populate_materials_select(human_density_select, human_mass_list);
 }
 
 function update_density_input() {
