@@ -103,6 +103,12 @@ function populate_materials_select(select_element, mass_list) {
         option_element.text = material.material + " (" + material.mean_density + "kg/m3)";
         select_element.add(option_element);
     }
+    // Add custom option to switch to when user manually inputs a density
+    const option_element = document.createElement("option");
+    option_element.value = "custom";
+    option_element.text = "Custom";
+    option_element.hidden = true;
+    select_element.add(option_element);
 }
 
 function populate_material_list() {
@@ -130,6 +136,14 @@ for (const element of document.querySelectorAll(".density_select_container")) {
         update_density_input();
     });
 }
+
+document.querySelector("#density_selection").addEventListener("input", () => {
+    for (const element of document.querySelectorAll(".density_select_container")) {
+        if (!element.hidden) {
+            element.value = "custom";
+        }
+    }
+});
 
 document.querySelector("#shape_select").addEventListener("change", (e) => {
     show_active_shape_dimensions_select();
