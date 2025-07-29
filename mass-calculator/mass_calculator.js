@@ -1,3 +1,8 @@
+function round_float(float, decimal_places) {
+    const multiplier = Math.pow(10, decimal_places);
+    return Math.round(float * multiplier) / multiplier;
+}
+
 function calculate_mass() {
     const shape = document.querySelector("#shape_select").value;
     const density_unit = document.querySelector("#density_unit_select").value;
@@ -154,7 +159,7 @@ function populate_materials_select(select_element, mass_list) {
     for (const material of mass_list) {
         const option_element = document.createElement("option");
         option_element.value = kilogram_meter_cubed_to_result(material.mean_density, density_unit);
-        option_element.text = material.material + " (" + kilogram_meter_cubed_to_result(material.mean_density, density_unit) + density_unit + ")";
+        option_element.text = material.material + " (" + round_float(kilogram_meter_cubed_to_result(material.mean_density, density_unit), 5) + density_unit + ")";
         select_element.add(option_element);
     }
     // Add custom option to switch to when user manually inputs a density
