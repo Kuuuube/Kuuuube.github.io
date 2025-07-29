@@ -21,6 +21,21 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "sphere": {
+            const diameter = convert_to_meters(document.querySelector("#sphere_diameter").value, size_source_unit);
+            const radius = diameter / 2;
+            const volume_meters = 4 / 3 * Math.PI * Math.pow(radius, 3);
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
+        case "spherical_cap": {
+            const diameter = convert_to_meters(document.querySelector("#spherical_cap_diameter").value, size_source_unit);
+            const radius = diameter / 2;
+            const height = convert_to_meters(document.querySelector("#spherical_cap_height").value, size_source_unit);
+            const volume_meters = (Math.PI * Math.pow(height, 2) * (3 * radius - height)) / 3;
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "cylinder": {
             const diameter = convert_to_meters(document.querySelector("#cylinder_diameter").value, size_source_unit);
             const height = convert_to_meters(document.querySelector("#cylinder_height").value, size_source_unit);
@@ -29,14 +44,9 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
-        case "sphere": {
-            const diameter = convert_to_meters(document.querySelector("#sphere_diameter").value, size_source_unit);
-            const radius = diameter / 2;
-            const volume_meters = 4 / 3 * Math.PI * Math.pow(radius, 3);
-            result_mass_kg = volume_meters * mean_density;
-            break;
-        }
     }
+
+    console.log(result_mass_kg);
 
     document.querySelector("#result_mass").textContent = kilograms_to_result(result_mass_kg, result_mass_unit);
 }
