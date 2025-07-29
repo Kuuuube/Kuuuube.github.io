@@ -21,6 +21,7 @@
                     <option value="sphere">Sphere</option>
                     <option value="spherical_cap">Spherical Cap</option>
                     <option value="cylinder">Cylinder</option>
+                    <option value="cone">Cone</option>
                 </select>
             </div>
 
@@ -90,6 +91,16 @@
                     <div class="vertical_flex_container">
                         <h2>Height</h2>
                         <input id="cylinder_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <div class="shape_dimensions_container" id="cone_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Diameter</h2>
+                        <input id="cone_diameter" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Height</h2>
+                        <input id="cone_height" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <select id="dimensions_unit_select" class="updateMassOnChange">
