@@ -160,12 +160,14 @@ function populate_materials_select(select_element, mass_list) {
         const option_element = document.createElement("option");
         option_element.value = kilogram_meter_cubed_to_result(material.mean_density, density_unit);
         option_element.text = material.material + " (" + round_float(kilogram_meter_cubed_to_result(material.mean_density, density_unit), 5) + density_unit + ")";
+        option_element.dataset.material = material.material;
         select_element.add(option_element);
     }
     // Add custom option to switch to when user manually inputs a density
     const option_element = document.createElement("option");
     option_element.value = "custom";
     option_element.text = "Custom";
+    option_element.dataset.material = "custom";
     option_element.hidden = true;
     select_element.add(option_element);
 }
@@ -221,16 +223,28 @@ document.querySelector("#material_type_select").addEventListener("change", (e) =
 });
 
 document.querySelector("#density_unit_select").addEventListener("change", () => {
-    let custom = false;
+    let previous_material = "";
     for (const element of document.querySelectorAll(".density_select_container")) {
-        if (!element.hidden && element.value === "custom") {
-            custom = true;
+        if (!element.hidden) {
+            previous_material = element.selectedOptions[0].dataset.material;
         }
     }
+
     populate_material_list();
-    if (custom) {
+    if (previous_material === "custom") {
         set_custom_density();
     } else {
+        for (const element of document.querySelectorAll(".density_select_container")) {
+            if (!element.hidden) {
+                for (const option of element.options) {
+                    if (option.dataset.material === previous_material) {
+                        element.value = "";
+                        option.selected = true;
+                        break;
+                    }
+                }
+            }
+        }
         update_density_input();
     }
 })
