@@ -79,6 +79,16 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "cylindrical_tube": {
+            const inner_diameter = convert_to_meters(document.querySelector("#cylindrical_tube_inner_diameter").value, size_source_unit);
+            const inner_radius = inner_diameter / 2;
+            const outer_diameter = convert_to_meters(document.querySelector("#cylindrical_tube_outer_diameter").value, size_source_unit);
+            const outer_radius = outer_diameter / 2;
+            const height = convert_to_meters(document.querySelector("#cylindrical_tube_height").value, size_source_unit);
+            const volume_meters = (Math.PI * Math.pow(outer_radius, 2) * height) - (Math.PI * Math.pow(inner_radius, 2) * height);
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "cone": {
             const diameter = convert_to_meters(document.querySelector("#cylinder_diameter").value, size_source_unit);
             const height = convert_to_meters(document.querySelector("#cylinder_height").value, size_source_unit);

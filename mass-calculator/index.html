@@ -17,6 +17,7 @@
     <link rel="preload" href="./shape_images/ellipsoid.png" as="image" defer>
     <link rel="preload" href="./shape_images/torus.png" as="image" defer>
     <link rel="preload" href="./shape_images/cylinder.png" as="image" defer>
+    <link rel="preload" href="./shape_images/cylindrical_tube.png" as="image" defer>
     <link rel="preload" href="./shape_images/cone.png" as="image" defer>
     <link rel="preload" href="./shape_images/triangular_prism.png" as="image" defer>
     <link rel="preload" href="./shape_images/triangular_pyramid.png" as="image" defer>
@@ -39,6 +40,7 @@
                     <option value="ellipsoid">Ellipsoid</option>
                     <option value="torus">Torus</option>
                     <option value="cylinder">Cylinder</option>
+                    <option value="cylindrical_tube">Cylindrical Tube</option>
                     <option value="cone">Cone</option>
                     <option value="triangular_prism">Triangular Prism</option>
                     <option value="triangular_pyramid">Triangular Pyramid</option>
@@ -173,6 +175,21 @@
                     <div class="vertical_flex_container">
                         <h2>Height</h2>
                         <input id="cylinder_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Cylindrical Tube -->
+                <div class="shape_dimensions_container" id="cylindrical_tube_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Inner Diameter</h2>
+                        <input id="cylindrical_tube_inner_diameter" type="text" value="0.5" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Outer Diameter</h2>
+                        <input id="cylindrical_tube_outer_diameter" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Height</h2>
+                        <input id="cylindrical_tube_height" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <!-- Cone -->
