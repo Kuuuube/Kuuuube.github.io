@@ -62,6 +62,15 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "torus": {
+            const inner_diameter = convert_to_meters(document.querySelector("#torus_inner_diameter").value, size_source_unit);
+            const inner_radius = inner_diameter / 2;
+            const outer_diameter = convert_to_meters(document.querySelector("#torus_outer_diameter").value, size_source_unit);
+            const outer_radius = outer_diameter / 2;
+            const volume_meters = 0.25 * Math.pow(Math.PI, 2) * Math.pow(outer_radius - inner_radius, 2) * (outer_radius + inner_radius);
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "cylinder": {
             const diameter = convert_to_meters(document.querySelector("#cylinder_diameter").value, size_source_unit);
             const height = convert_to_meters(document.querySelector("#cylinder_height").value, size_source_unit);
@@ -91,15 +100,6 @@ function calculate_mass() {
             const base_length = convert_to_meters(document.querySelector("#triangular_pyramid_base_length").value, size_source_unit);
             const base_height = convert_to_meters(document.querySelector("#triangular_pyramid_base_height").value, size_source_unit);
             const volume_meters = 0.5 * base_length * base_height * height / 3;
-            result_mass_kg = volume_meters * mean_density;
-            break;
-        }
-        case "torus": {
-            const inner_diameter = convert_to_meters(document.querySelector("#torus_inner_diameter").value, size_source_unit);
-            const inner_radius = inner_diameter / 2;
-            const outer_diameter = convert_to_meters(document.querySelector("#torus_outer_diameter").value, size_source_unit);
-            const outer_radius = outer_diameter / 2;
-            const volume_meters = 0.25 * Math.pow(Math.PI, 2) * Math.pow(outer_radius - inner_radius, 2) * (outer_radius + inner_radius);
             result_mass_kg = volume_meters * mean_density;
             break;
         }
