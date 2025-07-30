@@ -17,6 +17,7 @@
     <link rel="preload" href="./shape_images/cylinder.png" as="image" defer>
     <link rel="preload" href="./shape_images/triangular_prism.png" as="image" defer>
     <link rel="preload" href="./shape_images/cone.png" as="image" defer>
+    <link rel="preload" href="./shape_images/triangular_pyramid.png" as="image" defer>
 </head>
 <body>
     <div id="main-center-aligner">
@@ -33,6 +34,7 @@
                     <option value="cylinder">Cylinder</option>
                     <option value="triangular_prism">Triangular Prism</option>
                     <option value="cone">Cone</option>
+                    <option value="triangular_pyramid">Triangular Pyramid</option>
                 </select>
             </div>
 
@@ -161,6 +163,21 @@
                     <div class="vertical_flex_container">
                         <h2>Height</h2>
                         <input id="cone_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Triangular Pyramid -->
+                <div class="shape_dimensions_container" id="triangular_pyramid_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Height</h2>
+                        <input id="triangular_pyramid_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Base Length</h2>
+                        <input id="triangular_pyramid_base_length" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Base Height</h2>
+                        <input id="triangular_pyramid_base_height" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <!-- Dimensions -->

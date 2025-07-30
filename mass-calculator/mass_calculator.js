@@ -78,6 +78,14 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "triangular_pyramid": {
+            const height = convert_to_meters(document.querySelector("#triangular_pyramid_height").value, size_source_unit);
+            const base_length = convert_to_meters(document.querySelector("#triangular_pyramid_base_length").value, size_source_unit);
+            const base_height = convert_to_meters(document.querySelector("#triangular_pyramid_base_height").value, size_source_unit);
+            const volume_meters = 0.5 * base_length * base_height * height / 3;
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
     }
 
     document.querySelector("#result_mass").textContent = kilograms_to_result(result_mass_kg, result_mass_unit);
