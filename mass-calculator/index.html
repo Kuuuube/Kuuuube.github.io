@@ -21,6 +21,7 @@
     <link rel="preload" href="./shape_images/triangular_pyramid.png" as="image" defer>
     <link rel="preload" href="./shape_images/torus.png" as="image" defer>
     <link rel="preload" href="./shape_images/octahedron.png" as="image" defer>
+    <link rel="preload" href="./shape_images/icosahedron.png" as="image" defer>
 </head>
 <body>
     <div id="main-center-aligner">
@@ -41,6 +42,7 @@
                     <option value="triangular_pyramid">Triangular Pyramid</option>
                     <option value="torus">Torus</option>
                     <option value="octahedron">Octahedron</option>
+                    <option value="icosahedron">Icosahedron</option>
                 </select>
             </div>
 
@@ -217,6 +219,13 @@
                     <div class="vertical_flex_container">
                         <h2>Edge Length</h2>
                         <input id="octahedron_edge_length" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Icosahedron -->
+                <div class="shape_dimensions_container" id="icosahedron_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Edge Length</h2>
+                        <input id="icosahedron_edge_length" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <!-- Dimensions -->
