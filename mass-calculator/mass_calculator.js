@@ -62,6 +62,14 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "triangular_prism": {
+            const length = convert_to_meters(document.querySelector("#triangular_prism_length").value, size_source_unit);
+            const height = convert_to_meters(document.querySelector("#triangular_prism_height").value, size_source_unit);
+            const base_length = convert_to_meters(document.querySelector("#triangular_prism_base_length").value, size_source_unit);
+            const volume_meters = 0.5 * length * height * base_length;
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "cone": {
             const diameter = convert_to_meters(document.querySelector("#cylinder_diameter").value, size_source_unit);
             const height = convert_to_meters(document.querySelector("#cylinder_height").value, size_source_unit);

@@ -15,6 +15,7 @@
     <link rel="preload" href="./shape_images/spherical_cap.png" as="image" defer>
     <link rel="preload" href="./shape_images/ellipsoid.png" as="image" defer>
     <link rel="preload" href="./shape_images/cylinder.png" as="image" defer>
+    <link rel="preload" href="./shape_images/triangular_prism.png" as="image" defer>
     <link rel="preload" href="./shape_images/cone.png" as="image" defer>
 </head>
 <body>
@@ -30,6 +31,7 @@
                     <option value="spherical_cap">Spherical Cap</option>
                     <option value="ellipsoid">Ellipsoid</option>
                     <option value="cylinder">Cylinder</option>
+                    <option value="triangular_prism">Triangular Prism</option>
                     <option value="cone">Cone</option>
                 </select>
             </div>
@@ -133,6 +135,21 @@
                     <div class="vertical_flex_container">
                         <h2>Height</h2>
                         <input id="cylinder_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Triangular Prism -->
+                <div class="shape_dimensions_container" id="triangular_prism_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Length</h2>
+                        <input id="triangular_prism_length" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Height</h2>
+                        <input id="triangular_prism_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Base Length</h2>
+                        <input id="triangular_prism_base_length" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <!-- Cone -->
