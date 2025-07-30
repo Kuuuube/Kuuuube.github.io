@@ -94,6 +94,15 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "torus": {
+            const inner_diameter = convert_to_meters(document.querySelector("#torus_inner_diameter").value, size_source_unit);
+            const inner_radius = inner_diameter / 2;
+            const outer_diameter = convert_to_meters(document.querySelector("#torus_outer_diameter").value, size_source_unit);
+            const outer_radius = outer_diameter / 2;
+            const volume_meters = 0.25 * Math.pow(Math.PI, 2) * Math.pow(outer_radius - inner_radius, 2) * (outer_radius + inner_radius);
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
     }
 
     document.querySelector("#result_mass").textContent = kilograms_to_result(result_mass_kg, result_mass_unit);
