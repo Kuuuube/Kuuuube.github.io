@@ -103,6 +103,12 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "octahedron": {
+            const edge_length = convert_to_meters(document.querySelector("#octahedron_edge_length").value, size_source_unit);
+            const volume_meters = Math.sqrt(2) / 3 * Math.pow(edge_length, 3);
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
     }
 
     document.querySelector("#result_mass").textContent = kilograms_to_result(result_mass_kg, result_mass_unit);
