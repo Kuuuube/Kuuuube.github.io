@@ -11,6 +11,7 @@
 
     <link rel="preload" href="./shape_images/cube.png" as="image" defer>
     <link rel="preload" href="./shape_images/rectangular_prism.png" as="image" defer>
+    <link rel="preload" href="./shape_images/rectangular_pyramid.png" as="image" defer>
     <link rel="preload" href="./shape_images/sphere.png" as="image" defer>
     <link rel="preload" href="./shape_images/spherical_cap.png" as="image" defer>
     <link rel="preload" href="./shape_images/ellipsoid.png" as="image" defer>
@@ -28,6 +29,7 @@
                 <select id="shape_select" class="updateMassOnChange">
                     <option value="cube">Cube</option>
                     <option value="rectangular_prism">Rectangular Prism</option>
+                    <option value="rectangular_pyramid">Rectangular Pyramid</option>
                     <option value="sphere">Sphere</option>
                     <option value="spherical_cap">Spherical Cap</option>
                     <option value="ellipsoid">Ellipsoid</option>
@@ -93,6 +95,21 @@
                     <div class="vertical_flex_container">
                         <h2>Height</h2>
                         <input id="rectangular_prism_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Rectangular Pyramid -->
+                <div class="shape_dimensions_container" id="rectangular_pyramid_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Base Length</h2>
+                        <input id="rectangular_pyramid_base_length" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Base Width</h2>
+                        <input id="rectangular_pyramid_base_width" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Height</h2>
+                        <input id="rectangular_pyramid_height" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <!-- Sphere -->

@@ -27,6 +27,14 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "rectangular_pyramid": {
+            const base_length = convert_to_meters(document.querySelector("#rectangular_pyramid_base_length").value, size_source_unit);
+            const base_width = convert_to_meters(document.querySelector("#rectangular_pyramid_base_width").value, size_source_unit);
+            const height = convert_to_meters(document.querySelector("#rectangular_pyramid_height").value, size_source_unit);
+            const volume_meters = base_length * base_width * height / 3;
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "sphere": {
             const diameter = convert_to_meters(document.querySelector("#sphere_diameter").value, size_source_unit);
             const radius = diameter / 2;
