@@ -43,6 +43,17 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "ellipsoid": {
+            const length = convert_to_meters(document.querySelector("#ellipsoid_length").value, size_source_unit);
+            const width = convert_to_meters(document.querySelector("#ellipsoid_width").value, size_source_unit);
+            const height = convert_to_meters(document.querySelector("#ellipsoid_height").value, size_source_unit);
+            const radius_a = length / 2;
+            const radius_b = width / 2;
+            const radius_c = height / 2;
+            const volume_meters = 4 / 3 * Math.PI * radius_a * radius_b * radius_c;
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "cylinder": {
             const diameter = convert_to_meters(document.querySelector("#cylinder_diameter").value, size_source_unit);
             const height = convert_to_meters(document.querySelector("#cylinder_height").value, size_source_unit);
