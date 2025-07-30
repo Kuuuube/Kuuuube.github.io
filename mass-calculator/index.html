@@ -22,6 +22,7 @@
     <link rel="preload" href="./shape_images/torus.png" as="image" defer>
     <link rel="preload" href="./shape_images/octahedron.png" as="image" defer>
     <link rel="preload" href="./shape_images/icosahedron.png" as="image" defer>
+    <link rel="preload" href="./shape_images/dodecahedron.png" as="image" defer>
 </head>
 <body>
     <div id="main-center-aligner">
@@ -43,6 +44,7 @@
                     <option value="torus">Torus</option>
                     <option value="octahedron">Octahedron</option>
                     <option value="icosahedron">Icosahedron</option>
+                    <option value="dodecahedron">Dodecahedron</option>
                 </select>
             </div>
 
@@ -226,6 +228,13 @@
                     <div class="vertical_flex_container">
                         <h2>Edge Length</h2>
                         <input id="icosahedron_edge_length" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Dodecahedron -->
+                <div class="shape_dimensions_container" id="dodecahedron_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Edge Length</h2>
+                        <input id="dodecahedron_edge_length" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <!-- Dimensions -->
