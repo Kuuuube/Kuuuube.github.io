@@ -21,6 +21,8 @@
     <link rel="preload" href="./shape_images/cone.png" as="image" defer>
     <link rel="preload" href="./shape_images/triangular_prism.png" as="image" defer>
     <link rel="preload" href="./shape_images/triangular_pyramid.png" as="image" defer>
+    <link rel="preload" href="./shape_images/pentagonal_prism.png" as="image" defer>
+    <link rel="preload" href="./shape_images/pentagonal_pyramid.png" as="image" defer>
     <link rel="preload" href="./shape_images/octahedron.png" as="image" defer>
     <link rel="preload" href="./shape_images/icosahedron.png" as="image" defer>
     <link rel="preload" href="./shape_images/dodecahedron.png" as="image" defer>
@@ -44,6 +46,8 @@
                     <option value="cone">Cone</option>
                     <option value="triangular_prism">Triangular Prism</option>
                     <option value="triangular_pyramid">Triangular Pyramid</option>
+                    <option value="pentagonal_prism">Pentagonal Prism</option>
+                    <option value="pentagonal_pyramid">Pentagonal Pyramid</option>
                     <option value="octahedron">Octahedron</option>
                     <option value="icosahedron">Icosahedron</option>
                     <option value="dodecahedron">Dodecahedron</option>
@@ -231,6 +235,28 @@
                     <div class="vertical_flex_container">
                         <h2>Base Height</h2>
                         <input id="triangular_pyramid_base_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Pentagonal Prism -->
+                <div class="shape_dimensions_container" id="pentagonal_prism_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Pentagon Edge Length</h2>
+                        <input id="pentagonal_prism_pentagon_edge_length" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Prism Height</h2>
+                        <input id="pentagonal_prism_prism_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Pentagonal Pyramid -->
+                <div class="shape_dimensions_container" id="pentagonal_pyramid_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Pentagon Edge Length</h2>
+                        <input id="pentagonal_pyramid_pentagon_edge_length" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Pyramid Height</h2>
+                        <input id="pentagonal_pyramid_pyramid_height" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <!-- Octahedron -->
