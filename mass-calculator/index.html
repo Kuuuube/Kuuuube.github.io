@@ -25,6 +25,7 @@
     <link rel="preload" href="./shape_images/pentagonal_pyramid.png" as="image" defer>
     <link rel="preload" href="./shape_images/hexagonal_prism.png" as="image" defer>
     <link rel="preload" href="./shape_images/heptagonal_prism.png" as="image" defer>
+    <link rel="preload" href="./shape_images/octagonal_prism.png" as="image" defer>
     <link rel="preload" href="./shape_images/octahedron.png" as="image" defer>
     <link rel="preload" href="./shape_images/icosahedron.png" as="image" defer>
     <link rel="preload" href="./shape_images/dodecahedron.png" as="image" defer>
@@ -52,6 +53,7 @@
                     <option value="pentagonal_pyramid">Pentagonal Pyramid</option>
                     <option value="hexagonal_prism">Hexagonal Prism</option>
                     <option value="heptagonal_prism">Heptagonal Prism</option>
+                    <option value="octagonal_prism">Octagonal Prism</option>
                     <option value="octahedron">Octahedron</option>
                     <option value="icosahedron">Icosahedron</option>
                     <option value="dodecahedron">Dodecahedron</option>
@@ -283,6 +285,17 @@
                     <div class="vertical_flex_container">
                         <h2>Prism Height</h2>
                         <input id="heptagonal_prism_prism_height" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                </div>
+                <!-- Octagonal Prism -->
+                <div class="shape_dimensions_container" id="octagonal_prism_dimensions" hidden>
+                    <div class="vertical_flex_container">
+                        <h2>Octagon Edge Length</h2>
+                        <input id="octagonal_prism_octagon_edge_length" type="text" value="1" class="updateMassOnChange dimension_input">
+                    </div>
+                    <div class="vertical_flex_container">
+                        <h2>Prism Height</h2>
+                        <input id="octagonal_prism_prism_height" type="text" value="1" class="updateMassOnChange dimension_input">
                     </div>
                 </div>
                 <!-- Octahedron -->
