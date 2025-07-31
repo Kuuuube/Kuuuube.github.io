@@ -137,6 +137,14 @@ function calculate_mass() {
             result_mass_kg = volume_meters * mean_density;
             break;
         }
+        case "heptagonal_prism": {
+            const heptagon_edge_length = convert_to_meters(document.querySelector("#heptagonal_prism_heptagon_edge_length").value, size_source_unit);
+            const prism_height = convert_to_meters(document.querySelector("#heptagonal_prism_prism_height").value, size_source_unit);
+            const heptagon_apothem = heptagon_edge_length / (2 * Math.tan((180 / 7) * Math.PI / 180));
+            const volume_meters = 7 / 2 * heptagon_apothem * heptagon_edge_length * prism_height;
+            result_mass_kg = volume_meters * mean_density;
+            break;
+        }
         case "octahedron": {
             const edge_length = convert_to_meters(document.querySelector("#octahedron_edge_length").value, size_source_unit);
             const volume_meters = Math.sqrt(2) / 3 * Math.pow(edge_length, 3);
