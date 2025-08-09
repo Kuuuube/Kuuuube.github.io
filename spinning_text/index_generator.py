@@ -1,6 +1,8 @@
 import random
+import re
 
 target_html_file = "カエル - Wikipedia.html"
+output_html_file = "output.html"
 spin_class_name = "s"
 spin_animation_name = "spin"
 
@@ -8,6 +10,7 @@ minimum_spin_time = 300
 maximum_spin_time = 2000
 spin_variations = 1000
 animation_directions = ["normal", "reverse", "alternate", "alternate-reverse"]
+spin_images = True
 
 # make random_spins.css
 spin_variation_choices = range(0, spin_variations)
@@ -38,7 +41,11 @@ head_css = '<link rel="stylesheet" href="spin_properties.css">\n<link rel="style
 input_file_head = input_html_file[0] + head_css + "</head>"
 input_file_body = input_html_file[1]
 
-with open("index.html", "w", encoding = "UTF-8") as index:
+if spin_images:
+    for image_tag in re.findall("<img.*?>", input_file_body):
+        input_file_body = re.subn(image_tag, "<div class=\"" + spin_class_name + " " + spin_class_name + str(random.choice(spin_variation_choices)) + "\">" + image_tag + "</div>", input_file_body, count = 1)[0]
+
+with open(output_html_file, "w", encoding = "UTF-8") as index:
     index.write(input_file_head)
     in_html_tag = False
     for char in input_file_body:
