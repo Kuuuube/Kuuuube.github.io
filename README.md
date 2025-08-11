@@ -96,6 +96,10 @@ A stopwatch. It counts up. Click once to start and stop, doubleclick to reset. L
 
 Calculates the mass of shapes in various materials.
 
+### [Food](https://kuuuube.github.io/food)
+
+A repo for easily sharing recipes I've tried and approve of. Code is located at https://github.com/Kuuuube/food.
+
 ## Fun
 
 ### [Random Workout](https://kuuuube.github.io/random-workout-generator)
