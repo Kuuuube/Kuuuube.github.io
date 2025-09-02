@@ -72,6 +72,10 @@ Hiragana, Katakana, and Hentaigana learning tool. Adapted from existing tools. C
 
 Hiragana and Katakana learning tool without romaji. Code is located at https://github.com/Kuuuube/kana-quiz-sounds.
 
+### [Kanji Punt Gun](https://kuuuube.github.io/kanji-puntgun)
+
+Named after the largest shotguns ever built, Kanji Punt Gun provides just about every static visual way possible of searching kanji. All at the same time. Code is located at https://github.com/Kuuuube/kanji-puntgun.
+
 ### [Texthooker](https://kuuuube.github.io/texthooker)
 
 Mirror of Anacreon's texthooker page for when it has issues causing downtime. For users looking for a texthooker page, I recommend the more fully featured [Renji's Texthooker UI](https://renji-xd.github.io/texthooker-ui/) (download for local use here: https://raw.githubusercontent.com/Renji-XD/texthooker-ui/refs/heads/main/docs/index.html).
