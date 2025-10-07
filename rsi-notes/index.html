@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+    <title>Kuuube's RSI Notes</title>
+    <style>/* Partially pulled from https://github.com/sindresorhus/github-markdown-css */
+
+body {
+    --base-size-4: 0.25rem;
+    --base-size-8: 0.5rem;
+    --base-size-16: 1rem;
+    --base-size-24: 1.5rem;
+    --base-size-40: 2.5rem;
+    --base-text-weight-normal: 400;
+    --base-text-weight-medium: 500;
+    --base-text-weight-semibold: 600;
+    --fontStack-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    --placeholder-index-page-width: min(max(max(50vw, 50vh), 500px), 95vw);
+    --search-index-container-margin: 12.5px;
+    --search-index-border-thickness: 1px;
+    --search-index-font-size: 2em;
+    --border-container-margin: 50px;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        /* dark */
+        color-scheme: dark;
+        --focus-outlineColor: #1f6feb;
+        --fgColor-default: #eeeeee;
+        --fgColor-muted: #a1a1a1;
+        --fgColor-accent: #4493f8;
+        --fgColor-success: #3fb950;
+        --fgColor-attention: #d29922;
+        --fgColor-danger: #f85149;
+        --fgColor-done: #ab7df8;
+        --bgColor-default: #000000;
+        --bgColor-muted: #232323;
+        --bgColor-neutral-muted: #76767633;
+        --bgColor-attention-muted: #bb800926;
+        --borderColor-default: #4d4d4d;
+        --borderColor-muted: #4d4d4db3;
+        --borderColor-neutral-muted: #4d4d4db3;
+        --borderColor-accent-emphasis: #1f6feb;
+        --borderColor-success-emphasis: #238636;
+        --borderColor-attention-emphasis: #9e6a03;
+        --borderColor-danger-emphasis: #da3633;
+        --borderColor-done-emphasis: #8957e5;
+        --color-prettylights-syntax-comment: #a1a1a1;
+        --color-prettylights-syntax-constant: #79c0ff;
+        --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
+        --color-prettylights-syntax-entity: #d2a8ff;
+        --color-prettylights-syntax-storage-modifier-import: #fcfcfc;
+        --color-prettylights-syntax-entity-tag: #7ee787;
+        --color-prettylights-syntax-keyword: #ff7b72;
+        --color-prettylights-syntax-string: #a5d6ff;
+        --color-prettylights-syntax-variable: #ffa657;
+        --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
+        --color-prettylights-syntax-brackethighlighter-angle: #a1a1a1;
+        --color-prettylights-syntax-invalid-illegal-text: #fcfcfc;
+        --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
+        --color-prettylights-syntax-carriage-return-text: #fcfcfc;
+        --color-prettylights-syntax-carriage-return-bg: #b62324;
+        --color-prettylights-syntax-string-regexp: #7ee787;
+        --color-prettylights-syntax-markup-list: #f2cc60;
+        --color-prettylights-syntax-markup-heading: #1f6feb;
+        --color-prettylights-syntax-markup-italic: #fcfcfc;
+        --color-prettylights-syntax-markup-bold: #fcfcfc;
+        --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
+        --color-prettylights-syntax-markup-deleted-bg: #67060c;
+        --color-prettylights-syntax-markup-inserted-text: #aff5b4;
+        --color-prettylights-syntax-markup-inserted-bg: #033a16;
+        --color-prettylights-syntax-markup-changed-text: #ffdfb6;
+        --color-prettylights-syntax-markup-changed-bg: #5a1e02;
+        --color-prettylights-syntax-markup-ignored-text: #fcfcfc;
+        --color-prettylights-syntax-markup-ignored-bg: #1158c7;
+        --color-prettylights-syntax-meta-diff-range: #d2a8ff;
+        --color-prettylights-syntax-sublimelinter-gutter-mark: #4d4d4d;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        /* light */
+        color-scheme: light;
+        --focus-outlineColor: #0969da;
+        --fgColor-default: #1f2328;
+        --fgColor-muted: #59636e;
+        --fgColor-accent: #0969da;
+        --fgColor-success: #1a7f37;
+        --fgColor-attention: #9a6700;
+        --fgColor-danger: #d1242f;
+        --fgColor-done: #8250df;
+        --bgColor-default: #ffffff;
+        --bgColor-muted: #f6f8fa;
+        --bgColor-neutral-muted: #818b981f;
+        --bgColor-attention-muted: #fff8c5;
+        --borderColor-default: #d1d9e0;
+        --borderColor-muted: #d1d9e0b3;
+        --borderColor-neutral-muted: #d1d9e0b3;
+        --borderColor-accent-emphasis: #0969da;
+        --borderColor-success-emphasis: #1a7f37;
+        --borderColor-attention-emphasis: #9a6700;
+        --borderColor-danger-emphasis: #cf222e;
+        --borderColor-done-emphasis: #8250df;
+        --color-prettylights-syntax-comment: #59636e;
+        --color-prettylights-syntax-constant: #0550ae;
+        --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+        --color-prettylights-syntax-entity: #6639ba;
+        --color-prettylights-syntax-storage-modifier-import: #1f2328;
+        --color-prettylights-syntax-entity-tag: #0550ae;
+        --color-prettylights-syntax-keyword: #cf222e;
+        --color-prettylights-syntax-string: #0a3069;
+        --color-prettylights-syntax-variable: #953800;
+        --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+        --color-prettylights-syntax-brackethighlighter-angle: #59636e;
+        --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+        --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+        --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+        --color-prettylights-syntax-carriage-return-bg: #cf222e;
+        --color-prettylights-syntax-string-regexp: #116329;
+        --color-prettylights-syntax-markup-list: #3b2300;
+        --color-prettylights-syntax-markup-heading: #0550ae;
+        --color-prettylights-syntax-markup-italic: #1f2328;
+        --color-prettylights-syntax-markup-bold: #1f2328;
+        --color-prettylights-syntax-markup-deleted-text: #82071e;
+        --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+        --color-prettylights-syntax-markup-inserted-text: #116329;
+        --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+        --color-prettylights-syntax-markup-changed-text: #953800;
+        --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+        --color-prettylights-syntax-markup-ignored-text: #d1d9e0;
+        --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+        --color-prettylights-syntax-meta-diff-range: #8250df;
+        --color-prettylights-syntax-sublimelinter-gutter-mark: #818b98;
+    }
+}
+
+body {
+    color: var(--fgColor-default);
+    background-color: var(--bgColor-default);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+details {
+    display: block;
+}
+
+summary {
+    display: list-item;
+}
+
+a {
+    background-color: transparent;
+    color: var(--fgColor-accent);
+    text-decoration: none;
+}
+
+b, strong {
+    font-weight: var(--base-text-weight-semibold, 600);
+}
+
+h1 {
+    margin: .67em 0;
+    font-weight: var(--base-text-weight-semibold, 600);
+    padding-bottom: .3em;
+    font-size: 2em;
+    border-bottom: 1px solid var(--borderColor-muted);
+}
+
+mark {
+    background-color: var(--bgColor-attention-muted);
+    color: var(--fgColor-default);
+}
+
+small {
+    font-size: 90%;
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+img {
+    border-style: none;
+    max-width: 100%;
+    box-sizing: content-box;
+}
+
+code, pre {
+    font-family: monospace;
+    font-size: 1em;
+}
+
+hr {
+    box-sizing: content-box;
+    overflow: hidden;
+    background: transparent;
+    border-bottom: 1px solid var(--borderColor-muted);
+    height: .125em;
+    padding: 0;
+    margin: var(--base-size-24) 0;
+    background-color: var(--borderColor-default);
+    border: 0;
+}
+
+input {
+    font: inherit;
+    margin: 0;
+    overflow: visible;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+::placeholder {
+    color: var(--fgColor-muted);
+    opacity: 1;
+}
+
+hr::before {
+    display: table;
+    content: "";
+}
+
+hr::after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    font-variant: tabular-nums;
+}
+
+td, th {
+    padding: 0;
+}
+
+details summary {
+    cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: var(--base-size-24);
+    margin-bottom: var(--base-size-16);
+    font-weight: var(--base-text-weight-semibold, 600);
+    line-height: 1.25;
+}
+
+h2 {
+    font-weight: var(--base-text-weight-semibold, 600);
+    padding-bottom: .3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--borderColor-muted);
+}
+
+h3 {
+    font-weight: var(--base-text-weight-semibold, 600);
+    font-size: 1.25em;
+}
+
+h4 {
+    font-weight: var(--base-text-weight-semibold, 600);
+    font-size: 1em;
+}
+
+h5 {
+    font-weight: var(--base-text-weight-semibold, 600);
+    font-size: .875em;
+}
+
+h6 {
+    font-weight: var(--base-text-weight-semibold, 600);
+    font-size: .85em;
+    color: var(--fgColor-muted);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+blockquote {
+    margin: 0;
+    padding: 0 1em;
+    color: var(--fgColor-muted);
+    border-left: .25em solid var(--borderColor-default);
+}
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 2em;
+}
+
+ol ol, ul ol {
+    list-style-type: lower-roman;
+}
+
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+    list-style-type: lower-alpha;
+}
+
+dd {
+    margin-left: 0;
+}
+
+code {
+    font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
+    font-size: 12px;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: var(--fontStack-monospace, ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace);
+  font-size: 12px;
+  word-wrap: normal;
+}
+
+a:not([href]) {
+    color: inherit;
+    text-decoration: none;
+}
+
+p, blockquote, ul, ol, dl, table, details, pre {
+    margin-top: 0;
+    margin-bottom: var(--base-size-16);
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+    padding: 0 .2em;
+    font-size: inherit;
+}
+
+summary h1,
+summary h2,
+summary h3,
+summary h4,
+summary h5,
+summary h6 {
+    display: inline-block;
+}
+
+summary h1,
+summary h2 {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li>p {
+    margin-top: var(--base-size-16);
+}
+
+li+li {
+    margin-top: .25em;
+}
+
+table th {
+    font-weight: var(--base-text-weight-semibold, 600);
+}
+
+table th,
+table td {
+    padding: 6px 13px;
+    border: 1px solid var(--borderColor-default);
+}
+
+table td>:last-child {
+    margin-bottom: 0;
+}
+
+table tr {
+    background-color: var(--bgColor-default);
+    border-top: 1px solid var(--borderColor-muted);
+}
+
+table tr:nth-child(2n) {
+    background-color: var(--bgColor-muted);
+}
+
+table img {
+    background-color: transparent;
+}
+
+code {
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: var(--bgColor-neutral-muted);
+    border-radius: 6px;
+}
+
+pre code {
+  font-size: 100%;
+}
+
+pre>code {
+  padding: 0;
+  margin: 0;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+pre {
+  padding: var(--base-size-16);
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  color: var(--fgColor-default);
+  background-color: var(--bgColor-muted);
+  border-radius: 6px;
+}
+
+pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+summary:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
+
+#placeholder-index-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+html:has(body#placeholder-index-page) {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body#placeholder-index-page {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+body#placeholder-index-page > .border-container {
+    text-align: center;
+    width: var(--placeholder-index-page-width);
+    height: fit-content;
+    border: .125em solid var(--borderColor-default);
+    margin: calc(var(--border-container-margin) + var(--search-index-container-margin)) var(--border-container-margin);
+}
+
+.border-container > hr {
+    margin: 0;
+}
+
+.border-container > a > h1 {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    font-size: 2.5rem;
+    margin: 0;
+    border-bottom: unset;
+    transition: background-color 0.25s cubic-bezier(0,0,0,1);
+}
+
+.border-container > a > h1:hover {
+    background-color: var(--borderColor-default);
+}
+
+code.multiline-code {
+    display: block;
+}
+
+#index-page-search {
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    width: var(--placeholder-index-page-width);
+    border-bottom: 1px solid var(--borderColor-muted);
+    font-size: var(--search-index-font-size);
+    font-weight: var(--base-text-weight-semibold, 600);
+    outline: none;
+    z-index: 999;
+}
+
+.search-result {
+    display: block;
+    text-align: center;
+    background-color: var(--bgColor-default);
+    border: var(--search-index-border-thickness) solid var(--borderColor-muted);
+    font-size: var(--search-index-font-size);
+    padding-left: 1em;
+    padding-right: 1em;
+    transition: background-color 0.25s cubic-bezier(0,0,0,1);
+}
+
+.search-result:hover {
+    background-color: var(--borderColor-default);
+}
+
+.search-result.inactive-result {
+    visibility: hidden;
+}
+
+#index-page-container {
+    margin-top: var(--search-index-container-margin);
+    position: absolute;
+    width: var(--placeholder-index-page-width);
+    top: 0;
+}
+
+#markdown-hash {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 0.5em;
+    margin-right: 1em;
+    color: var(--fgColor-muted);
+    font-size: 75%;
+}
+
+#back-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 0.5em;
+    margin-left: 1em;
+    color: var(--fgColor-muted);
+    font-size: 75%;
+    padding-right: 3em;
+}
+
+.back-button-index-page {
+    padding-bottom: 3em;
+}
+
+@media print {
+    /* Show link href when printing */
+    a::after {
+        content: " (" attr(href) ")";
+    }
+    a {
+        color: var(--fgColor-default);
+    }
+    #back-button {
+        display: none;
+    }
+}
+</style>
+</head>
+<body>
+<h1>Kuuube's RSI Notes</h1>
+<p>This is a collection of tips that have helped me through dealing with RSIs (Repetitive Strain Injuries) over 5+ years.</p>
+<p>If you find this information valuable and would like to support me I have a <a href="https://ko-fi.com/Kuuube">ko-fi</a> and I'm an Amazon affiliate (if you click this link before purchasing something, doesn't matter what, I will get a small percent: <a href="https://amzn.to/4g74yQP">https://amzn.to/4g74yQP</a>).</p>
+<p>I may mention specific brand names or link to products. I have no affiliation to any brand mentioned here. <strong>All links past this point are not affiliate or sponsored in any way.</strong></p>
+<h2>Finding Neutral Wrist Angle</h2>
+<ol>
+<li>Place your forearm flat on a table.</li>
+<li>Make a loose fist with your thumb to the side (not under your hand)</li>
+</ol>
+<p>This is roughly where your wrist is at a neutral angle. Note that the top of your knuckles are above your wrist.</p>
+</body>
