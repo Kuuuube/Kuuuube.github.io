@@ -13,9 +13,11 @@ def get_html_head(output_html_path):
 def markdown_to_html(markdown_string):
     # https://docs.rs/comrak/latest/comrak/struct.ExtensionOptions.html
     opts = comrak.ExtensionOptions()
+    render = comrak.RenderOptions()
     opts.table = True
     opts.header_ids = ""
-    return comrak.render_markdown(markdown_string, extension_options = opts)
+    render.unsafe_ = True
+    return run_replacements(comrak.render_markdown(markdown_string, extension_options = opts, render_options = render))
 
 def render_html_page(output_html_path, markdown_data):
     output_html = ""
