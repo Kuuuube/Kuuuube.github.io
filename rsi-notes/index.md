@@ -69,13 +69,13 @@ I recommend buying 1.5-2" (3.8-5cm) AISI 52100 chrome steel balls to start out. 
 
 You should be able to buy the absolute cheapest ones you can find. Tight tolerances are not a concern. I bought mine here [https://www.amazon.com/dp/B0BPSC6B46](https://www.amazon.com/dp/B0BPSC6B46).
 
-To verify you have actually received steel balls and not a cheaper metal or hollow balls, check against the following chart (you may get slightly different numbers but it should be somewhat close):
+To verify you have actually received steel balls and not a cheaper metal or hollow balls, check against the following chart or use my [mass calculator](https://kuuuube.github.io/mass-calculator/) to check any dimensions (you may get slightly different numbers but it should be somewhat close):
 
 | Diameter      | Weight |
 |---------------|--------|
 | 1.5" (3.81cm) | 226g   |
 | 1.75" (4.4cm) | 359g   |
-| 2 (5cm)       | 536g   |
+| 2" (5cm)      | 536g   |
 | 2.5" (6.35cm) | 1047g  |
 | 3" (7.6cm)    | 1809g  |
 
