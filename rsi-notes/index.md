@@ -15,6 +15,24 @@ I may mention specific brand names or link to products. I have no affiliation to
 
 This is roughly where your wrist is at a neutral angle. Note that the top of your knuckles are above your wrist.
 
+## Rest
+
+Rest is a double edged sword. You can rest to allow your muscles to recover when they are sore or hurt but RSI will not vanish after resting. In fact, it can even get worse if you rest too much.
+
+Too much inactivity will cause your muscles to weaken which can cause further issues. A balance needs to be found between overwork and overrest. This also includes not overusing aids such as wrist braces.
+
+Sometimes muscles will feel weak and not entirely there when you are doing light tasks. Hand exercises and strengthening can help pull back all the muscle to be put into use again, removing the weak feeling. But don't overdo this.
+
+Doing exercise that doesn't use your hands can also be helpful. Increasing blood flow helps with healing and will make you feel better in general. Even just going outside for a short walk can be great.
+
+### Braces
+
+Wrist braces can help in extreme cases to reduce the chance of further damage from additional strain. But if you use a wrist brace you do need to take it off when you feel like your hands are okay enough to go without it for a bit.
+
+I used wrist braces quite a lot when I was having a very very bad time. But I would usually take them off after a few hours or so.
+
+Having some compression on the muscles can also feel really good. Just be careful to not tighten a brace enough to make your hands go numb or to where it puts a lot of pressure on the carpal tunnel area.
+
 ## Stretches
 
 Generally, stretches are not necessary for improving RSI. But they can provide temporary relief from pain.
