@@ -15,6 +15,18 @@ I may mention specific brand names or link to products. I have no affiliation to
 
 This is roughly where your wrist is at a neutral angle. Note that the top of your knuckles are above your wrist.
 
+## Stretches
+
+Generally, stretches are not necessary for improving RSI. But they can provide temporary relief from pain.
+
+There are nearly endless methods promoted by different people. Almost none of them feel "safe" as a general recommendation to me.
+
+Except for this [https://www.youtube.com/watch?v=fdD7CgN5FGg](https://youtu.be/fdD7CgN5FGg?t=133) (developed by Houshang Seradge, M.D.). It is a very gentle routine that should help to relieve pain without causing much strain. It is intended for carpal tunnel, but I have found it also helps for other RSI related wrist and hand injuries.
+
+Don't go crazy with this. Repeating this or any other routine constantly will do more harm than good. Do it maybe once or twice a day.
+
+Importantly, any stretches recommended for pain relief are not stretches for flexibility. DO NOT push yourself hard doing these. You should be very gentle.
+
 ## Steel Balls (Baoding Balls)
 
 Steel ball exercises are one of the most effective methods for warming up and strengthening the hands.
