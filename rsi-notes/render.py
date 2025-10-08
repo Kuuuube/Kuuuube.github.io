@@ -14,6 +14,7 @@ def markdown_to_html(markdown_string):
     # https://docs.rs/comrak/latest/comrak/struct.ExtensionOptions.html
     opts = comrak.ExtensionOptions()
     opts.table = True
+    opts.header_ids = ""
     return comrak.render_markdown(markdown_string, extension_options = opts)
 
 def render_html_page(output_html_path, markdown_data):
