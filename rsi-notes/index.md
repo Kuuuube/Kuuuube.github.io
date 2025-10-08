@@ -45,7 +45,9 @@ Don't go crazy with this. Repeating this or any other routine constantly will do
 
 Importantly, any stretches recommended for pain relief are not stretches for flexibility. DO NOT push yourself hard doing these. You should be very gentle.
 
-## Steel Balls (Baoding Balls)
+## Strengthening
+
+### Steel Balls (Baoding Balls)
 
 Steel ball exercises are one of the most effective methods for warming up and strengthening the hands.
 
@@ -77,7 +79,7 @@ To verify you have actually received steel balls and not a cheaper metal or holl
 
 Although I only mention steel balls, these are available in all sorts of materials such as wood, stone, gemstone, or glass. You may also find balls intended for meditation or spiritual uses, I only use and can only endorse their effectiveness as a physical tool.
 
-## Extensor Bands
+### Extensor Bands
 
 Many exercises (such as the steel ball ones above) train the muscles that close the hand. But it is also good to train the opposing muscles that open the hand.
 
