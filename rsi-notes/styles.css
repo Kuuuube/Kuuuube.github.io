@@ -128,6 +128,8 @@ body {
         --color-prettylights-syntax-markup-ignored-bg: #0550ae;
         --color-prettylights-syntax-meta-diff-range: #8250df;
         --color-prettylights-syntax-sublimelinter-gutter-mark: #818b98;
+
+        --balls-filter: invert(1);
     }
 }
 
@@ -546,4 +548,30 @@ h6:hover .anchor:before {
 
 .anchor:focus {
     outline: none;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    } to {
+        transform:rotate(360deg);
+    }
+}
+
+.balls-clockwise > svg,
+.balls-counterclockwise > svg {
+    width: 1em;
+    height: 1em;
+    top: .125em;
+    position: relative;
+    filter: var(--balls-filter);
+}
+
+.balls-clockwise > svg {
+    animation: 1s linear infinite spin;
+}
+
+.balls-counterclockwise > svg {
+    transform: scaleY(-1);
+    animation: 1s linear infinite reverse spin;
 }

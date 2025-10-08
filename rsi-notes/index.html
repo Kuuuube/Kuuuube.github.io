@@ -133,6 +133,8 @@ body {
         --color-prettylights-syntax-markup-ignored-bg: #0550ae;
         --color-prettylights-syntax-meta-diff-range: #8250df;
         --color-prettylights-syntax-sublimelinter-gutter-mark: #818b98;
+
+        --balls-filter: invert(1);
     }
 }
 
@@ -551,7 +553,34 @@ h6:hover .anchor:before {
 
 .anchor:focus {
     outline: none;
-}</style>
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    } to {
+        transform:rotate(360deg);
+    }
+}
+
+.balls-clockwise > svg,
+.balls-counterclockwise > svg {
+    width: 1em;
+    height: 1em;
+    top: .125em;
+    position: relative;
+    filter: var(--balls-filter);
+}
+
+.balls-clockwise > svg {
+    animation: 1s linear infinite spin;
+}
+
+.balls-counterclockwise > svg {
+    transform: scaleY(-1);
+    animation: 1s linear infinite reverse spin;
+}
+</style>
 </head>
 <body>
 <h1><a href="#kuuubes-rsi-notes" aria-hidden="true" class="anchor" id="kuuubes-rsi-notes"></a>Kuuube's RSI Notes</h1>
@@ -586,12 +615,13 @@ h6:hover .anchor:before {
 <p>It involves manipulating two steel balls in the hands in various ways. Some examples:</p>
 <ul>
 <li>
-<p>Holding two balls with your palm facing upwards, rotate the balls towards (left: ↻ | right: ↺) and away from your body (left: ↺ | right: ↻) using only your fingers.</p>
+<p>Holding two balls with your palm facing upwards, rotate the balls towards and away from your body using only your fingers.</p>
+<p>Towards: (left hand: <span class="balls-clockwise"><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg width="48.692352mm" height="97.384697mm" viewBox="0 0 48.692352 97.384697" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs1"/> <g id="layer1" transform="translate(-74.745949,-87.240807)"><circle style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1" cx="99.092125" cy="111.58698" r="23.346176"/><circle style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1-3-3" cx="99.092125" cy="111.58698" r="23.346176"/><circle style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1-3" cx="99.092125" cy="160.27933" r="23.346176"/></g></svg></span> | right hand: <span class="balls-counterclockwise"><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg width="48.692352mm" height="97.384697mm" viewBox="0 0 48.692352 97.384697" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs1"/> <g id="layer1" transform="translate(-74.745949,-87.240807)"><circle style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1" cx="99.092125" cy="111.58698" r="23.346176"/><circle style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1-3-3" cx="99.092125" cy="111.58698" r="23.346176"/><circle style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1-3" cx="99.092125" cy="160.27933" r="23.346176"/></g></svg></span>), Away: (left hand: <span class="balls-counterclockwise"><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg width="48.692352mm" height="97.384697mm" viewBox="0 0 48.692352 97.384697" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs1"/> <g id="layer1" transform="translate(-74.745949,-87.240807)"><circle style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1" cx="99.092125" cy="111.58698" r="23.346176"/><circle style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1-3-3" cx="99.092125" cy="111.58698" r="23.346176"/><circle style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1-3" cx="99.092125" cy="160.27933" r="23.346176"/></g></svg></span> | right hand: <span class="balls-clockwise"><?xml version="1.0" encoding="UTF-8" standalone="no"?><svg width="48.692352mm" height="97.384697mm" viewBox="0 0 48.692352 97.384697" version="1.1" id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs1"/> <g id="layer1" transform="translate(-74.745949,-87.240807)"><circle style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1" cx="99.092125" cy="111.58698" r="23.346176"/><circle style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1-3-3" cx="99.092125" cy="111.58698" r="23.346176"/><circle style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-dasharray:none;stroke-opacity:1" id="path1-3" cx="99.092125" cy="160.27933" r="23.346176"/></g></svg></span>).</p>
 <p>This is the easiest exercise. You should not need to move your wrist or arm to help do this.</p>
 </li>
 <li>
 <p>Face your palm sideways or upside down and repeat the above exercise.</p>
-<p>This may be very hard at first. Especially when rotating away from your body (↺|↻). Aim to not &quot;cheat&quot; by tilting your hands around.</p>
+<p>This may be very hard at first. Especially when rotating away from your body. Aim to not &quot;cheat&quot; by tilting your hands around.</p>
 </li>
 <li>
 <p>Any variation of these at any angle. You can increase the number of balls to three, four, or as many as you can fit in your hand. But be mindful to keep the angle of your wrist close to neutral.</p>

@@ -53,13 +53,15 @@ Steel ball exercises are one of the most effective methods for warming up and st
 
 It involves manipulating two steel balls in the hands in various ways. Some examples:
 
-- Holding two balls with your palm facing upwards, rotate the balls towards (left: ↻ | right: ↺) and away from your body (left: ↺ | right: ↻) using only your fingers.
+- Holding two balls with your palm facing upwards, rotate the balls towards and away from your body using only your fingers.
+
+    Towards: (left hand: {balls_clockwise} | right hand: {balls_counterclockwise}), Away: (left hand: {balls_counterclockwise} | right hand: {balls_clockwise}).
 
     This is the easiest exercise. You should not need to move your wrist or arm to help do this.
 
 - Face your palm sideways or upside down and repeat the above exercise.
 
-    This may be very hard at first. Especially when rotating away from your body (↺|↻). Aim to not "cheat" by tilting your hands around.
+    This may be very hard at first. Especially when rotating away from your body. Aim to not "cheat" by tilting your hands around.
 
 - Any variation of these at any angle. You can increase the number of balls to three, four, or as many as you can fit in your hand. But be mindful to keep the angle of your wrist close to neutral.
 

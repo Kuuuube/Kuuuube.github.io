@@ -10,6 +10,16 @@ def get_html_head(output_html_path):
         head_html = head_html.replace(replacement["target"], replacement["replacement"])
     return head_html
 
+def run_replacements(html_string):
+    balls_svg = open("./balls.svg").read()
+    replacements = [
+        {"target": r"{balls_clockwise}", "replacement": "<span class=\"balls-clockwise\">" + balls_svg + "</span>"},
+        {"target": r"{balls_counterclockwise}", "replacement": "<span class=\"balls-counterclockwise\">" + balls_svg + "</span>"},
+    ]
+    for replacement in replacements:
+        html_string = html_string.replace(replacement["target"], replacement["replacement"])
+    return html_string
+
 def markdown_to_html(markdown_string):
     # https://docs.rs/comrak/latest/comrak/struct.ExtensionOptions.html
     opts = comrak.ExtensionOptions()
