@@ -11,7 +11,7 @@ I may mention specific brand names or link to products. I have no affiliation to
 ## Finding Neutral Wrist Angle
 
 1. Place your forearm flat on a table.
-2. Make a loose fist with your thumb to the side (not under your hand)
+2. Make a loose fist with your thumb to the side (not under your hand).
 
 This is roughly where your wrist is at a neutral angle. Note that the top of your knuckles are above your wrist.
 
