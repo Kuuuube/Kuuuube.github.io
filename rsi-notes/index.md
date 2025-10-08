@@ -1,6 +1,6 @@
 # Kuuube's RSI Notes
 
-This is a collection of tips that have helped me through dealing with RSIs (Repetitive Strain Injuries) over 5+ years.
+This is a collection of things I have discovered, random notes, and tips that have helped me through dealing with RSIs (Repetitive Strain Injuries) over 5+ years.
 
 I am not a doctor and I do not have any medical training. This information comes purely from me living with and dealing with hand issues. Your situation may differ from mine.
 
