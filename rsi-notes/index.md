@@ -33,6 +33,14 @@ I used wrist braces quite a lot when I was having a very very bad time. But I wo
 
 Having some compression on the muscles can also feel really good. Just be careful to not tighten a brace enough to make your hands go numb or to where it puts a lot of pressure on the carpal tunnel area.
 
+## Unintuitive Causes of Pain
+
+The most obvious cause for hand pain is a hand injury. This may be the case, but there's a chance it isn't. Or your hand pain could be amplified by something else.
+
+For example, if your back or shoulders are messed up or in a very bad posture, this can cause pain in your hands. The entire chain has to be solid.
+
+I won't go in depth here since I don't feel confident giving advice on this. But it's important to know about the possibility that your hand pain may not be directly from a hand injury.
+
 ## Stretches
 
 Generally, stretches are not necessary for improving RSI. But they can provide temporary relief from pain.
