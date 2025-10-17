@@ -71,6 +71,8 @@ It involves manipulating two steel balls in the hands in various ways. Some exam
 
     This may be very hard at first. Especially when rotating away from your body. Aim to not "cheat" by tilting your hands around.
 
+- Rotate the balls in any way and try to keep them from touching as you rotate them. You can try to move them further and further apart for extra difficulty.
+
 - Any variation of these at any angle. You can increase the number of balls to three, four, or as many as you can fit in your hand. But be mindful to keep the angle of your wrist close to neutral.
 
 I recommend buying 1.5-2" (3.8-5cm) AISI 52100 chrome steel balls to start out. You may also find these referred to as "chrome steel bearing balls". It is important to note that chrome steel is NOT chrome plated steel.
