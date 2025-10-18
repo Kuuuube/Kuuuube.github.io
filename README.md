@@ -124,6 +124,10 @@ Basic spaceship game demo that intentionally only runs on the Gecko browser engi
 
 Movement keys can be rebound by appending `?` and then the desired keys to the URL. For example: `https://kuuuube.github.io/gecko-spaceship/?yrst` will rebind `wasd` to `yrst`.
 
+### [Ragebait Throbber](https://kuuuube.github.io/ragebait-throbber)
+
+A page that fails to load but sometimes loads right as you refresh it.
+
 ### [Word Card Puzzle](https://kuuuube.github.io/word-card-puzzle)
 
 Word puzzle game where the goal is to create words using all cards. Code is located at https://github.com/Kuuuube/word-card-puzzle.

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<head>
+    <title>Ragebait Throbber</title>
+    <style>
+        :root {
+            background-color: rgb(49, 49, 49);
+        }
+        #spinner {
+            position: absolute;
+            top: calc(50% - 60px);
+            left: calc(50% - 60px);
+            filter: invert(1);
+        }
+        #content {
+            color: white;
+            display: none;
+        }
+        a {
+            color: rgb(52, 170, 224);
+        }
+        .animate-jank-load-in {
+            animation-name: load-in-jank;
+            animation-duration: 0.5s;
+        }
+        @keyframes load-in-jank {
+            0% {
+                width: 100px;
+                height: 50px;
+                position: absolute;
+                top: calc(50% - 60px);
+                left: calc(50% - 60px);
+                overflow: hidden;
+            }
+            5% {
+                position: inherit;
+                width: 10000px;
+                height: 50px;
+                overflow: inherit;
+            }
+            10% {
+                width: 200px;
+                max-height: 10px;
+            }
+            15% {
+                position: absolute;
+                top: 200px;
+                max-height: 99999px;
+            }
+            25% {
+                position: inherit;
+                width: 10000px;
+                max-height: 1px;
+            }
+            26% {
+                position: absolute;
+                left: 200px;
+                width: 200px;
+                max-height: 1px;
+            }
+            50% {
+                position: inherit;
+                width: 20px;
+                height: 200px;
+            }
+            51% {
+                max-height: 200px;
+                overflow: hidden;
+            }
+            75% {
+                width: 20000px;
+                height: 20px;
+                overflow: inherit;
+            }
+            100% {
+                width: fit-content;
+                height: fit-content;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="spinner">
+        <svg width="120" height="120" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_OSmW{transform-origin:center;animation:spinner_T6mA .75s step-end infinite}@keyframes spinner_T6mA{8.3%{transform:rotate(30deg)}16.6%{transform:rotate(60deg)}25%{transform:rotate(90deg)}33.3%{transform:rotate(120deg)}41.6%{transform:rotate(150deg)}50%{transform:rotate(180deg)}58.3%{transform:rotate(210deg)}66.6%{transform:rotate(240deg)}75%{transform:rotate(270deg)}83.3%{transform:rotate(300deg)}91.6%{transform:rotate(330deg)}100%{transform:rotate(360deg)}}</style><g class="spinner_OSmW"><rect x="11" y="1" width="2" height="5" opacity=".14"/><rect x="11" y="1" width="2" height="5" transform="rotate(30 12 12)" opacity=".29"/><rect x="11" y="1" width="2" height="5" transform="rotate(60 12 12)" opacity=".43"/><rect x="11" y="1" width="2" height="5" transform="rotate(90 12 12)" opacity=".57"/><rect x="11" y="1" width="2" height="5" transform="rotate(120 12 12)" opacity=".71"/><rect x="11" y="1" width="2" height="5" transform="rotate(150 12 12)" opacity=".86"/><rect x="11" y="1" width="2" height="5" transform="rotate(180 12 12)"/></g></svg>
+    </div>
+    <div id="content">
+        <h1>Throbber</h1>
+        <p>A throbber, also known as a loading icon, is an animated graphical control element used to show that a computer program is performing an action in the background (such as downloading content, conducting intensive calculations or communicating with an external device). In contrast to a progress bar, a throbber does not indicate how much of the action has been completed.</p>
+        <h2>History</h2>
+        <p>An early use of a throbber occurred in the NCSA Mosaic web browser of the early 1990s, which featured an NCSA logo that animated while Mosaic downloaded a web page. As the user could still interact with the program, the pointer remained normal (and not a busy symbol, such as an hourglass); therefore, the throbber provided a visual indication that the program was performing an action.</p>
+        <p>The Netscape web browser also featured a throbber. In version 1.0 of Netscape, this took the form of a big blue "N" (Netscape's logo at the time). The animation depicted the "N" expanding and contracting – hence the name "throbber".</p>
+        <p>The IBM WebExplorer offered a webpage the opportunity to change the look and the animation of the throbber by using proprietary HTML code.</p>
+        <p>The Arena web browser has a command-line option to change the throbber with a local file.</p>
+        <h2>Spinning wheel</h2>
+        <p>Throbbers also appear in client side applications (such as Ajax web apps) where an application within the web browser would wait for some operation to complete. Most of these throbbers appear as a "spinning wheel", which typically consist of 8, 10, or 12 part-radial lines or discs arranged in a circle, as if on a clock face, highlighted in turn as if a wave is moving clockwise around the circle.</p>
+        <p>In text user interfaces and command lines, the spinning wheel is commonly replaced by a fixed-width character which is cycled through discrete states, such as "|", "/", "-" and "\", which act as the frames of a looping animation-like effect. Unlike graphical activity indicators, this style of throbber is commonly paired with a progress display like a bar, since the lower effective resolution of character-based progress bars can benefit from a separate indication of activity. Often, the spinner is displayed at or near the position of the typing cursor, then called a "spinning cursor" or "rotating cursor". This style of throbber dates from versions of UNIX appearing in the latter 1970s, and DR-DOS utilities in the 1980s, since it requires at least a character-cell addressable display—i.e. one which can be updated quickly to make precise changes to already displayed text—but given that is otherwise simple to program.</p>
+        <p>Credit to Wikipedia for the above text: <a href="https://en.wikipedia.org/wiki/Throbber">https://en.wikipedia.org/wiki/Throbber</a></p>
+        <p>Credit to n3r4zzurr0's svg-spinners for the spinner: <a href="https://github.com/n3r4zzurr0/svg-spinners">https://github.com/n3r4zzurr0/svg-spinners</a></p>
+        <h2>Ragebait Throbber</h2>
+        <p>In contrast to most use cases for a throbber that can range from processes that may take an arbitrary amount of time or developers who simply don't want to or can't add a real progress bar, the ragebait throbber exists for the express purpose of angering the end user.</p>
+        <p>This page contains a ragebait throbber which will appear to load forever until the user refreshes the page. This taps in deeply the human psyche and makes it seem like the user's own action's created a problem. The user thinks the page might be broken, a common tactic for fixing a broken webpage is to reload it. However, upon reloading the page, the page briefly appears to have finished loading before going back to a throbber.</p>
+    </div>
+    <script>
+        function jumper(reload_timeout, animate) {
+            document.querySelector("#spinner").hidden = true;
+            document.querySelector("#content").style.display = "block";
+            if (animate) {
+                document.querySelector("#content").classList.add("animate-jank-load-in");
+            }
+            setTimeout(() => {
+                window.location.reload();
+            }, reload_timeout);
+        }
+        setTimeout(() => {
+            let rand = Math.floor(Math.random() * 4);
+            if (rand > 2) {
+                throw new Error("Throbbing will not stop");
+            }
+            if (rand % 2) {
+                jumper(Math.floor(Math.random() * 250), false);
+            }
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "F5") {
+                    e.preventDefault();
+                    jumper(1000, true);
+                }
+            });
+        }, Math.floor(Math.random() * 2000));
+    </script>
+    <script>
+        /**@license
+         *
+         * favloader - Vanilla JavaScript library for loading animation in favicon
+         *
+         * Copyright (c) 2018 Jakub Jankiewicz <http://jcubic.pl/me>
+         * Released under the MIT license
+         *
+         */
+        /* global define, module, global, Worker, Blob, BlobBuilder */
+        (function(factory) {
+            var root = typeof window !== 'undefined' ? window : global;
+            if (typeof define === 'function' && define.amd) {
+                // AMD. Register as an anonymous module.
+                // istanbul ignore next
+                define([], factory);
+            } else if (typeof module === 'object' && module.exports) {
+                // Node/CommonJS
+                module.exports = factory();
+            } else {
+                // Browser
+                // istanbul ignore next
+                root.favloader = factory();
+            }
+        })(function(undefined) {
+            // we use web worker to trigger interval since browser main thread is limited
+            // when tab is not active
+            function fworker(fn) {
+                // ref: https://stackoverflow.com/a/10372280/387194
+                var str = '(' + fn.toString() + ')()';
+                var URL = window.URL || window.webkitURL;
+                var blob;
+                try {
+                    blob = new Blob([str], {type: 'application/javascript'});
+                } catch (e) { // Backwards-compatibility
+                    window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
+                    blob = new BlobBuilder();
+                    blob.append(str);
+                    blob = blob.getBlob();
+                }
+                return new Worker(URL.createObjectURL(blob));
+            }
+
+            var interval = (function() {
+                var worker = fworker(function() {
+                    // rAF polyfil without setTimeout, ref: https://gist.github.com/paulirish/1579671
+                    var vendors = ['ms', 'moz', 'webkit', 'o'];
+                    for(var x = 0; x < vendors.length && !self.requestAnimationFrame; ++x) {
+                        self.requestAnimationFrame = self[vendors[x]+'RequestAnimationFrame'];
+                        self.cancelAnimationFrame = self[vendors[x]+'CancelAnimationFrame']
+                            || self[vendors[x]+'CancelRequestAnimationFrame'];
+                    }
+                    var raf = {};
+                    self.addEventListener('message', function(response) {
+                        var data = response.data;
+                        var id = data.id;
+                        if (data.type !== 'RPC' || id === null) {
+                            return;
+                        }
+                        if (data.method == 'setInterval') {
+                            var interval_id = data.params[0];
+                            raf[interval_id] = self.requestAnimationFrame(function frame() {
+                                self.postMessage({ type: 'interval', id: interval_id });
+                                if (raf[interval_id] !== undefined) {
+                                    raf[interval_id] = self.requestAnimationFrame(frame);
+                                }
+                            });
+                            self.postMessage({ type: 'RPC', id: id, result: interval_id });
+                        } else if (data.method == 'clearInterval') {
+                            delete raf[data.params[0]];
+                        }
+                    });
+                });
+                var callbacks = {};
+                var rpc = (function() {
+                    var id = 0;
+                    return function rpc(method, params) {
+                        var _id = ++id;
+                        return new Promise(function(resolve) {
+                            worker.addEventListener('message', function handler(response) {
+                                var data = response.data;
+                                if (data && data.type === 'RPC' && data.id === _id) {
+                                    resolve(data.result);
+                                    worker.removeEventListener('message', handler);
+                                }
+                            });
+                            worker.postMessage({ type: 'RPC', method: method, id: _id, params: params });
+                        });
+                    };
+                })();
+                worker.addEventListener('message', function(response) {
+                    var data = response.data;
+                    if (data && data.type === 'interval' && callbacks[data.id]) {
+                        callbacks[data.id]();
+                    }
+                });
+                return {
+                    set: function(fn) {
+                        var interval_id = Date.now();
+                        callbacks[interval_id] = fn;
+                        rpc('setInterval', [interval_id]);
+                        return interval_id;
+                    },
+                    clear: function(id) {
+                        delete callbacks[id];
+                        return rpc('clearInterval', [id]);
+                    }
+                };
+            })();
+
+            var hidden, visibilityChange;
+            if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+                hidden = "hidden";
+                visibilityChange = "visibilitychange";
+            } else if (typeof document.msHidden !== "undefined") {
+                hidden = "msHidden";
+                visibilityChange = "msvisibilitychange";
+            } else if (typeof document.webkitHidden !== "undefined") {
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+            }
+
+            var ctx, c, link, icon, id, progress = 0, duration;
+            function init(options) {
+                var settings = Object.assign({
+                    favicon_size: 16,
+                    line_width: 2,
+                    color: '#0F60A8',
+                    duration: 5000
+                }, options);
+
+                c = document.createElement('canvas');
+                c.width = c.height = settings.favicon_size;
+                c.style.position = 'absolute';
+                c.style.left = '-100px';
+                document.body.appendChild(c);
+
+                ctx = c.getContext('2d');
+
+                link = document.querySelector('link[rel*="icon"]');
+                if (!link) {
+                    link = document.createElement('link');
+                    link.setAttribute('rel', 'icon');
+                    document.head.appendChild(link);
+                } else {
+                    icon = link.getAttribute('href');
+                }
+                ctx.lineCap = "round";
+                ctx.lineWidth = settings.line_width;
+                ctx.strokeStyle = settings.color;
+                duration = settings.duration;
+            }
+            var interval_id;
+            function restore() {
+                if (icon) {
+                    link.setAttribute('href', icon + '?' + Date.now());
+                } else {
+                    link.parentNode.removeChild(link);
+                }
+                interval.clear(interval_id);
+            }
+            function animate() {
+                progress = 0;
+                interval_id = interval.set(draw);
+            }
+            var startTime;
+
+            var initialTurns = -.25;
+            function turn(x) {
+                return (x + initialTurns) * 2 * Math.PI;
+            }
+            function arcStart(pos) {
+                return turn(pos + initialTurns) + turn(Math.max(0, pos * 2 - 1));
+            }
+            function arcEnd(pos) {
+                return turn(pos + initialTurns) + turn(Math.min(1, pos * 2));
+            }
+            var start_angle = 1.5 * Math.PI, raf, percent = 0;
+            function update() {
+                var newIcon, icon = document.querySelector('link[rel*="icon"]');
+                (newIcon = icon.cloneNode(true)).setAttribute('href',ctx.canvas.toDataURL());
+                icon.parentNode.replaceChild(newIcon, icon);
+                link = newIcon;
+            }
+            function draw() {
+                var position = progress % duration / duration;
+
+                ctx.clearRect(0, 0, 16, 16);
+                ctx.beginPath();
+                ctx.arc(8, 8, 6, arcStart(position), arcEnd(position));
+                ctx.stroke();
+                update();
+                progress += duration / 10;
+            }
+
+            return {
+                init: init,
+                start: animate,
+                stop: restore
+            };
+        });
+        window.onload = function() {
+            favloader.init({
+                color: "rgb(52, 170, 224)"
+            });
+            favloader.start();
+            // to stop:
+            // favloader.stop()
+        }
+    </script>
+</body>
