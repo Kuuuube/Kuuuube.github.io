@@ -575,3 +575,7 @@ h6:hover .anchor:before {
     transform: scaleY(-1);
     animation: 1s linear infinite reverse spin;
 }
+
+.stretches-image {
+    max-width: max(max(50vw, 50vh), 500px);
+}

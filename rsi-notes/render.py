@@ -37,5 +37,6 @@ def render_html_page(output_html_path, markdown_data):
     output_html += "</body>\n"
     return output_html
 
-with open("index.html", "w", encoding = "utf8") as output_html:
-    output_html.write(render_html_page("../rsi-notes/index.html", open("index.md").read()))
+for render_file in ["index", "stretches"]:
+    with open(render_file + ".html", "w", encoding = "utf8") as output_html:
+        output_html.write(render_html_page("../rsi-notes/" + render_file + ".html", open(render_file + ".md").read()))
