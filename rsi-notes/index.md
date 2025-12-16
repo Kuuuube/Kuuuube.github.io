@@ -47,7 +47,7 @@ Generally, stretches are not necessary for improving RSI. But they can provide t
 
 There are nearly endless methods promoted by different people. Almost none of them feel "safe" as a general recommendation to me.
 
-Except for this [https://www.youtube.com/watch?v=fdD7CgN5FGg](https://youtu.be/fdD7CgN5FGg?t=133) (developed by Houshang Seradge, M.D.). It is a very gentle routine that should help to relieve pain without causing much strain. It is intended for carpal tunnel, but I have found it also helps for other RSI related wrist and hand injuries.
+Except for this [https://www.youtube.com/watch?v=fdD7CgN5FGg](https://youtu.be/fdD7CgN5FGg?t=133) ([written version](./stretches.html)) (developed by Houshang Seradge, M.D.). It is a very gentle routine that should help to relieve pain without causing much strain. It is intended for carpal tunnel, but I have found it also helps for other RSI related wrist and hand injuries.
 
 Don't go crazy with this. Repeating this or any other routine constantly will do more harm than good. Do it maybe once or twice a day.
 
