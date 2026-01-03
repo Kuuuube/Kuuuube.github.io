@@ -294,6 +294,9 @@ function populate_material_list() {
     const steels_density_select = document.querySelector("#steels_density_select");
     populate_materials_select(steels_density_select, steels_mass_list);
 
+    const tungsten_alloys_density_select = document.querySelector("#tungsten_alloys_density_select");
+    populate_materials_select(tungsten_alloys_density_select, tungsten_alloys_mass_list)
+
     const human_density_select = document.querySelector("#human_density_select");
     populate_materials_select(human_density_select, human_mass_list);
 

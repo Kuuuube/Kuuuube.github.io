@@ -149,6 +149,10 @@ const steels_mass_list = [
     {material: "H13", mean_density: 7760},
 ];
 
+const tungsten_alloys_mass_list = [
+    {material: "Tungsten Carbide", mean_density: 15600},
+];
+
 const human_mass_list = [
     // https://www.icrp.org/publication.asp?id=ICRP%20Publication%20110 (pages 44-45 and 52-55)
     // https://bionumbers.hms.harvard.edu/files/Density%20and%20mass%20of%20each%20organ-tissue.pdf
