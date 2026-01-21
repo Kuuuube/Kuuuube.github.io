@@ -88,6 +88,9 @@
     <a id="yanwen" href="" class="big_link" target="_blank">Yanwen</a>
     <a id="sypost" href="" class="big_link" target="_blank">Sypost</a>
 </div>
+<div class="grid-container-1">
+    <a id="yunexpress" href="" class="big_link" target="_blank">YunExpress</a>
+</div>
 
 <h2 class="header_wrapper">Canada</h2>
 <div class="grid-container-1">
@@ -104,6 +107,7 @@
         {courier: "canada_post", name: "Canada Post", function: canada_post},
         {courier: "yanwen", name: "Yanwen", function: yanwen},
         {courier: "sypost", name: "Sypost", function: sypost},
+        {courier: "yunexpress", name: "YunExpress", function: yunexpress},
     ]
 
     function orange_connex(input_text) {
@@ -136,6 +140,10 @@
 
     function sypost(input_text) {
         return "https://sypost.net/search?orderNo=" + input_text;
+    }
+
+    function yunexpress(input_text) {
+        return "https://www.yuntrack.com/parcelTracking?id=" + input_text;
     }
 
     function update_links() {
