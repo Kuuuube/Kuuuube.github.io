@@ -21,7 +21,7 @@ def run_replacements(html_string):
     return html_string
 
 def markdown_to_html(markdown_string):
-    # https://docs.rs/comrak/latest/comrak/struct.ExtensionOptions.html
+    # https://docs.rs/comrak/latest/comrak/options/struct.Extension.html
     opts = comrak.ExtensionOptions()
     render = comrak.RenderOptions()
     opts.table = True
