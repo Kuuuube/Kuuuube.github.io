@@ -97,6 +97,11 @@
     <a id="canada_post" href="" class="big_link" target="_blank">Canada Post</a>
 </div>
 
+<h2 class="header_wrapper">Europe</h2>
+<div class="grid-container-1">
+    <a id="spring_gds" href="" class="big_link" target="_blank">Spring GDS</a>
+</div>
+
 <script>
     const COURIERS_LIST = [
         {courier: "orange_connex", name: "Orange Connex/Speedpak", function: orange_connex},
@@ -108,6 +113,7 @@
         {courier: "yanwen", name: "Yanwen", function: yanwen},
         {courier: "sypost", name: "Sypost", function: sypost},
         {courier: "yunexpress", name: "YunExpress", function: yunexpress},
+        {courier: "spring_gds", name: "Spring GDS", function: spring_gds},
     ]
 
     function orange_connex(input_text) {
@@ -144,6 +150,10 @@
 
     function yunexpress(input_text) {
         return "https://www.yuntrack.com/parcelTracking?id=" + input_text;
+    }
+
+    function spring_gds(input_text) {
+        return "https://mailingtechnology.com/tracking/?tn=" + input_text;
     }
 
     function update_links() {
