@@ -4,12 +4,14 @@ var collection;
 var stackPtr;
 var possible_errors;
 
-function get_bytes()
+function get_bytes(inTxt = null)
 {
-	var inTxt = document.getElementById("hex_text_box").value;
+	if (!inTxt) {
+		inTxt = document.getElementById("hex_text_box").value;
+	}
 	inTxt = inTxt.replace(/^radix:(.*)$/gmi, "");
 	inTxt = inTxt.replace(/(\/\*(.*?)\*\/)|(\/\/(.*?)$)|[g-w]|[yz]/gmi, ""); // strip C/C++ comments, non-hex chars
-	document.getElementById("hex_text_box").value = inTxt;
+	// document.getElementById("hex_text_box").value = inTxt;
 	var inSplit = inTxt.split(/(?![+-])\W/); // split by all non-alphanumeric characters
 	if(inSplit.length === 1 && inSplit[0].length > 2) {
 		// split every 2 chars
@@ -33,12 +35,11 @@ function get_bytes()
 	return inVals;
 }
 
-function go_parse_hidrepdesc()
+function go_parse_hidrepdesc(inVals)
 {
 try
 {
 	possible_errors = 0;
-	inVals = get_bytes();
 	var outTxt = "";
 	indent = 0;
 	usagePage = Array();

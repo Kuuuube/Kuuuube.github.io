@@ -101,7 +101,7 @@
             document.getElementById("parse_button").disabled = true;
 
             setTimeout(() => {
-                let parsed_hid_data = go_parse_hidrepdesc();
+                let parsed_hid_data = go_parse_hidrepdesc(get_bytes());
                 let possible_descriptors = parsed_hid_data.match(/0x.*?Usage.*?(\r\n|\n)(\r|\n|(?!0x\w\w,\s+\/\/\s+Unknown).)*0xC0,\s+\/\/\s+End Collection/g);
                 if (!possible_descriptors) {
                     document.getElementById("most_likely_text_box").value = "No descriptors found";
@@ -111,18 +111,26 @@
                 }
                 let possible_descriptors_array = [...possible_descriptors];
                 possible_descriptors_array.sort((a, b) => b.length - a.length); //longest to shortest string
-                let most_likely_descriptor = possible_descriptors_array[0];
+                // parse a second time to get correct indenting of comments, now that we have the likely descriptors
+                possible_descriptors_array = possible_descriptors_array.map(reparse);
+
+                let most_likely_descriptor = reparse(possible_descriptors_array[0]);
                 document.getElementById("most_likely_text_box").value = most_likely_descriptor;
 
                 if (possible_descriptors_array.length > 1) {
                     for (let i = 1; i < possible_descriptors_array.length; i++) {
-                        document.getElementById("other_descriptors_text_boxes").innerHTML += "<textarea>" + possible_descriptors_array[i] + "</textarea>";
+                        document.getElementById("other_descriptors_text_boxes").innerHTML += "<textarea>" + reparse(possible_descriptors_array[i]) + "</textarea>";
                     }
                 }
 
                 document.getElementById("parse_button").innerText = "Parse";
                 document.getElementById("parse_button").disabled = false;
             }, 0);
+        }
+
+        function reparse(input) {
+            let unformatted_hex = input.replaceAll(/(\/\/.*|,|\s|0x)/g, "");
+            return go_parse_hidrepdesc(get_bytes(unformatted_hex));
         }
 
         function process_file(file) {
