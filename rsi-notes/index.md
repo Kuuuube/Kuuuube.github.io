@@ -109,4 +109,22 @@ Doing so is rather simple with some bands. Some extensor bands have finger holes
 
 The most simple exercise you can do with these is opening your hand about halfway while all your fingers are in the band and the band is placed close to your fingertips. If you go too far, the band may slip down your fingers and the resistance decreases the closer you get to your hand being fully open so there's no need to go too far.
 
-Personally I use a set of bands from Grip Genie [https://gripgenie.com/products/extensor-bands](https://gripgenie.com/products/extensor-bands). Beware that these bands are quite strong, if your hands are very weak you probably shouldn't buy these.
+I use a set of bands from Grip Genie [https://gripgenie.com/products/extensor-bands](https://gripgenie.com/products/extensor-bands). Beware that these bands are quite strong, if your hands are very weak you probably shouldn't buy these.
+
+### General Body Strengthening and Exercise
+
+Having good overall strength is one of the best ways to aid with recovery from RSI. While it is technically possible that the only weak link is your hands/wrists/forearms, it is extremely unlikely that you wouldn't also benefit in recovery from strengthening the body as a whole.
+
+There are plenty of great options to choose and it's impossible to cover everything. You need to find what works best for you and importantly, what you can be **consistent** at.
+
+I like to focus on flexibility, mobility, and calisthenics exercises (similar to yoga). There's near zero barrier to entry for this, anyone can benefit at any level of existing skill, and the risk of injury from suboptimal technique is very low.
+
+Some people enjoy powerlifting for this use case. I did powerlifting for years before I got RSI, tried to continue through having RSI, and eventually quit due to it consistently putting too much strain on my wrists to recover from in a timely manner. If you can recover quickly enough, it can be a great option. See: [No Boilerplate's Video on Powerlifting for RSI](https://www.youtube.com/watch?v=WxN9VzwoGGw).
+
+When I first got into training flexibility and mobility, I focused almost entirely on my lower body and even that would be hard on my hands at times. When my hands felt better, I did exercises that vaguely involve the hands such as a plank. While the plank doesn't exactly target the hands in any large way, if your hands are very weak it can still apply considerable strain. Eventually, as I got stronger, I started doing exercises that directly target the upper body and put a lot of strain on the hands and wrists.
+
+There is no need to rush and any small bits of exercise you can do are helpful. Don't go too crazy and be careful of exercises that put a lot of strain on your wrists, at least at the beginning. Later on you will have enough strength to better train those exercises and use them to further reinforce yourself against injury.
+
+### Take a Walk Outside
+
+Do it. Going for a walk is very beneficial. At a minimum, it can increase blood flow and reduce stress which helps with recovery and pain.
