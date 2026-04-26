@@ -41,6 +41,16 @@ For example, if your back or shoulders are messed up or in a very bad posture, t
 
 I won't go in depth here since I don't feel confident giving advice on this. But it's important to know about the possibility that your hand pain may not be directly from a hand injury.
 
+## Randomly Changing Things
+
+Sitting at the same desk doing the same things over and over for a long time can cause problems. Often this leads to hunting down a solution which appears to fix the problem but then the problem comes back again.
+
+Ergonomic chair, ergonomic desk, ergonomic keyboard, ergonomic ergonomics with a cherry on top. I have nothing against "ergonomic" products and some can be beneficial long term but others only appear beneficial in the short term.
+
+For many solutions, the real reason why they appear to help is simply becuase they are different. Your body got hurt doing one thing over and over then you changed to something else. Your body likes that you switched away from what caused the injury but then you again go do one thing over and over until you get hurt.
+
+The real solution may be the act of changing things rather than trying to find the one perfect solution that you can stick with forever.
+
 ## Stretches
 
 Generally, stretches are not necessary for improving RSI. But they can provide temporary relief from pain.
