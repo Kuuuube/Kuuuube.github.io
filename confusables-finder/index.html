@@ -15,10 +15,17 @@
             <div class="row center">
                 <textarea cols="40" rows="10" id="main-textarea" placeholder="Enter text here"></textarea>
             </div>
-            <table>
-                <tbody id="compiled-table-body">
-                </tbody>
-            </table>
+            <details>
+                <summary>
+                    Show/Hide Example Strings | Count: <input type="text" id="compiled-table-count" value="5" class="short-inputbox"> | <span class="fake-link" id="refresh-compiled">Refresh</span>
+                </summary>
+                The first row is the input string. The second row is intentionals only. Other rows are random.
+                <table>
+                    <tbody id="compiled-table-body">
+                    </tbody>
+                </table>
+            </details>
+            <br>
             <table>
                 <tbody id="results-table-body">
                 </tbody>
@@ -26,7 +33,6 @@
         </div>
     </main>
     <script>
-        document.querySelector("#main-textarea").addEventListener("input", update_table);
         function update_table() {
             const table = document.querySelector("#results-table-body");
             const table_header = "<tr><th scope=\"col\" class=\"small-col\">Character</th><th scope=\"col\" class=\"small-col\">Intentionals</th><th scope=\"col\">Confusables</th></tr>";
@@ -38,16 +44,45 @@
             }
 
             const input_chars = [...input_text];
-
             for (const char of input_chars) {
                 table.innerHTML += make_table_row(char, [get_chars_from_dict(char, intentionals_dict), get_chars_from_dict(char, confusables_dict)])
             }
         }
 
         function update_compiled_table() {
-            const table = document.querySelector("#results-table-body");
-            const table_header = "<tr><th scope=\"col\" class=\"small-col\">Character</th><th scope=\"col\" class=\"small-col\">Intentionals</th><th scope=\"col\">Confusables</th></tr>";
+            const table = document.querySelector("#compiled-table-body");
+            // https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-family#syntax
+            const table_headers = ["", "serif", "sans-serif", "monospace", "cursive", "fantasy"];
+            const table_headers_string = "<tr>" + table_headers.map((x) => "<th scope=\"col\" class=\"small-col\">" + x + "</th>").join("") + "</tr>";
+            const input_text = document.querySelector("#main-textarea").value;
+            table.innerHTML = table_headers_string;
 
+            if (input_text.length === 0) {
+                return;
+            }
+
+            const compiled_table_count = document.querySelector("#compiled-table-count").value;
+
+            const input_chars = [...input_text];
+            for (let i = 0; i < compiled_table_count; i++) {
+                let random_combination = [];
+                for (const char of input_chars) {
+                    let possible_chars = [];
+                    // let first column be the input exactly as the user puts
+                    // second column only intentionals (closest matches)
+                    // all other columns include all confusables and intentionals at random
+                    if (i == 1) {
+                        possible_chars = [...get_chars_from_dict(char, intentionals_dict)];
+                    } else if (i > 1) {
+                        possible_chars = [...get_chars_from_dict(char, intentionals_dict), ...get_chars_from_dict(char, confusables_dict)];
+                    }
+                    if (possible_chars.length == 0) { possible_chars = [char] };
+                    const random_char = possible_chars[Math.floor(Math.random() * possible_chars.length)];
+                    random_combination.push(random_char);
+                }
+                const table_column = "<tr>" + table_headers.map((x) => "<th scope=\"col\" class=\"small-col\" style=\"font-family: " + x + ";\">" + random_combination.join("") + "</th>").join("") + "</tr>";
+                table.innerHTML += table_column;
+            }
         }
 
         function make_table_row(character, columns) {
@@ -72,7 +107,17 @@
                     return [...filtered_values, key]
                 }
             }
+            return [];
         }
+
+        document.querySelector("#main-textarea").addEventListener("input", update_table);
+        document.querySelector("#main-textarea").addEventListener("input", update_compiled_table);
+        document.querySelector("#refresh-compiled").addEventListener("click", (e) => {
+            e.preventDefault();
+            update_compiled_table();
+        });
+        update_table();
+        update_compiled_table();
     </script>
 </body>
 </html>

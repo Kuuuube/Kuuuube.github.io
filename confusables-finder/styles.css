@@ -111,3 +111,14 @@ code {
     word-break: break-all;
     word-wrap: break-word;
 }
+
+.fake-link {
+    color: #0000EE;
+    text-decoration: underline;
+    cursor: pointer;
+    user-select: none;
+}
+
+.short-inputbox {
+    width: 2em;
+}
