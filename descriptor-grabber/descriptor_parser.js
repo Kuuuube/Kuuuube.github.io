@@ -151,7 +151,7 @@ try
 				}
 				else if (bTag == 0x08)
 				{
-					outTxt += pIndentComment("Report ID" + pItemVal(bSize, itemVal), bSizeActual);
+					outTxt += pIndentComment("Report ID (" + itemVal + ")", bSizeActual);
 				}
 				else if (bTag == 0x09)
 				{
