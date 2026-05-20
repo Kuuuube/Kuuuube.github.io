@@ -2041,26 +2041,24 @@ function pUsagePage(s, v)
 	else {
 		var tbl = [
 			"Undefined",
-			"Generic Desktop Ctrls",
-			"Sim Ctrls",
-			"VR Ctrls",
-			"Sport Ctrls",
-			"Game Ctrls",
-			"Generic Dev Ctrls",
-			"Kbrd/Keypad",
-			"LEDs",
-			"Button",
-			"Ordinal",
-			"Telephony",
-			"Consumer",
-			"Digitizer",
-			"Reserved 0x0E",
-			"PID Page",
-			"Unicode",
-			"Reserved 0x11",
-			"Reserved 0x12",
-			"Reserved 0x13",
-			"Alphanumeric Display",
+			"Generic Desktop Page",
+			"Simulation Controls Page",
+			"VR Controls Page",
+			"Sport Controls Page",
+			"Game Controls Page",
+			"Generic Device Controls Page",
+			"Keyboard/Keypad Page",
+			"LED Page",
+			"Button Page",
+			"Ordinal Page",
+			"Telephony Device Page",
+			"Consumer Page",
+			"Digitizer Page",
+			"Haptics Page",
+			"Physical Input Device Page",
+			"Unicode Page",
+			"SoC Page",
+			"Eye and Head Trackers Page",
 		];
 		if (v == 0 || v == 14 || v == 17 || v == 18 || v == 19) {
 			possible_errors++;
@@ -2068,26 +2066,44 @@ function pUsagePage(s, v)
 		if (v < tbl.length) {
 			return " (" + tbl[v] + ")";
 		}
+		else if (v == 0x14) {
+			return " (Auxiliary Display Page)";
+		}
+		else if (v == 0x20) {
+			return " (Sensors Page)";
+		}
 		else if (v == 0x40) {
 			return " (Medical Instruments)";
 		}
-		else if (v >= 0x80 && v <= 0x83) {
-			return " (Monitor Pages)";
+		else if (v == 0x41) {
+			return " (Braille Display Page)";
 		}
-		else if (v >= 0x84 && v <= 0x87) {
-			return " (Power Pages)";
+		else if (v == 0x59) {
+			return " (Lighting And Illumination Page)";
+		}
+		else if (v >= 0x80) {
+			return " (Monitor Page)";
+		}
+		else if (v >= 0x81) {
+			return " (Monitor Enumerated Page)";
+		}
+		else if (v >= 0x82) {
+			return " (VESA Virtual Controls Page)";
+		}
+		else if (v >= 0x84) {
+			return " (Power Page)";
+		}
+		else if (v >= 0x85) {
+			return " (Battery System Page)";
 		}
 		else if (v == 0x8C) {
 			return " (Bar Code Scanner Page)";
 		}
 		else if (v == 0x8D) {
-			return " (Scale Page)";
+			return " (Scales Page)";
 		}
 		else if (v == 0x8E) {
-			return " (MagStripe Reading Devices)";
-		}
-		else if (v == 0x8F) {
-			return " (Rsv'ed Point-of-Sale Pages)";
+			return " (Magnetic Stripe Reader Page)";
 		}
 		else if (v == 0x90) {
 			return " (Camera Control Page)";
@@ -2095,11 +2111,27 @@ function pUsagePage(s, v)
 		else if (v == 0x91) {
 			return " (Arcade Page)";
 		}
-		else if (v >= 0x92 && v <= 0xFEFF) {
+		else if (v == 0x92) {
+			return " (Gaming Device Page)";
+		}
+		else if (v == 0xF1D0) {
+			return " (FIDO Alliance Page)";
+		}
+		else if (v == 0x13 ||
+			(v >= 0x15 && v <= 0x1F) ||
+			(v >= 0x21 && v <= 0x3F) ||
+			(v >= 0x42 && v <= 0x58) ||
+			(v >= 0x5A && v <= 0x7F) ||
+			v == 0x83 ||
+			(v >= 0x86 && v <= 0x8B) ||
+			v == 0x8F ||
+			(v >= 0x93 && v <= 0xF1CF) ||
+			(v >= 0xF1D1 && v <= 0xFEFF)
+		) {
 			possible_errors++;
 			return " (Reserved " + pHex(v) + ")";
 		}
-		else if (v >= 0xFF00 && v <= 0xFFFFF) {
+		else if (v >= 0xFF00 && v <= 0xFFFF) {
 			return " (Vendor Defined " + pHex(v) + ")";
 		}
 		else {
