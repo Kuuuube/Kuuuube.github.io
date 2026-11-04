@@ -52,7 +52,7 @@
     <div class="wrapper">
         <fieldset>
             <legend>Parsed</legend>
-            <textarea id="parsed"></textarea>
+            <textarea id="parsed" readonly placeholder="08:000D:0002: [Report ID: 0x08, Usage Page (0x000D): Digitizers, Usage ID (0x0002): Pen]&#10;09:0001:0007: [Report ID: 0x09, Usage Page (0x0001): Generic Desktop, Usage ID (0x0007): Keypad]&#10;AC:0001:0007: [Report ID: 0xAC, Usage Page (0x0001): Generic Desktop, Usage ID (0x0007): Keypad]"></textarea>
         </fieldset>
     </div>
 
@@ -119,11 +119,15 @@
                 }
             }
 
-            document.querySelector("#parsed").textContent = parsed_report_lines.map((parsed_reports_line) =>
-                parsed_reports_line.map(
-                    (x) => `${x.hid_report}: [Report ID: 0x${x.report_id}, Usage Page (0x${x.usage_page_id}): ${x.usage_page_name}, Usage ID (0x${x.usage_id}): ${x.usage_id_name}]`)
-                    .join("\n")
-            ).join("\n---------------------------------------------------------------------------\n");
+            if (parsed_report_lines.length > 0) {
+                parsed_textbox.value = parsed_report_lines.map((parsed_reports_line) =>
+                    parsed_reports_line.map(
+                        (x) => `${x.hid_report}: [Report ID: 0x${x.report_id}, Usage Page (0x${x.usage_page_id}): ${x.usage_page_name}, Usage ID (0x${x.usage_id}): ${x.usage_id_name}]`)
+                        .join("\n")
+                ).join("\n---------------------------------------------------------------------------\n");
+            } else {
+                parsed_textbox.value = hid_reports.length > 0 ? "Parsing error" : "";
+            }
         });
     </script>
 </body>

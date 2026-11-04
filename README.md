@@ -24,6 +24,10 @@ Converter between different bases of numbers. Note that padding is automatically
 
 Tool to extract USB HID Descriptors from Windows driver files.
 
+### [HID Reports Parser](https://kuuuube.github.io/hid-reports-parser)
+
+Tool to parse HID_REPORTS data from OpenTabletDriver diagnostics.
+
 ### [Confusables Finder](https://kuuuube.github.io/confusables-finder)
 
 Finds unicode characters that could easily be confused with another character.
