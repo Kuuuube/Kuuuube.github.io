@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>OpenTabletDriver HID_REPORTS Parser</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<style>
+    #header {
+        text-align: center;
+    }
+
+    #parse_button {
+        margin: 5px;
+        min-height: 5%;
+        width: 49%;
+        font-size: 160%;
+        flex: 1;
+    }
+
+    fieldset, textarea {
+        width: 100%;
+        min-height: 200px;
+        height: 30%;
+        /* color: #000; */
+        font-family: monospace;
+    }
+
+    .wrapper {
+        display:flex;
+        justify-content:center;
+        margin: 1em;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        margin-left: 1em;
+    }
+
+</style>
+<body>
+    <div id="header">
+        <h2>OpenTabletDriver HID_REPORTS Parser</h2>
+    </div>
+
+    <div class="wrapper">
+        <fieldset>
+            <legend>HID_REPORTS</legend>
+            <textarea id="hid_reports" placeholder="08:000D:0002, 09:0001:0007, AC:0001:0007"></textarea>
+        </fieldset>
+    </div>
+
+    <div class="wrapper">
+        <fieldset>
+            <legend>Parsed</legend>
+            <textarea id="parsed"></textarea>
+        </fieldset>
+    </div>
+
+    <script src="HidUsageTables.js"></script>
+    <script>
+        document.querySelector("#hid_reports").addEventListener("input", (e) => {
+            let hid_reports = e.target.value;
+            let parsed_textbox = document.querySelector("#parsed");
+
+            let parsed_report_lines = [];
+
+            for (let hid_report_line of hid_reports.split("\n")) {
+                let parsed_reports = [];
+
+                for (let hid_report of hid_report_line.split(",")) {
+                    hid_report = hid_report.trim();
+                    let hid_report_split = hid_report.split(":");
+                    if (hid_report_split.length != 3) {
+                        continue;
+                    }
+                    let report_id = hid_report_split[0];
+                    let usage_page_id = hid_report_split[1];
+                    let usage_id = hid_report_split[2];
+
+                    let usage_page_id_int = parseInt(hid_report_split[1], 16);
+                    let usage_id_int = parseInt(hid_report_split[2], 16);
+
+                    let usage_page_name = "Unknown";
+                    let usage_id_name = "Unknown";
+                    for (let usage_page of HidUsageTables.UsagePages) {
+                        if (usage_page.Id == usage_page_id_int) {
+                            usage_page_name = usage_page.Name;
+                            for (let usage of usage_page.UsageIds) {
+                                if (usage.Id == usage_id_int) {
+                                    usage_id_name = usage.Name;
+                                }
+                            }
+                        }
+                    }
+
+                    // special cases not included in HidUsageTables.json but mentioned in hut1_7.pdf
+                    if (usage_page_id_int == 0x13 ||
+                        (usage_page_id_int >= 0x15 && usage_page_id_int <= 0x1F) ||
+                        (usage_page_id_int >= 0x21 && usage_page_id_int <= 0x3F) ||
+                        (usage_page_id_int >= 0x42 && usage_page_id_int <= 0x58) ||
+                        (usage_page_id_int >= 0x5A && usage_page_id_int <= 0x7F) ||
+                        usage_page_id_int == 0x83 ||
+                        (usage_page_id_int >= 0x86 && usage_page_id_int <= 0x8B) ||
+                        usage_page_id_int == 0x8F ||
+                        (usage_page_id_int >= 0x93 && usage_page_id_int <= 0xF1CF) ||
+                        (usage_page_id_int >= 0xF1D1 && usage_page_id_int <= 0xFEFF)
+                    ) {
+                        usage_page_name = "Reserved";
+                        usage_id_name = "Reserved";
+                    } else if (usage_page_id_int >= 0xFF00 && usage_page_id_int <= 0xFFFF) {
+                        usage_page_name = "Vendor-Defined";
+                        usage_id_name = "Vendor-Defined";
+                    }
+
+                    parsed_reports.push({hid_report, report_id, usage_page_id, usage_page_name, usage_id, usage_id_name});
+                }
+                if (parsed_reports.length > 0) {
+                    parsed_report_lines.push(parsed_reports);
+                }
+            }
+
+            document.querySelector("#parsed").textContent = parsed_report_lines.map((parsed_reports_line) =>
+                parsed_reports_line.map(
+                    (x) => `${x.hid_report}: [Report ID: 0x${x.report_id}, Usage Page (0x${x.usage_page_id}): ${x.usage_page_name}, Usage ID (0x${x.usage_id}): ${x.usage_id_name}]`)
+                    .join("\n")
+            ).join("\n---------------------------------------------------------------------------\n");
+        });
+    </script>
+</body>
