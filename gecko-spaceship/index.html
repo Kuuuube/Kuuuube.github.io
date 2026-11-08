@@ -133,7 +133,7 @@
 </html>
 <script>
     document.body.innerHTML = "<h1>A gecko browser is required to run this webpage</h1>";
-    if (document.caretRangeFromPoint) {
+    if (navigator.vibrate) {
         throw new Error("Unsupported browser version")
     }
     document.body.innerHTML = "<span id=\"ship\"><span id=\"ship_body\"><span id=\"healthbar\"></span>△</span><br><span id=\"thrust\">𝍫</span></span><span id=\"keymap_container\"></span>";
